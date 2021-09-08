@@ -1,0 +1,256 @@
+// 파이썬 거북이 삼각형 문제
+import turtle
+t=turtle.Turtle()
+t.shape("turtle")
+length=0
+while length<3:
+    t.fd(100)
+    t.left(120)
+    length+=1
+
+
+//파이썬 그림 그리기 예제 
+print("본 예제는 페이지 44쪽 문제입니다")
+print(9*7)
+print("감사합니다")
+
+
+//파이썬 정육각형 실습 응용코드
+import turtle
+t=turtle.Turtle()
+t.shape("turtle")
+length=0
+while length<6:
+    t.fd(100)
+    t.left(60)
+    length+=1
+
+
+// 예제 응용 코드: 문제점 빨간색만 출력됨 
+import turtle
+colors = ["red","purple","green","yellow","orange"]
+t=turtle.Turtle()
+
+turtle.bgcolor("black")
+t.speed(0)
+t.width(3)
+length=10
+
+while length<500:
+    t.forward(length)
+    t.pencolor(colors[length%5])
+    t.right(89)
+    length+=5
+
+
+//파이썬 정육각형,원그리기 실습응용코드
+ import turtle
+t=turtle.Turtle()
+t.shape("turtle")
+length=0
+
+while length<6:
+    t.fd(100)
+    t.lt(60)
+    length+=1
+t.circle(100)
+
+//연습문제 1
+print("파이썬은 강력합니다\n"+"파이썬의 세계에 오신것을 환영합니다.\n"+"환영합니다.")
+
+//연습문제 2
+반갑습니다. 파이썬! 
+0.6
+Hello world !!!
+
+//연습문제 3
+print(7*24)
+
+//연습문제 4
+import turtle
+t=turtle.Turtle()
+t.shape("turtle")
+t.fd(100)
+t.lt(90)
+t.fd(100)
+t.rt(90)
+t.fd(100)
+t.rt(90)
+t.fd(100)
+t.lt(90)
+t.fd(100)
+
+//연습문제 5
+import turtle
+t=turtle.Turtle()
+t.shape("turtle")
+t.width(10)
+t.fd(100)
+t.lt(90)
+t.fd(100)
+
+//연습문제 6
+import turtle
+t=turtle.Turtle()
+t.shape("turtle")
+t.color("blue")
+t.fd(100)
+
+//연습문제 7
+import turtle
+t=turtle.Turtle()
+t.shape("square")
+t.fd(100)
+
+//연습문제 8
+import turtle
+t=turtle.Turtle()
+t.shape("turtle")
+t.fd(100)
+t.up()
+t.goto(0,100)
+t.down()
+t.fd(100)
+
+//연습문제 9
+import turtle
+t=turtle.Turtle()
+t.shape("turtle")
+t.circle(100)
+t.up()
+t.goto(190,0)
+t.down()
+t.circle(100)
+
+t.up()
+t.goto(380,0)
+t.down()
+t.circle(100)
+
+t.up()
+t.goto(100,-130)
+t.down()
+t.circle(100)
+
+t.up()
+t.goto(300,-130)
+t.down()
+t.circle(100)
+
+// 파이썬 학교 공부 2일차 
+집그리기 응용 p64
+
+import turtle
+size=int(input("집 사이즈 얼마로 할까요?"))
+t=turtle.Turtle()
+t.shape("turtle")
+length=0
+
+while length<4:
+    t.forward(size)
+    t.left(90)
+    length+=1
+
+t.goto(0,100)
+length=0
+while length<3:
+    t.forward(size)
+    t.left(120)
+    length+=1
+
+    //로봇기자 만들기
+question1=input("당신은 누구죠?")
+question2=input("왜 살죠?")
+question3=input("풋...")
+print("제가 왜 웃었을까요?\n",question1,question2,question3)
+print("당신이 답한 내용입니다")
+print("잘 생각해보세요")
+//질문 거리 165줄에 왜 question1,2,3뒤에는 개행을 뜻하는 \n을 넣으면 오류가 발생하는가?
+
+//연습문제 1
+name=input("이름을 대라:")
+age=int(input("나이를 대라"))
+print(name,"의 나이는",age,"이로구나")
+
+//연습문제 2
+num1=int(input("숫자입력:"))
+num2=int(input("숫자입력:"))
+num3=int(input("숫자입력:"))
+
+result=(num1+num2+num3)/3
+print(num1,num2,num3,"의 평균값 결과:",result)
+
+//연습문제 3
+num1=float(input("반지름 입력:"))
+result=3.14*(num1*num1)
+print(num1,"의 원넓이결과:",result)
+
+//연습문제 4
+radius=50
+import turtle
+t=turtle.Turtle()
+t.shape("turtle")
+
+t.circle(radius)
+t.up()
+t.goto(100,0)
+t.down()
+t.circle(radius+20)
+t.up()
+t.goto(200,0)
+t.down()
+t.circle(radius+40)
+
+//연습문제 5
+side=100
+import turtle
+t=turtle.Turtle()
+t.shape("turtle")
+rnlcksgdk=0
+
+while rnlcksgdk<3:
+   t.forward(side)
+   t.left(120)
+   rnlcksgdk+=1
+
+//연습문제 6
+side=200
+import turtle
+t=turtle.Turtle()
+t.shape("turtle")
+rnlcksgdk=0
+
+while rnlcksgdk<3:
+   t.forward(side)
+   t.left(120)
+   rnlcksgdk+=1
+
+
+//연습문제 7
+side=100
+angle=90
+import turtle
+t=turtle.Turtle()
+t.shape("turtle")
+t.width(5)
+length=0
+
+while length<4:
+    t.forward(side)
+    t.left(angle)
+    length+=1
+t.forward(side)
+
+while length>=0:
+    t.forward(side)
+    t.left(angle)
+    length-=1
+t.goto(200,100)
+
+while length<4:
+    t.forward(side)
+    t.left(angle)
+    length+=1
+t.goto(0,200)
+t.left(angle)
+t.forward(side)

@@ -1,0 +1,22 @@
+//열혈 c 문제 07-2번 문제
+int main(void )
+{
+	int num1=1,result=0;
+	int i=0;
+	while (i<5)
+	{
+		printf("정수 입력: ");
+		scanf("%d", &num1);
+		result += num1;
+		while (num1 < 1)
+		{
+			printf("재입력");
+			i--;
+                                      result-=num1;
+			num1 =1 ;
+		}
+		i++;
+	}
+	printf("%d", result);
+	return 0;
+}
