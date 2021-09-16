@@ -1,0 +1,32 @@
+#include <Nextion.h>
+NexButton b0=NexButton(0,2,"b0");
+NexTouch *nex_listen_list[]=
+{
+  &b0,
+  NULL 
+};
+char buffer[100]={0};
+
+void b0PopCallback(void *ptr)
+{
+ NexButton*btn=(NexButton*)ptr,
+ memset(buffer,0,sizeof(buffer));
+ btn->getText(buffer,sizeof(buffer));
+  if(strcmp(buffer,"ON")){
+    digitalWrite(13,HIGH);
+    strcpy(buffer,"ON");
+  }
+  else
+  digitalWrite(13,LOW);
+  strcpy(buffer,"OFF");
+}
+
+void setup(){
+  pinMode(13,OUTPUT);
+  nexInit();
+  b0.attachPop(b0PopCallback);
+}
+
+void loop(){
+  nexLoop(nex_listen_list);
+}
