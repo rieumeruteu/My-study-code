@@ -1,0 +1,43 @@
+#include <Nextion.h>
+static int cnt=0;
+NexButton b0=NexButton(0,2,"b0");
+
+NexTouch*nex_listen_list[]=
+{
+  &b0,
+  NULL
+};
+
+void b0PushCallback(void*ptr)
+{
+  cnt=cnt+1;
+  delay(10);
+  digitalWrite(13,HIGH);
+  Serial.print("n0,HIGH");
+  Serial.print(cnt);
+  Serial.write(0xff);
+  Serial.write(0xff);
+  Serial.write(0xff);
+}
+
+
+void b0PopCallback(void*ptr)
+{
+  digitalWrite(13,LOW);
+}
+
+void setup(){
+  Serial.begin(9600);
+  delay(500);
+  Serial.write(0xff);
+  Serial.write(0xff);
+  Serial.write(0xff);
+  Serial.end();
+  b0.attachPush(b0PushCallback);
+  b0.attachPop(b0PopCallback);
+  pinMode(13,OUTPUT);
+}
+void loop(){
+  delay(30);
+  nexLoop(nex_listen_list);
+}
