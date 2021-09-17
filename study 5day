@@ -1,0 +1,133 @@
+예제1
+line='='*50
+print(line)
+name=input("이름이 어떻게?")
+print("반갑습니다",name,"씨")
+
+print("당신의 이름길이는"+str(len(name))+"이군요")
+age=int(input("나이는 어떻게 되는지?"))
+
+print("내년이면"+str(age+1)+"살이 되겠군요")
+
+예제2
+import time
+t=time.time()
+now=int(1970+(t//(365*3600*24)))
+print("올해는",now,"년입니다")
+year=int(input("몇살?"))
+future=int(2050-now+year)
+print("2050년에는"+str(future)+"살이군요")
+
+예제3
+n=0
+list1=[]
+while n<5:
+    name=input("이름을 넣으시오")
+    list1.append(name)
+    n+=1
+print(list1)
+
+예제4
+import turtle
+t=turtle.Turtle()
+color_list=["red","green","blue"]
+t.fillcolor(color_list[0])
+t.begin_fill()
+t.circle(100)
+t.end_fill()
+
+t.fd(100)
+
+t.fillcolor(color_list[1])
+t.begin_fill()
+t.circle(100)
+t.end_fill()
+
+t.fd(100)
+t.fillcolor(color_list[2])
+t.begin_fill()
+t.circle(100)
+t.end_fill()
+
+연습문제1
+print('나는'+str(12)+'개의 사과를 먹었다')
+
+연습문제2
+print('apple'+'grape')
+print('apple'*3)
+
+연습문제3
+
+n=input("문자열 입력")
+print(n[0:2])
+nx=len(n)
+print(n[nx-2:nx])
+
+연습문제4
+tx=input("문자열 입력:")
+print("%s하는 중" %tx)
+
+연습문제5
+tool=input("기호를 입력:")
+lang=input("중간에 삽입할 문자를 입력:")
+print(tool[0]+lang+tool[1])
+
+연습문제6
+list1=[1,2,3,4]
+sum=list1[0]+list1[1]+list1[2]+list1[3]
+print("리스트 숫자들의 합%d"%sum)
+
+연습문제7
+import turtle
+t=turtle.Turtle()
+color_list=[]
+color1=input("원하는 색 입력:")
+color2=input("원하는 색 입력:")
+color3=input("원하는 색 입력:")
+color_list.append(color1)
+color_list.append(color2)
+color_list.append(color3)
+
+t.fillcolor(color_list[0])
+t.begin_fill()
+t.circle(50)
+t.end_fill()
+
+t.up()
+t.goto(100,0)
+t.down()
+
+t.fillcolor(color_list[1])
+t.begin_fill()
+t.circle(50)
+t.end_fill()
+
+t.up()
+t.goto(200,0)
+t.down()
+
+t.fillcolor(color_list[2])
+t.begin_fill()
+t.circle(50)
+t.end_fill()
+
+t.up()
+t.goto(300,0)
+t.down()
+
+연습문제8
+import turtle
+t=turtle.Turtle()
+
+x1=int(input("x1="))
+y1=int(input("y1="))
+
+x2=int(input("x2="))
+y2=int(input("y2="))
+
+x3=int(input("x3="))
+y3=int(input("y3="))
+
+t.goto(x1,y1)
+t.goto(x2,y2)
+t.goto(x3,y3)
