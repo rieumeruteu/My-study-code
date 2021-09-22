@@ -53,3 +53,14 @@ x2=int(input("x2:"))
 y2=int(input("y2:"))
 result=math.sqrt((x1-x2)**2+(y1-y2)**2)
 print("두점 사이의 거리:",result)
+
+
+#연습문제 복습3
+text=input("문자열 입력")
+print(text[:2],text[-2:])
+
+#연습문제 복습 5
+num=input("기호를 입력하세요:")
+num2=input("문자열 입력:")
+
+print(num[0]+num2+num[1])
