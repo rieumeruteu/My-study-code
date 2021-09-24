@@ -1,0 +1,31 @@
+//캡스톤 디자인 2조 넥션 lcd 부분 코드 
+
+#include<SoftwareSerial.h>
+SoftwareSerial nex(10,11);
+#include "DHT.h"
+#define DHTPIN 7
+#define DHTTYPE DHT11
+DHT dht(DHTPIN,DHTTYPE);
+
+void setup(){
+  Serial.begin(57600);
+  while(!Serial){
+    ;
+  }
+  nex.begin(9600);
+}
+
+void loop(){
+  float t=dht.readTemperature();
+  Serial.println("temperature:");
+  delay(500);
+  nex.print("t2.txt=\"");//t2에 값 출력
+  nex.print(t);
+  nex.print("\"");
+  nex.write(0xff);
+  nex.write(0xff);
+  nex.write(0xff);
+  Serial.print(t);//시리얼 통신값 확인용
+
+  
+}
