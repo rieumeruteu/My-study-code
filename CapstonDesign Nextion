@@ -1,7 +1,7 @@
 //캡스톤 디자인 2조 넥션 lcd 부분 코드 
 
 #include<SoftwareSerial.h>
-SoftwareSerial nex(10,11);
+SoftwareSerial nex(10,11);//TX,RX
 #include "DHT.h"
 #define DHTPIN 7
 #define DHTTYPE DHT11
