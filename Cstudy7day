@@ -1,0 +1,66 @@
+
+//shift 연산자 이용한 10진수를 2진수로 led 출력
+void setup() {
+ pinMode(2,OUTPUT);
+ pinMode(3,OUTPUT);
+ pinMode(4,OUTPUT);
+}
+
+void loop() {
+  int i;
+  for(i=0;i<8;i++)
+  {
+    digitalWrite(2,i%2);
+    digitalWrite(3,(i>>1)%2);
+    digitalWrite(4,(i>>2)%2);
+    delay(500);
+  }
+}
+////////////////////////////////////////////////////
+//풀업 저항실험(중요)
+
+const int ledPin=2;
+const int button=3;
+int currentButtonState;
+void setup() {
+ pinMode(2,OUTPUT);
+ pinMode(3,INPUT);
+ Serial.begin(9600);
+}
+
+void loop() {
+  currentButtonState=digitalRead(3);
+  digitalWrite(2,currentButtonState);
+  Serial.println(currentButtonState);
+}
+//////////////////////////////////////////////////
+//온도센서
+
+#include <DHT.h>
+/*#define DHTPIN 2*/
+DHT dht(2,DHT11);//클래스/객체  DHT가 int와 같은 위치이다.
+
+void setup() {
+ 
+ Serial.begin(9600);
+ Serial.println("DHT11 measure start");
+ Serial.println();
+ dht.begin();
+}
+
+void loop() {
+ float humiValue=dht.readHumidity();
+ float tempValue=dht.readTemperature();
+ if(isnan(humiValue)||isnan(tempValue)){//센서 에러시 작동 isnan:is (it) not a number
+  Serial.println("Failed to read from DHT sensor");
+  return;
+ }
+ Serial.print("Humidity: ");
+ Serial.print(humiValue);
+ Serial.println("%RH");
+ Serial.print("Temperature: ");
+ Serial.print(tempValue);
+ Serial.println(" C");
+ Serial.println();
+ delay(500);
+}
