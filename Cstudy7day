@@ -51,13 +51,13 @@ void setup() {
 void loop() {
  float humiValue=dht.readHumidity();
  float tempValue=dht.readTemperature();
- if(isnan(humiValue)||isnan(tempValue)){//센서 에러시 작동 isnan:is (it) not a number
+ if(isnan(humiValue)||isnan(tempValue)){//센서 에러시 작동 isnan:is (it) not a number(연산 애러 판단 함수)
   Serial.println("Failed to read from DHT sensor");
   return;
  }
  Serial.print("Humidity: ");
  Serial.print(humiValue);
- Serial.println("%RH");
+ Serial.println("% RH");
  Serial.print("Temperature: ");
  Serial.print(tempValue);
  Serial.println(" C");
