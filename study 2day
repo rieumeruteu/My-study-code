@@ -1,9 +1,9 @@
-예제 1
+//예제 1
 num1=int(input("첫번째 변수를 입력하세요"))
 num2=int(input("두번째 변수를 입력하세요"))
 print(num1,"과",num2,"의 합은",num1+num2,"입니다")
 
-예제 2
++예제 2
 radius=int(input("집 사이즈 ?"))
 import turtle
 t=turtle.Turtle()
@@ -25,14 +25,14 @@ while length<3:
     t.lt(120)
     length+=1
 
-        //로봇기자 만들기
++로봇기자만들기
 question1=input("당신은 누구죠?")
 question2=input("왜 살죠?")
 question3=input("풋...")
 print("제가 왜 웃었을까요?\n",question1,question2,question3)
 print("당신이 답한 내용입니다")
 print("잘 생각해보세요")
-//질문 거리 165줄에 왜 question1,2,3뒤에는 개행을 뜻하는 \n을 넣으면 오류가 발생하는가?
+
 
 //연습문제 1
 name=input("이름을 대라:")
