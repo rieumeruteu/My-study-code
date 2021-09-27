@@ -1,0 +1,53 @@
+
+
+const int ledPin = 3;
+const int ledPin2 = 4;
+const int ledPin3 = 5;
+const int ledPin4 = 6;
+const int ledPin5 = 7;
+
+void setup()
+{
+  pinMode(ledPin, OUTPUT);
+  pinMode(ledPin2, OUTPUT);
+  pinMode(ledPin3, OUTPUT);
+  pinMode(ledPin4, OUTPUT);
+  pinMode(ledPin5, OUTPUT);
+}
+
+void loop()
+{ //10진수를 2진수화 시키기
+//비트를 오른쪽으로 이동하고 싶으면 /2 (>>)
+//왼쪽으로 이동하고 싶으면 *2 (<<)
+  int i = 0;
+  int first = i % 2;
+  int second = (i / 2) % 2;
+  int third = (i / 4) % 2;
+  int fourth = (i / 8) % 2;
+  int fifth = (i / 16) % 2;
+
+  if (first == 0)
+    digitalWrite(ledPin, HIGH);
+  else
+    digitalWrite(ledPin, LOW);
+
+  if (second == 0)
+    digitalWrite(ledPin2, HIGH);
+  else
+    digitalWrite(ledPin2, LOW);
+
+  if (third == 0)
+    digitalWrite(ledPin3, HIGH);
+  else
+    digitalWrite(ledPin3, LOW);
+
+  if (fourth == 0)
+    digitalWrite(ledPin4, HIGH);
+  else
+    digitalWrite(ledPin4, LOW);
+
+  if (fifth == 0)
+    digitalWrite(ledPin5, HIGH);
+  else
+    digitalWrite(ledPin5, LOW);
+}

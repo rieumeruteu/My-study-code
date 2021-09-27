@@ -1,0 +1,123 @@
+//예제 1
+num1=int(input("첫번째 변수를 입력하세요"))
+num2=int(input("두번째 변수를 입력하세요"))
+print(num1,"과",num2,"의 합은",num1+num2,"입니다")
+
++예제 2
+radius=int(input("집 사이즈 ?"))
+import turtle
+t=turtle.Turtle()
+
+length=0
+while length<4:
+    t.fd(radius)
+    t.lt(90)
+    length+=1
+
+
+length=0
+t.up()
+t.goto(0,radius)
+t.down()
+     
+while length<3:
+    t.fd(radius)
+    t.lt(120)
+    length+=1
+
++로봇기자만들기
+question1=input("당신은 누구죠?")
+question2=input("왜 살죠?")
+question3=input("풋...")
+print("제가 왜 웃었을까요?\n",question1,question2,question3)
+print("당신이 답한 내용입니다")
+print("잘 생각해보세요")
+
+
+//연습문제 1
+name=input("이름을 대라:")
+age=int(input("나이를 대라"))
+print(name,"의 나이는",age,"이로구나")
+
+//연습문제 2
+num1=int(input("숫자입력:"))
+num2=int(input("숫자입력:"))
+num3=int(input("숫자입력:"))
+
+result=(num1+num2+num3)/3
+print(num1,num2,num3,"의 평균값 결과:",result)
+
+//연습문제 3
+num1=float(input("반지름 입력:"))
+result=3.14*(num1*num1)
+print(num1,"의 원넓이결과:",result)
+
+//연습문제 4
+radius=50
+import turtle
+t=turtle.Turtle()
+t.shape("turtle")
+
+t.circle(radius)
+t.up()
+t.goto(100,0)
+t.down()
+t.circle(radius+20)
+t.up()
+t.goto(200,0)
+t.down()
+t.circle(radius+40)
+
+//연습문제 5
+side=100
+import turtle
+t=turtle.Turtle()
+t.shape("turtle")
+rnlcksgdk=0
+
+while rnlcksgdk<3:
+   t.forward(side)
+   t.left(120)
+   rnlcksgdk+=1
+
+//연습문제 6
+side=200
+import turtle
+t=turtle.Turtle()
+t.shape("turtle")
+rnlcksgdk=0
+
+while rnlcksgdk<3:
+   t.forward(side)
+   t.left(120)
+   rnlcksgdk+=1
+
+
+//연습문제 7
+side=100
+angle=90
+import turtle
+t=turtle.Turtle()
+t.shape("turtle")
+t.width(5)
+length=0
+
+while length<4:
+    t.forward(side)
+    t.left(angle)
+    length+=1
+t.forward(side)
+
+while length>=0:
+    t.forward(side)
+    t.left(angle)
+    length-=1
+t.goto(200,100)
+
+while length<4:
+    t.forward(side)
+    t.left(angle)
+    length+=1
+t.goto(0,200)
+t.left(angle)
+t.forward(side)

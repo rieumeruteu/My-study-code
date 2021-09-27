@@ -1,0 +1,36 @@
+//Nextion LCD의 최소한의 작동 코드
+#include <SoftwareSerial.h>
+SoftwareSerial nex(10,11);
+
+void setup(){
+  Serial.begin(57600);
+  while(!Serial){
+    ;
+  }
+  Serial.println("개시");
+  nex.begin(9600);
+  pinMode(13,OUTPUT);  
+}
+
+void loop(){
+  digitalWrite(13,HIGH);
+  nex.print("t1.txt=\"");
+  nex.print("134");
+  nex.print("\"");
+  nex.write(0xff);
+  nex.write(0xff);
+  nex.write(0xff);
+  Serial.println("중간");
+  
+  delay(1000);
+
+  digitalWrite(13,LOW);
+  nex.print("t1.txt=\"");
+  nex.print("end");
+  nex.print("\"");
+  nex.write(0xff);
+  nex.write(0xff);
+  nex.write(0xff);
+  delay(1000);
+  Serial.println("end");
+}

@@ -1,0 +1,17 @@
+money= int(input("돈을 넣어 주세요"))
+pay=int(input("구매할 물건 값 주세요"))
+lmoney=money-pay
+print("거스름돈:",lmoney)
+won500=lmoney//500
+won100=(lmoney%500)//100
+print("500원 출력:",won500)
+print("100원 출력:",won100)
+
+if lmoney<0:
+    print("금액이", -lmoney,"만큼 부족합니다")
+elif lmoney==0:
+    print("잔돈 없습니다")
+elif lmoney>0:
+    print("잔돈",lmoney,"원 입니다")
+
+

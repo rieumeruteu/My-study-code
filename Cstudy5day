@@ -1,0 +1,67 @@
+//예제1
+int num = 0,numx=0;
+	
+	printf("원하는 숫자입력: ");
+	scanf("%d", &num);
+	numx = ~num+1;
+	printf("%d",numx);
+//예제2
+int num = 3;
+	int n=num << 3;
+	int n2 = n >> 2;
+	printf("%d", n2);
+
+	return 0;
+//예제3
+double rad;
+	double area;
+	printf("원의 반지름 입력: ");
+	scanf("%lf", &rad);
+	area = rad * rad * 3.14;
+	printf("%f", area);
+
+
+	return 0;
+
+//문제 1
+int x1=0, y1=0, x2=0, y2=0;
+	int result = 0;
+	printf("좌상단 x,y값:");
+	scanf("%d %d", &x1, &y1);
+	printf("\n우하단 x,y값:");
+	scanf("%d %d", &x2, &y2);
+	result = (x1 - x2) * (y1 - y2);
+	if (result < 0)
+	{
+		result = ~result + 1;
+	}
+	printf("두점 이루는 사각형의 넓이 : %d", result);
+
+	return 0;
+
+//문제 2
+
+double n1 = 0, n2 = 0;
+	double result1, result2, result3, result4;
+	printf("입력값 2개: ");
+	scanf("%lf %lf", &n1, &n2);
+	result1 = n1 + n2;
+	result2 = n1 - n2;
+	result3 = n1 / n2;
+	result4 = n1 * n2;
+	printf("사칙연산값 +-/*: %d %d %d %d ",(int)result1, (int)result2, (int)result3, (int)result4);
+	
+
+	return 0;
+
+//문제 4
+int n = 0;
+	printf("정수 입력:");
+	scanf("%d", &n);
+	printf("%c", (char)n);
+
+//문제5
+char n = 0;
+	printf("알파벳 입력:");
+	scanf("%c", &n);
+	printf("%d", (int)n);

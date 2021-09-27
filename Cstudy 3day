@@ -1,0 +1,180 @@
+#include <Nextion.h>
+static int cnt=0;
+NexButton b0=NexButton(0,2,"b0");
+
+NexTouch*nex_listen_list[]=
+{
+  &b0,
+  NULL
+};
+
+void b0PushCallback(void*ptr)
+{
+  cnt=cnt+1;
+  delay(10);
+  digitalWrite(13,HIGH);
+  Serial.print("n0,HIGH");
+  Serial.print(cnt);
+  Serial.write(0xff);
+  Serial.write(0xff);
+  Serial.write(0xff);
+}
+
+
+void b0PopCallback(void*ptr)
+{
+  digitalWrite(13,LOW);
+}
+
+void setup(){
+  Serial.begin(9600);
+  delay(500);
+  Serial.write(0xff);
+  Serial.write(0xff);
+  Serial.write(0xff);
+  Serial.end();
+  b0.attachPush(b0PushCallback);
+  b0.attachPop(b0PopCallback);
+  pinMode(13,OUTPUT);
+}
+void loop(){
+  delay(30);
+  nexLoop(nex_listen_list);
+}
+/*<n0.val=30>
+n0 구성 요소의 값을 30으로 설정합니다.
+<n0.bco=63488>
+배경색을 빨간색으로 설정
+<n0.font=0>
+글꼴을 ID가 0인 글꼴 스타일로 설정합니다.
+<n0.pco=1055>
+글꼴 색상을 파란색으로 설정
+<n0.형식=0>
+값 형식을 10진수로 설정
+
+
+Serial.print("n0.val");
+  Serial.print("\xff\xff\xff");
+
+  Serial.print("t3.txt=\"Hello\"");//텍스트 속성이면 ""안에 값이 있어야 한다. \"은 "을 뜻하는 ASCII문자이다
+  Serial.print("\xff\xff\xff");
+}
+
+ Serial.print("baud=11500");//시리얼 통신의 전송속도를 초기화 한다.
+  Serial.print("n0.val");
+  Serial.print("\xff\xff\xff");
+  Serial.print("t1.pco=BLUE");//t1의 색깔은 파란색을 변경한다.
+  Serial.print("t2.txt=\"HELLO\"");//t2의 텍스트를 아두이노로 바꾸고 싶으면 이렇게 쓴다.
+  Serial.print("t3.txt=\"Hello\"");//텍스트 속성이면 ""안에 값이 있어야 한다. \"은 "을 뜻하는 ASCII문자이다
+  Serial.print("\xff\xff\xff");
+
+*/
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+#include <SoftwareSerial.h>		// 소프트웨어시리얼을 사용하기위한 헤더추가
+#include <Nextion.h>			// Nextion LCD용 라이브러리 추가
+#include <DHT.h>				// DHT22 센서용 라이브러리 추가
+
+// DHT sensor 초기화
+#define DHTTYPE DHT22			// 센서타입을 DHT22로 지정
+#define DHTPIN 2				// 센서의 신호를 받을 핀 지정(D2)
+DHT dht(DHTPIN, DHTTYPE);		// 센서컨트롤용 객체 생성
+
+// LED를 연결할 핀 설정
+const int led1 = 7;				// 녹색 LED
+const int led2 = 6;				// 빨강 LED
+
+// 소프트웨어 시리얼포트 설정
+SoftwareSerial SerialForNex(10, 11);	// RX:10 ,TX: 11
+
+// Nextion 화면구성 객체 선언 [ Ex. NexText(page id = 0, component id = 1, component name = "btnP0") ]
+// 화면터치등으로 아두이노로 신호를 내보내는 객체 혹은 아두이노에서 받은 신호로 객체상태를 변경해야 하는요소 들
+// Nextion Editor의 속성에서 객체 id와 이름을 확인
+/// Page0
+NexSlider h0 = NexSlider(0, 1, "h0");				// 터치이벤트: LED 밝기값 신호
+NexText tSlider = NexText(0, 2, "txtSlider");		// 슬라이더 위치값을 표시할 텍스트
+/// Page1
+NexText txtState = NexText(1, 3, "txtState");		// 버튼의 On/Off상태를 표시할 텍스트
+NexButton btnOn = NexButton(1, 4, "btnOn");			// 터치이벤트: LED On 신호
+NexButton btnOff = NexButton(1, 5, "btnOff");		// 터치이벤트: LED Off 신호
+/// Page2
+NexText txtTemp = NexText(2, 3, "txtTemp");			// 온도값을 표시할 텍스트
+NexText txtHumi = NexText(2, 5, "txtHumi");			// 습도값을 표시할 텍스트
+NexButton btnUpdate = NexButton(2, 7, "btnUpdate");	// 터치이벤트: 온습도 업데이트 신호
+
+// Nextion 객체중 터치이벤트를 발생시키는 객체는 터치이벤트 리스트에 등록
+NexTouch *nex_event_list[] = {
+  &h0, &btnOn, &btnOff, &btnUpdate, NULL
+};
+
+// h0 콜백함수
+// Page0의 슬라이더에서 릴리즈가 발생했을 때 호출
+void h0_Callback(void *ptr) {
+	uint32_t number = 0;		// 슬라이더 위치값용 변수 초기화
+	char temp[10] = { 0 };		// 임시 문자열변수 초기화
+	h0.getValue(&number);		// 슬라이더 위치값 읽기
+	utoa(number, temp, 10);		// 슬라이더값을 문자열로 변환
+	tSlider.setText(temp);		// 텍스트값 수정 
+	analogWrite(led2, number);	// LED 밝기 조정
+}
+
+// btnOn 콜백함수
+// Page1의 On버튼의 릴리즈 이벤트가 발생했을 때 호출
+void btnOn_Callback(void *ptr) {
+	digitalWrite(led1, HIGH);			// D7핀의 녹색 LED 켜기
+	txtState.setText("State: on");		// LED의 상태를 나타내는 텍스트를 변경
+}
+
+// btnOn 콜백함수
+// Page1의 Off버튼의 릴리즈 이벤트가 발생했을 때 호출
+void btnOff_Callback(void *ptr) {
+	digitalWrite(led1, LOW);			// D7핀의 녹색 LED 끄기
+	txtState.setText("State: off");		// LED의 상태를 나타내는 텍스트를 변경
+}
+
+// btnUpdate 콜백함수
+// Page2의 업데이트 버튼에서 릴리즈 이벤트가 발생했을 때 호출
+void btnUpdate_Callback(void *ptr) {
+	float h = dht.readHumidity();		// 습도 측정값을 변수에 저장
+	float t = dht.readTemperature();	// 온도 측정값을 변수에 저장
+	
+	// 온도/습도 변수에 측정값이 없을 경우 함수종료
+	if (isnan(h) || isnan(t)) { return; }
+	
+	static char temperature[6];			// 온도값을 저장할 변수 선언
+	dtostrf(t, 6, 2, temperature);		// 실수를 문자열로 변환 - dtostrf(변환할실수, 부호;소수점포함 전체자리수, 소수점자리수, 문자버퍼)
+	txtTemp.setText(temperature);		// 온도값을 Nextion에 표시
+
+	char hTemp[10] = { 0 };				// 습도값을 저장할 변수
+	utoa(int(h), hTemp, 10);			// 정수값을 문자열로 변환
+	txtHumi.setText(hTemp);				// 습도값을 Nextion에 표시
+}
+
+void setup(void) {
+	dht.begin();						// 온습도 센서 초기화
+	nexInit();							// Nextion 초기화
+	Serial.begin(9600);					// 디버깅용 시리얼포트 시작
+
+	// LED가 연결된 Digital pin을 출력용으로 설정
+	pinMode(led1, OUTPUT);
+	pinMode(led2, OUTPUT);
+
+	// Nextion에서 발생하는 이벤트와 콜백함수 연결
+	h0.attachPop(h0_Callback, &h0);
+	btnOn.attachPop(btnOn_Callback, &btnOn);
+	btnOff.attachPop(btnOff_Callback, &btnOff);
+	btnUpdate.attachPop(btnUpdate_Callback, &btnUpdate);
+}
+
+void loop(void) {
+	// Nextion에서 발생하는 이벤트를 라이브러리로 전달
+	nexLoop(nex_event_list);
+}
+
+///////////////////////////////////////////////////////////
+
