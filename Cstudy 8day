@@ -1,0 +1,62 @@
+//학교에서 배운 c 공부 내용
+//예제 1
+int num=12345;
+	printf("%d\n",num);
+	printf("%d\n", num * 10);
+	printf("%d\n", num * 100);
+	printf("%d\n", num * 1000);
+
+	printf("%8d\n", num); // 8칸의 문자 폭에 맞춰서 10진수 출력
+	printf("%8d\n", num * 10);
+	printf("%8d\n", num * 100);
+	printf("%8d\n", num * 1000);
+	printf("%8d\n", num * 100000);// 8칸 넘으면 넘은칸은 그냥 출력
+
+	printf("%08d\n", num);// 남는 칸들은 0으로 채운다.
+
+	return 0;
+
+//예제2
+
+int num;
+	float x;
+	char ch;
+
+	num = 123;
+	x = 1.23;
+	ch = 'A';
+
+	printf("%d %x\n", num, num); //%x는 16진수로 출력 
+	printf("%f %e\n", x, x);
+	printf("%c\n", ch);
+
+	printf("%x\n", num); // 7b 출력 
+	printf("%X\n", num); 
+	printf("%#x\n", num);//0x7b 출력
+	printf("%#X\n", num);
+	return 0;
+
+//예제3
+
+
+
+//예제 4
+int num;
+	printf("정수 입력:");
+	scanf("%d", &num);
+	printf("10진수 %d는 16진수 %x입니다", num, num);
+
+	return 0;
+
+//예제 5
+int age = 0;
+	char name[20];
+	char gender;
+
+	printf("이름, 나이,성별(M/F) 순으로 입력하세요\n");
+	scanf("%d %s %c", &age, name, &gender);
+	printf("이름: %s\n", name);
+	printf("나이: %d\n", age);
+	printf("성별: %c\n", gender);
+
+	return 0;
