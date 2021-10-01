@@ -1,0 +1,241 @@
+#예제 1
+import turtle
+t=turtle.Turtle()
+
+t.up()
+t.goto(100,100)
+t.write("양수")
+t.goto(100,0)
+t.write("0")
+t.goto(100,-100)
+t.write("음수")
+
+t.goto(0,0)
+t.down()
+s=int(turtle.textinput(""," 횟수"))
+
+if s==0:
+    t.goto(100,0)
+elif s<0:
+    t.goto(100,-100)
+elif s>0:
+    t.goto(100,100)
+
+#lab 거북이 제어
+import turtle
+t=turtle.Turtle()
+t.shapesize(4,3)
+
+while 1:
+    x=input("입력:")
+    if x=='1':
+        t.fd(100)
+    elif x=='r':
+        t.rt(90)
+        t.fd(100)
+    elif x=='l':
+        t.lt(90)
+        t.fd(100)
+    elif x=='b':
+        t.fd(-100)
+    elif x=='q':
+        break
+
+
+#윤년 판단
+year=int(input("연도 입력:"))
+if ((year%4==0)and(year%100!=0))or(year%400==0):
+    print(str(year)+"윤년이다")
+else:
+    print(str(year)+"윤년아이다")
+
+#동전 던지기 게임
+import random
+print("동전 던지기 게임")
+coin=random.randrange(6)
+if coin==0:
+    print("1")
+elif coin==1:
+    print("2");
+elif coin==2:
+    print("3");
+elif coin==3:
+    print("4");
+elif coin==4:
+    print("5");
+elif coin==5:
+    print("6");
+
+# 동전 이미지 추가한 동전게임
+import turtle
+import random
+t=turtle.Turtle()
+screen=turtle.Screen()
+coin=random.randint(0,1)
+image1="d:\\캡처.GIF"
+image2="d:\\캡처2.GIF"
+screen.addshape(image1)
+screen.addshape(image2)
+
+if coin==0:
+    t.shape(image1)
+    t.stamp()
+elif coin==1:
+    t.shape(image2)
+    t.stamp()
+
+# 종달새 울기
+import random
+time=random.randint(1,24)
+sunny=random.choice([True,False])
+print("화창한 날씨다 시간은"+str(time)+"시이다");
+if sunny:
+    print("날씨 맑네")
+else:
+    print("흐리네요")
+
+if 6<=time or time<9 and sunny:
+    print("종달새가 울어요")
+else:
+    print("종달새가 울지 않아요")
+
+#로그인 만들기
+address=input("가입용 아이디 입력:")
+print("저장 완료")
+
+while 1:
+    carry=input("아이디:")
+    if carry !=address:
+        print("아이디가 존재하지 않습니다")
+    elif carry==address:
+        print("환영합니다")
+        break
+
+
+#축구게임
+import random
+shoot=input("왼,중,우 선택:")
+gard=random.choice(["왼","중","우"])
+
+if shoot==gard:
+    print("가드 당함")
+else:
+    print("패널티 킥 ")
+
+# 도형그리기
+import turtle
+t=turtle.Turtle()
+s=int(turtle.textinput("","도형 입력"))
+s1=int(turtle.textinput("","가로치수 입력"))
+s2=int(turtle.textinput("","세로치수 입력"))
+
+for i in range(s):
+    t.fd(s1)
+    t.lt(360//s)
+    t.fd(s2)
+    
+# 도형그리기 응용 
+import turtle
+t=turtle.Turtle()
+s=turtle.textinput("","도형 입력")
+s1=int(turtle.textinput("","가로치수 입력"))
+s2=int(turtle.textinput("","세로치수 입력"))
+m=0
+if s=="삼각형":
+    m=3
+elif s=="사각형":
+    m=4
+elif s=="오각형":
+    m=5
+elif s=="육각형":
+    m=6
+elif s=="칠각형":
+    m=7
+
+for i in range(m):
+    t.fd(s1)
+    t.lt(360//m)
+    t.fd(s2)
+
+#연습문제 3번
+temp=int(input("온도 작성:"))
+if temp>=25:
+    print("반바지 입으세요")
+elif temp<25:
+    print("긴바지 입으세요")
+
+#연습문제 4번
+grade=int(input("성적 입력:"))
+if grade>=90:
+    print("A")
+elif grade>=80:
+    print("B")
+elif grade>=70:
+    print("C")
+elif grade>=60:
+    print("D")
+else:
+    print("버러지들")
+
+#연습문제 5번
+import random
+x=random.randrange(1,100)
+y=random.randrange(1,100)
+res=x-y
+result=int(input('%d-%d='%(x,y)))
+if result==res:
+    print("정답!")
+else:
+    print("틀렸습니다")
+
+#연습문제 6번
+num=int(input("원하는 정수 입력:"))
+print("2와 3으로 나누어 떨어지나요?")
+if num%2==0 and num%3==0:
+    print("예")
+else:
+    print("아니요")
+
+#도박게임
+import random
+num=int(input("2자리 복권 숫자 입력:"))
+chance=random.randint(0,9)
+chance1=random.randint(0,9)
+num2=num//10
+num1=num%10
+if (num1==chance) and (num2==chance1):
+    print("당첨")
+elif (num1==chance) or (num2==chance1):
+    print("하나 맞췄네요")
+else:
+    print("버러지")
+
+#원 안에 있는지 확인하는 코드
+import turtle
+t1=turtle.Turtle()
+t2=turtle.Turtle()
+t1.up()
+t2.up()
+
+x1=int(input("큰원 중심좌표X:"))
+y1=int(input("큰원 중심좌표Y:"))
+round1=int(input("큰원 반지름:"))
+point1=y1+round1#큰원의 중심점
+
+x2=int(input("작은 원 중심좌표X:"))
+y2=int(input("작은 원 중심좌표Y:"))
+round2=int(input("작은 원 반지름:"))
+point2=y2+round2#작은원의 중심점 
+
+t1.goto(x1,y1)
+t1.down()
+t1.circle(round1)
+
+t2.goto(x2,y2)
+t2.down()
+t2.circle(round2)
+'''원 아래부분보다 커야하고 원 윗부분보다는 작아야한다'''
+if (point1-round2)<=point2 or (point1+round2)>=point2:
+    t2.write("원안에 있다")
+else:
+    t2.write("원밖에 있다")
