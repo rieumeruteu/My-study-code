@@ -1,0 +1,59 @@
+
+// cor C 2장 핵심 연습문제 10
+int n = 0;
+	scanf("%i", &n);
+	printf("8진수: %#o\n16진수: %#x\n10진수:%d\n", n, n, n);
+
+// cor C 2장 핵심 연습문제 11
+
+#define _USE_MATH_DEFINES
+#include <math.h>
+
+double n = M_PI;
+	printf("pi=%.2f \npi=%.4f\npi=%.6f\npi=%.8f\npi=%.10f",n,n,n,n,n);
+	
+
+	return 0;
+// cor C 2장 핵심 연습문제 12
+char name[10], classmate[20], classnum[20];
+
+	printf("이름, 학과, 학번:");
+	scanf("%s %s %s", name, classmate, classnum);
+	printf("이름: %s \n학과: %s\n학번: %s", name, classmate, classnum);
+
+// cor C 2장 응용해 본 문제
+
+int first, second, third, fourd;
+	int num = 0;
+	printf("원하는 정수 입력:");
+	scanf("%d", &num);
+	
+		 first = num % 2;
+		 second = (num >> 1) % 2;
+		 third = (num >> 2) % 2;
+		 fourd = (num >> 3) % 2;
+	
+	printf("2진수화: %d%d%d%d",fourd,third,second,first);
+
+	return 0;
+
+
+// cor C 3장 2의 보수에 관한 예제
+printf("7=%08x\n", 15);
+	printf("-7=%08x\n", -15);
+	printf("7+(-10)=%08x\n", 7 + (-10));
+
+// cor C 2장 핵심 연습문제 6
+char num;
+	printf("옷 사이즈 S,M,L:");
+	scanf("%c", &num);
+	printf("%c 사이즈 선택하셨습니다", num);
+	return 0;
+
+
+//3장 데이터형 
+short a = -10;
+	unsigned short b = 65526;
+	printf("a=%d, %08x\n", a, a);
+	printf("a=%u, %08x\n", b, b);
+	return 0;
