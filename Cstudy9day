@@ -1,0 +1,70 @@
+//스피커 코드
+const int buzzer=2;
+const int notes[]={
+  131,147,165,175,196,220,247,262
+};
+
+
+void setup() {
+ 
+}
+
+void loop() {
+ int note;
+ for(note=0;note<=7;note++)
+ {
+  tone(buzzer,notes[note]);
+  delay(200);
+ }
+ noTone(buzzer);
+ delay(200);
+
+ for(note=7;note>=0;note--)  
+ {
+  tone(buzzer,notes[note]);
+  delay(200);
+ }
+ noTone(buzzer);
+ delay(200);
+}
+
+//스피커 때리면 led 켜진다 (충격에 의해 buzzerValue값이 나와 led켜진다)
+const int ledpin=2;
+const int buzzer=A0;
+void setup()
+{
+  Serial.begin(9600);
+}
+
+void loop()
+{
+ int buzzerValue=analogRead(A0);
+  Serial.println(buzzerValue);
+  analogWrite(ledpin,buzzer);//buzzer=0~1023나옴 led밝기가 변함
+  delay(100);
+}
+
+
+
+const int ledpin=2;
+const int buzzer=A0;
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(2,OUTPUT);
+}
+
+void loop()
+{
+ int buzzerValue=analogRead(A0);
+  Serial.println(buzzerValue);
+  analogWrite(ledpin,buzzer);//?
+  
+  if(buzzerValue>70)  
+  	digitalWrite(ledpin,HIGH);
+  else
+    digitalWrite(ledpin,LOW);
+  
+  
+  delay(100);
+}
