@@ -1,0 +1,148 @@
+	
+float x = 3.40282e38;
+	float y = 1.17549e-38;
+	printf("x=%30.25e\n",x);
+	printf("y=30.25e\n",y);
+	x = x * 100;
+	printf("x=%30.25e\n", x);
+	y = y / 1000;
+	printf("y=%30.25e\n", y);
+	
+	y = y / 1000;
+	printf("y=%30.25e\n", y);
+
+	y = y / 1000;
+	printf("y=%30.25e\n", y);
+
+
+
+//매크로 함수 테스트
+int main(void) {
+#define mses "good"
+	printf("mses의 내용: %s\n",mses );
+	mx();
+	return 0;
+}
+
+
+int mx()
+{
+	printf("mses의 내용:%s ",mses);
+}
+
+//const변수 예제
+
+int main(void) {
+	int amount = 0, price = 0;
+	const double VAT_RATE = 0.1;
+	int total_price = 0;
+
+	printf("수량:");
+	scanf("%d", &amount);
+	printf("단가:");
+	scanf("%d", &price);
+
+	total_price = amount * price * (1 + VAT_RATE);
+	printf("%d원\n", total_price);
+
+	return 0;
+}
+
+//연습문제 1
+int length = 0,result,round;
+	printf("한변의 길이:");
+	scanf("%d", &length);
+	result = length * length;
+	round = length * 4;
+	printf("정사각형 길이: %d\n", result);
+	printf("정사각형 둘레: %d", round);
+
+//연습문제 2
+int length1 = 0,result,round,length2=0;
+	printf("가로의 길이:");
+	scanf("%d", &length1);
+	printf("세로의 길이:");
+	scanf("%d", &length2);
+
+	result = length1 * length2;
+	round = (length1 * 2)+(length2*2);
+	printf("정사각형 길이: %d\n", result);
+	printf("정사각형 둘레: %d", round);
+	
+	return 0;
+//연습문제 3
+int length1 = 0,round,length2=0;
+	double result;
+	printf("질량(kg):");
+	scanf("%d", &length1);
+	printf("높이(m):");
+	scanf("%d", &length2);
+
+	result = length1 * length2*9.8;
+	
+	printf("질량: %f J\n", result);
+	
+	
+	return 0;
+//연습문제 4
+int length1 = 0,round,length2=0;
+	double result;
+	printf("힘:");
+	scanf("%d", &length1);
+	printf("이동거리(m):");
+	scanf("%d", &length2);
+
+	result = length1 * length2;
+	
+	printf("질량: %.2f J\n", result);
+	
+	
+	return 0;
+//연습문제 5
+double inch = 0,cm=0;
+	printf("길이(인치):");
+	scanf("%lf", &inch);
+	cm = inch * 2.54;
+	printf("%f inch= %f cm", inch, cm);
+	
+	return 0;
+//연습문제 6
+#define m22 0.3025
+	double m = 0;
+	printf("아파트의 면적(제곱미터): ");
+	scanf("%lf", &m);
+	printf("%.2f 제곱미터=%.2f 평", m, m * m22);
+//연습문제 7
+double num = 0;
+	printf("실수:");
+	scanf("%lf", &num);
+	printf("제곱: %.6e", num*num);
+	printf("제곱: %.6e", num * num*num);
+//연습문제 8
+int yard = 0;
+	printf("길이 (야드):");
+	scanf("%d", &yard);
+	printf("%d yd= %.6f m", yard, yard * 0.9144);
+//연습문제 9
+#define m 0.45359237
+	double ld = 0;
+	printf("무게(ld):");
+	scanf("%lf",&ld);
+	printf("%.0f ld= %f Kg", ld, ld * m);
+	return 0;
+//연습문제 10
+	float usd = 0, krw = 0;
+	printf("KRW:");
+	scanf("%f", &krw);
+	printf("환율");
+	scanf("%f", &usd);
+	printf("USD %.2f = KRW %.2f", usd, krw*usd);
+	return 0;
+//연습문제 11
+float usd = 0, krw = 0;
+	printf("KRW:");
+	scanf("%f", &krw);
+	printf("환율");
+	scanf("%f", &usd);
+	printf("USD %.2f = KRW %.2f",krw/usd, krw);
+	return 0;
