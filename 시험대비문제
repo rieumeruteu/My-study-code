@@ -1,0 +1,73 @@
+'''
+파이썬 중간고사 문제 공부
+
+import time
+sec=time.time()#전체 초
+total_min=sec//60# 전체 분
+min= total_min%60
+total_hour=sec//3600# 전체 시
+hour=total_hour%24#현재 시 
+print(hour,"시",min,"분")
+'''
+'''  
+lista=[1,2,3,4]
+sum=(int(lista[0]+lista[1]+lista[2]+lista[3]))
+print(sum)
+'''
+'''
+str="hello python"
+s=str[0:2]+str[-3:]
+print(s)
+'''
+'''
+num=int(input("입력:"))
+if(num%3==0 and num%4==0):
+    print("나누어 떨어진다")
+else:
+    print("안떨어진다")
+'''
+'''
+lista=[]
+a=input("입력")
+lista.append(a)
+print(lista)
+'''
+'''
+#윤년
+year=int(input("년도 입력"))
+if((year%4==0)and(year%100!=0)or(year%400==0)):
+    print("윤년")
+else:
+    print("응 아니야")
+ '''
+
+/////////////////////////////////////////////////////////////////////////////////////////////////
+//c언어 시험 문제들 
+int a=7, b=5,c=6;
+	int k;
+	k = (a > b) ? a : b;
+	k = (k < c) ? k : c;
+	printf("%d", k);
+
+int a = 3, b = 7;
+	int c, d, e, f, g;
+	c = a & b; d = a | b; e = a ^ b;
+	f = ~a | b << 2; g = a || b;
+	printf("%d %d %d %d %d", c, d, e, f, g);
+
+int a = 2, b, c;
+	b = ++a; 
+	c = b++;
+	printf("%d %d %d", a, b, c);\
+
+int a = 5, b = -4, c = 2, d = -16;
+	printf("%d\n", a + 1 % -b * c);
+	printf("%d\n", -d % c - a / b * 5 + 5);
+
+char a = 'C';
+	char b[9] = "NOTEBOOK";
+	char* str = "student";
+	printf("%c\n", a);
+	printf("%s\n", b);
+	printf("%s\n", str);
+	
