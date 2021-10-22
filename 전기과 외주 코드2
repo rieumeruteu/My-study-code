@@ -1,0 +1,122 @@
+#define SENSOR2
+#include <Servo.h>
+Servo servo;//서보 모터
+int value=0;//모터 각도
+int button=7;//수동 버튼
+const int rain=6;//비 감지 센서
+int come=8;//근접센서
+
+const int dust=4;
+unsigned long duration;
+unsigned long starttime;
+unsigned long sampletime_ms = 30000;//sampe 30s ;
+unsigned long lowpulseoccupancy = 0;
+float ratio = 0;
+float concentration = 0;
+
+bool ServoValue(int value,int value2)
+{
+  if(value==1 && value2==0)
+  {
+    servo.write(5);//닫는다고 가정
+    delay(1500);
+    servo.write(90);//정지
+    return true;
+  }
+  else if(value==0 && value2==1)
+  {
+    servo.write(180);//연다고 가정
+    delay(100);
+    servo.write(90);
+    return false;
+  }
+ 
+}
+
+
+
+
+void setup(){
+  servo.attach(2);
+  pinMode(2,OUTPUT);//moter
+  pinMode(6,INPUT);
+  pinMode(7,INPUT_PULLUP);
+  pinMode(4, INPUT);
+  starttime = millis();
+  Serial.begin(9600);
+  pinMode(8,INPUT);
+  
+}
+//servo.write(value); value값에 맞추어 회전
+void loop(){
+  int rainValue=digitalRead(6); 
+  int buttonValue=digitalRead(7);
+ 
+ switch (buttonValue){
+   
+ case 0:// 버튼 안눌렀을 때 
+  if(digitalRead(come)==1)
+  {
+
+   if(buttonValue==1)
+   {
+    break;
+   }
+
+    if(rainValue==HIGH)
+    {
+     ServoValue(1,0);
+   }
+ 
+ 
+  ///////////////////////////////////////////////////////먼지
+    duration = pulseIn(dust, LOW);
+   lowpulseoccupancy += duration;
+    if ((millis() - starttime) > sampletime_ms) //every 30 sec.
+    {
+      ratio = lowpulseoccupancy / (sampletime_ms * 10.0); // Integer percentage 0=>100
+      concentration = 1.1 * pow(ratio, 3) - 3.8 * pow(ratio, 2) + 520 * ratio + 0.62; // using spec sheet curve
+      Serial.print("concentration = ");
+      Serial.print(concentration);
+      Serial.println(" pcs/0.01cf");
+      lowpulseoccupancy = 0;
+      starttime = millis();
+    }
+  /////////////////////////////////////////////////////
+
+ 
+  if(ratio>1.15)
+     {
+        //lcd.setCursor(8,1);
+        //lcd.print("danger");
+      
+      ServoValue(1,0);
+      ratio=0;
+     }
+    Serial.print(rainValue);
+    Serial.println(buttonValue);
+
+  }
+
+  else if(digitalRead(come)==0){
+  if(buttonValue==HIGH)
+     {     
+      ServoValue(0,1);
+      ratio=0;
+     }
+     delay(10);
+     Serial.println(digitalRead(come));
+  }
+ 
+case 1: // 버튼 눌리면 작동
+  if(buttonValue==HIGH)
+      {     
+       ServoValue(0,1);
+      ratio=0;
+      }
+      delay(10);
+      Serial.println(digitalRead(come));
+    break;
+
+ }
+}
