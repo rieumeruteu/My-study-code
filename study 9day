@@ -1,0 +1,151 @@
+import random
+import turtle
+t=turtle.Turtle()
+
+'''
+for i in range(1,7,1):
+    t.circle(100)
+    t.lt(360/6)
+
+for i in range(3):
+    t.fd(100)
+    t.lt(360/3)
+
+t.up()
+t.goto(200,0)
+t.down()
+
+for i in range(4):
+    t.fd(100)
+    t.lt(90)
+
+
+s=turtle.textinput("","원하는 각을 정하라")
+s=int(s)
+
+for i in range(s):
+    t.fd(100)
+    t.lt(360/s)
+    
+
+for i in range(30):
+    length=random.randint(1, 100)
+    angle=random.randint(-180, 180)
+    t.fd(length)
+    t.lt(angle)
+    
+
+for i in range(30):
+    length=random.randint(1, 100)
+    choice=random.choice([90,180,270,360])
+    t.fd(length)
+    t.lt(choice)
+t.bye()
+
+for i in range(1,10,1):
+    n=1
+    while n<=9:
+        print("%s*%s=%s" %(i,n,i*n))
+        n=n+1
+        if n>9:
+            print("="*10)
+
+dan=0
+while (dan<=9):
+    print("="*20)
+    i=1
+    while(i<=9):
+        print("%s*%s=%s"%(dan,i,dan*1))
+        i=i+1
+    dan=dan+1
+    
+for i in range(10):
+    for j in range(i):
+        print("*",end=" ")
+    print(" ")
+  
+
+ 
+for i in range(10,0,-1):
+    for j in range(i):
+        print("*",end=" ")
+    print(" ")
+
+ 
+
+t=turtle.Turtle()
+i=0
+while i<5:
+    t.fd(50)
+    t.rt(144)
+    i=i+1
+
+ 
+colors=["red","blue","green","brown","orange","yellow"]
+t.speed(0)
+t.width(3)
+length=10
+for length in range(500):
+    t.fd(length)
+    t.color(colors[length%6])
+    t.rt(89)
+    length=length+5
+
+ 
+TotalNum=0
+
+while 1:
+     InputNum=int(input("숫자 입력:"))
+     TotalNum=TotalNum+InputNum
+     Choice=input("계속?(yes/no):")
+     if(Choice =='no'):
+         print("총합:",TotalNum)
+         break
+     elif(Choice =='yes'):
+         continue
+
+    
+total=0
+answer='yes'
+while answer=='yes':
+    num=int(input("숫자입력:"))
+    total=total+num
+    answer=input("계속?(yes/no):")
+print("total:",total)
+
+
+print("1부터 100 사이의 숫자를 맞추시오")
+n=1
+count=0
+num=random.randint(1,100)
+print("정답:",num)
+while 1:
+    count=count+n
+    Chance=int(input("숫자를 입력하시오:"))
+    
+    if(num<Chance):
+        print("숫자가 커요~")
+    elif(num>Chance):
+        print("숫자가 작아요~")
+    count+1
+    if(num==Chance):
+        print("정답~","시도횟수:",count)
+  
+OK=0
+NO=0       
+n=0
+while n<10:
+    num1=random.randint(1,100)
+    num2=random.randint(1,100)
+    Result=num1+num2
+    
+    Quest=int(input("%d+%d="%(num1,num2)))
+    if Quest==Result:
+        print("참 잘했어요~")
+        OK+1
+    if Quest!=Result:
+        print("참 못했네요~")
+        NO+1
+    n+1
+
+print("총문제:%d 개 맞춘 문제개수:%d개 틀린문제개수:%d개"%(n,OK,NO))
