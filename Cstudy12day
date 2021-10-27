@@ -1,0 +1,76 @@
+int a = 0, b = 0;
+	printf("두 개의 정수:");
+	scanf("%d %d", &a, &b);
+	printf("%d>%d:%d\n", a, b, a > b);
+	printf("%d>%d:%d\n", a, b, a < b);
+	printf("%d>%d:%d\n", a, b, a >= b);
+	printf("%d>%d:%d\n", a, b, a <=	b);
+	printf("%d>%d:%d\n", a, b, a == b);
+	printf("%d>%d:%d\n", a, b, a != b);
+
+
+int month;
+	printf("몇 월:");
+	scanf("%d", &month);
+	if (month >= 6 && month <= 8)
+		printf("성수기 요금 인상~\n");
+	if (month < 6 || month>8)
+		printf("성수기 아님 \n");
+
+
+
+unsigned short x = 0x12;
+	unsigned short y = 0xF0;
+
+	printf("%08x & %08x=%08x\n", x, y, x & y);
+	printf("%08x | %08x=%08x\n", x, y, x | y);
+	printf("%08x ^ %08x=%08x\n", x, y, x ^ y);
+	printf("~%08x=%08x\n", x,~x);
+
+
+	int x = 0x00000012;
+	int y = x << 4;
+	int z = x >> 4;
+
+	printf("x=%#08x,%d\n", x, x);
+	printf("x=%#08x,%d\n", y, y);
+	printf("x=%#08x,%d\n", z, z);
+
+
+int a, b;
+	int result, max;
+	printf("2개의 정수는?");
+	scanf("%d %d", &a, &b);
+	printf("%d는 ",a);
+	a % 2 != 0 ? printf("홀수") : printf("짝수");
+	printf("입니다\n");
+
+	result = a > 0 ? a : -a;
+	printf("a의 절대값: %d\n", result);
+	result = b > 0 ? b : -b;
+	printf("b의 절대값: %d\n", result);
+
+	max = a > b ? a : b;
+	printf("a,b중 큰값: %d\n", max);
+	return 0;
+
+
+	int items = 0;
+	int pages = 0, left = 0;
+	int items_per_page = 0;
+
+	printf("항목수? ");
+	scanf("%d", &items);
+
+	printf("한 페이지 당 항목수?");
+	scanf("%d", &items_per_page);
+
+	pages = items / items_per_page;
+	left = items % items_per_page;
+	pages = left > 0 ? pages + 1 : pages;
+	printf("필요한 총 페이지 수: %d\n", pages);
+	printf("마지막 페이지의 항목수:%d\n",
+		left > 0 ? left : items_per_page);
+
+
+	
