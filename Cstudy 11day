@@ -1,0 +1,190 @@
+//부저 
+////////////////////////////////////부저 
+const int buzzer=7;
+const int notes[]={
+  131,147,165,175,196,220,247,262
+};
+void setup()
+{
+  pinMode(7,OUTPUT);
+}
+
+void loop()
+{
+  int note;
+  for(note=0;note<=7;note++)
+  {
+    tone(buzzer,notes[note]);
+    delay(200);
+  }
+  noTone(buzzer);
+  delay(200);
+  for(note=7;note>=0;note--)
+  {
+    tone(buzzer,notes[note]);
+    delay(200);
+  }
+  noTone(buzzer);
+  delay(200);
+}
+//////////////////////////////////////////////////////////// 부저로 떳다떳다 비행기 노래 출력
+
+const int buzzer=7;
+const int notes[]={
+  131,147,165,175,196,220,247,262//도레미파솔라시도
+};
+void setup()
+{
+  pinMode(7,OUTPUT);
+}
+
+void loop()
+{
+  int i=0;
+  int note;
+  while(i<=1){
+
+  tone(buzzer,196);//솔
+  delay(500);
+  noTone(buzzer);
+  tone(buzzer,196);//솔
+  delay(500);
+  noTone(buzzer);
+  tone(buzzer,220);//라
+  delay(500);
+  noTone(buzzer);
+  tone(buzzer,220);//라
+  delay(500);
+  noTone(buzzer);
+  tone(buzzer,196);//솔
+  delay(500);
+  noTone(buzzer);
+  tone(buzzer,196);//솔
+  delay(500);
+  noTone(buzzer);
+  tone(buzzer,165);//미
+  delay(1000);
+  noTone(buzzer);
+   if(i==0){
+  tone(buzzer,196);//솔
+  delay(500);
+  noTone(buzzer);
+  tone(buzzer,196);//솔
+  delay(500);
+  noTone(buzzer);
+  tone(buzzer,165);//미
+  delay(500);
+  noTone(buzzer);
+  tone(buzzer,165);//미
+  delay(500);
+  noTone(buzzer);
+  tone(buzzer,147);//레
+  delay(1000);
+  noTone(buzzer);
+  }
+  i++;
+  }
+ 
+  tone(buzzer,196);//솔
+  delay(500);
+  noTone(buzzer);
+  tone(buzzer,165);//미
+  delay(500);
+  noTone(buzzer);
+  tone(buzzer,147);//레
+  delay(500);
+  noTone(buzzer);
+  tone(buzzer,165);//미
+  delay(500);
+  noTone(buzzer);
+  tone(buzzer,131);//도
+  delay(1500);
+  noTone(buzzer); 
+}
+
+////////////////////////////////////////////충격줄시 빛
+const int buzzer=A1;
+const int led=7;
+
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(led,OUTPUT);
+}
+
+void loop()
+{
+  int buzzerValue;
+  buzzerValue=analogRead(A1);
+  analogWrite(led,buzzerValue);
+  Serial.println(buzzerValue);
+  delay(100);
+  
+  
+}
+
+//////////////////////////////// 부저 넣어주면 불과 소리가 남
+const int buzzer=A1;
+const int led=7;
+const int buzzer2=6;
+void setup()
+{
+  Serial.begin(9600);
+  pinMode(led,OUTPUT);
+  pinMode(buzzer2,OUTPUT);
+}
+
+void loop()
+{
+  int buzzerValue;
+  buzzerValue=analogRead(A1);// 맞는 부저(부저1)의 을 읽도록 한다
+  if(buzzerValue>200)//부저1의 값이 200초과 하면 부저2가 소리를 내고 불을 킨다
+  {
+    digitalWrite(led,HIGH);
+    tone(buzzer2,buzzerValue);
+  }
+  else
+  {
+    digitalWrite(led,LOW);
+    noTone(buzzer2);
+  }
+  
+  
+  Serial.println(buzzerValue);
+  delay(100);
+  
+  
+}
+
+//////////////////////////////////////////
+//감지센서
+
+const int led=8;//센서가 감지되면 led가 켜진다
+const int mo=7;
+void setup()
+{
+  pinMode(mo,INPUT);
+  pinMode(led,OUTPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  int readValue;
+  readValue=digitalRead(mo);
+  Serial.println(readValue);
+  if(readValue==HIGH){
+    digitalWrite(led,HIGH);
+  }
+  else
+  {
+    digitalWrite(led,LOW);
+  }
+  delay(500);
+  
+}
+
+
+
+
+
