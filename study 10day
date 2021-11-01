@@ -1,0 +1,224 @@
+#6장 예제 및 연습문제
+#예제 3
+Count=1
+Regitory=input("아이디 저장: ")
+Response=input("로그인 ID : ")
+while Response!=Regitory:
+    Response=input("로그인 ID : ")
+    Count=Count+1
+    if Count==5:
+        print("로그인 실패")
+        break
+    elif Response==Regitory:
+        print("로그인 성공")
+        break
+
+# 예제 4(응용)
+import random
+for i in range(1,10,1):
+    bread=random.choice(["호밀빵","위트","화이트"])
+    meat=random.choice(["소시지","미트볼","닭가슴살"])
+    vegitable=random.choice(["오이","양상추","피클"])
+    print("%s +%s +%s"%(bread,meat,vegitable))
+
+#예제4
+
+bread=["호밀빵","위트","화이트"]
+meat=["소시지","미트볼","닭가슴살"]
+vegitable=["오이","양상추","피클"]
+
+for i in bread:
+    for m in meat:
+        for v in vegitable:
+            print("%s +%s +%s"%(i,m,v))
+
+#예제 4
+import turtle
+t=turtle.Turtle()
+t.stamp()
+t.color("red")
+move=30
+for i in range(12):
+    t.up()
+    t.fd(50)
+    t.down()
+    t.fd(50)
+    t.up()
+    t.fd(15)
+    t.stamp()
+    t.home()
+    t.rt(move)
+    move=move+30
+    
+
+#예제 5
+import random
+import sys
+dice=random.randint(1,6)
+name=input("이름:(종료하려면 엔터키)")
+if name=="":
+    sys.exit()
+question=input("무엇에 대해서 알고 싶나요?")
+print("%s님은 %s 에 대해 질문해 주셨군요"%(name,question))
+print("운명의 주사위 롤~")
+if dice ==1:
+    print("파이")
+elif dice ==2:
+    print("팔라크리오")
+elif dice ==3:
+    print("아이스고어")
+elif dice ==4:
+    print("엠트리스")
+elif dice ==5:
+    print("모크라오스크")
+elif dice ==6:
+    print(" 파르키스타르")
+elif dice ==7:
+    print(" 말빠라 비용")
+elif dice ==8:
+    print(" 젝슨노트")
+
+#연습문제 1
+
+for i in range(1,100,1):
+    if(i%2==0):
+        print(i,end=" ")
+
+#연습문제 2
+
+year=0
+balance=10000
+
+while balance <=20000:
+    year=year+1
+    interest=balance*0.07
+    balance=balance+interest
+print("%d년 걸림"%year)
+
+#연습문제 3
+
+n=12345
+result=0
+while n>0:
+    Remainder=n%10
+    result=result+Remainder
+    n=n//10
+print(result)
+
+#연습문제 4
+
+import random
+num1=random.randint(1,99)
+num2=random.randint(1,99)
+Quiz=num1*num2
+
+result=int(input(str(num1)+"*"+str(num2)+"="))
+
+if result != Quiz:
+    while(1):
+        result=int(input(str(num1)+"*"+str(num2)+"="))
+        if result ==Quiz:
+            break
+print("맞았습니다")
+      
+#연습문제 5
+
+result=0
+while (1):
+    Question=int(input(" 정수를 입력하시오:"))
+    result=result+Question
+    if(Question==0):
+        break
+print("합계:",result)
+
+#연습문제 6
+
+import random
+
+dice1=random.randint(1,6)
+dice2=random.randint(1,6)
+
+print("첫번째 주사위: %d , 두번째 주사위: %d"%(dice1,dice2))
+      
+
+#연습문제 7
+
+import turtle
+t=turtle.Turtle()
+
+
+for i in range(90,420,60):
+    t.lt(i);t.fd(100); t.fd(-30); t.lt(60); t.fd(30); t.fd(-30); t.lt(-120); t.fd(30); t.fd(-30);
+    t.home()
+
+#연습문제 8
+
+import turtle
+t=turtle.Turtle()
+i=0
+n=0
+while n<10: 
+    while i<5:
+        t.fd(100)
+        t.rt(144)
+        i=i+1
+    i=0
+    t.lt(10)
+    n=n+1
+
+
+#연습문제 9
+
+import turtle
+import random
+t=turtle.Turtle()
+i=0
+while i<10:
+    NO=random.randint(10,100)
+    randMove1=random.randint(10,100)
+    randMove2=random.randint(10,100)
+    t.circle(NO)
+    t.up()
+    t.goto(randMove1,randMove2)
+    t.down()
+    i=i+1
+
+#연습문제 10
+import turtle
+
+t=turtle.Turtle()
+for i in range(1,5,1):
+    t.fd(150)
+    t.rt(90)
+    t.fd(50)    
+    t.rt(90)
+    t.fd(150)
+    t.lt(90)
+    t.fd(50)
+    t.lt(90)
+
+#연습문제 11
+
+import turtle
+t=turtle.Turtle()
+t.color('red','yellow')
+t.begin_fill()
+while True:
+    t.fd(200)
+    t.lt(170)
+
+    if abs(t.pos())<1:
+        break
+
+t.end_fill()
+
+#연습문제 12
+import turtle
+import math
+t=turtle.Turtle()
+t.color('red','yellow')
+
+for i in range(360):
+    sine=math.sin(math.pi*i/180.0)
+    print(sine)
+    t.goto(i,sine*100)
