@@ -1,0 +1,137 @@
+///////////조도센서 
+
+const int led=3;//pwn(~)표시가 들어있는 핀에 연결할 것
+const int photoResistorPin=A0;
+int photoResistorValue;
+int brightness;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  photoResistorValue=analogRead(photoResistorPin);
+  Serial.print("photoResistor Value: :");
+  Serial.println(photoResistorValue);
+  
+  brightness=map(photoResistorValue,0,1023,0,100);// map(변수명,최솟값,최댓값,변환후 최솟값,변환후 최댓값);
+  
+  Serial.print("brightness: :");
+  Serial.println(brightness);
+
+  analogWrite(led,brightness);
+  delay(1000);
+}
+
+///////////어두우면 밝아지고 밝으면 그만큼 밝기가 작아지는 코드
+
+
+const int led=3;//pwn(~)표시가 들어있는 핀에 연결할 것
+const int photoResistorPin=A0;
+int photoResistorValue;
+int brightness;
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  photoResistorValue=analogRead(photoResistorPin);
+  Serial.print("photoResistor Value: :");
+  Serial.println(photoResistorValue);
+  
+  brightness=map(photoResistorValue,0,1023,100,0);// map(변수명,최솟값,최댓값,변환후 최솟값,변환후 최댓값);
+  
+  Serial.print("brightness: :");
+  Serial.println(brightness);
+
+  analogWrite(led,brightness);
+  delay(1000);
+}
+
+
+///////////조도를 활용한 주파수를 스피커로 출력  
+int sensorValue;
+int sensorLow=1023;
+int sensorHigh=0;
+
+void setup() {
+  Serial.begin(9600);
+  while(millis()<5000){
+    sensorValue=analogRead(A0);
+    if(sensorValue>sensorHigh)//최댓값
+      sensorHigh=sensorValue;
+    if(sensorValue<sensorLow)//최솟값
+      sensorLow=sensorValue;
+  }
+}
+
+void loop() {
+  sensorValue=analogRead(A0);
+  int pitch=map(sensorValue,sensorLow,sensorHigh,50,4000);
+  tone(2,pitch,20);//tone(핀번호,주파수,지속시간)
+  Serial.println(pitch);
+  delay(50);
+}
+
+
+///////////조도센서 빛의 양 800이상이면 알람이 울리는 프로그램
+int sensorValue;
+int sensorLow=1023;
+int sensorHigh=0;
+
+void setup() {
+  Serial.begin(9600);
+  while(millis()<5000){
+    sensorValue=analogRead(A0);
+    if(sensorValue>sensorHigh)//최댓값
+      sensorHigh=sensorValue;
+    if(sensorValue<sensorLow)//최솟값
+      sensorLow=sensorValue;
+  }
+}
+
+void loop() {
+  sensorValue=analogRead(A0);
+  int pitch=map(sensorValue,sensorLow,sensorHigh,50,4000);
+  if(pitch>=800)
+  {
+    tone(2,1000,100);
+  }
+  else
+  {
+    noTone(2);
+  }
+  Serial.println(pitch);
+  delay(50);
+}
+
+
+///////////조도 센서로 밝기 감지, 어두울때 pir과 led가 켜진다.
+int sensorValue;
+int led=8;
+int pirsensor=7;
+int PIR;
+void setup() {
+  pinMode(pirsensor,INPUT);
+  Serial.begin(9600);
+ pinMode(led,OUTPUT);
+}
+
+void loop() {
+  sensorValue=analogRead(A0);
+  PIR=digitalRead(7);
+  
+  
+  if(PIR==HIGH && sensorValue<=400)
+  {
+    tone(2,100,100);
+    digitalWrite(led,HIGH);
+    delay(100);
+  }
+  else{
+    noTone(2);
+    digitalWrite(led,LOW);
+  }
+  delay(500);
+}
