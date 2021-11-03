@@ -1,0 +1,1233 @@
+import turtle
+import random
+t=turtle.Turtle()
+s=turquare(length):
+    for i in range(4):
+        t.fd(length)
+        t.lt(90)
+
+def drawit(x,y):
+    t.up()
+    t.goto(x,y)
+    t.down()
+    t.begin_fill()
+    t.color("green")
+    square(100)
+    t.end_fill()
+
+
+s.onscreenclick(drawit)
+
+
+
+def square(length):
+    for i in range(4):
+        t.fd(100)
+        t.lt(90)
+x=-200
+for i in range(0,3,1):
+    t.begin_fill()
+    t.color("green")
+    t.up()  
+    t.goto(x,0)
+    t.down()
+
+'''
+def bar(length):
+    t.begin_fill()
+    i=0
+    while i<2:
+        t.fd(50)
+        t.lt(90)
+        t.fd(length)
+        t.lt(90)
+        t.fd(50)
+        t.fd(-50)
+        t.write(length)
+        i=i+1
+    t.end_fill()
+    
+        
+
+
+
+lita=[120,56,309,220,156,23,98]
+
+t.color("blue")
+t.fillcolor("red")
+a=0
+for i in range(0,7,1):
+    bar(int(lita[i]))
+    t.fd(50)
+   
+
+ 
+def drawBar(height):
+    t.begin_fill()
+    t.lt(90)
+    t.fd(height)
+    t.write(str(height),font=('Times New Roman',16,'bold'))
+    t.rt(90)
+
+    t.fd(40)
+    t.rt(90)
+    t.fd(height)
+    t.lt(90)
+    t.end_fill()
+
+data=[120,56,309,220,156,23,98]
+
+t.color("blue")
+t.fillcolor("red")
+t.width(3)
+
+for i in data:
+    drawBar(i)
+
+
+
+t.color("black")
+t.fillcolor("white")
+s.bgcolor("skyblue")
+
+def snowMan():
+   t.begin_fill()
+   t.circle(40)
+   t.end_fill()
+   t.rt(90)
+   t.fd(30)
+   t.setheading(13
+   t.up()
+   t.goto(0,-40)
+   t.down()
+   t.begin_fill()
+   t.circle(30)
+   t.end_fill()
+   t.up()
+   t.goto(0,-115)
+   t.down()
+   t.begin_fill()
+   t.circle(50)
+   t.end_fill()
+  
+snowMan()
+
+
+def hexagon():
+    for i in range(6):
+        t.fd(100)
+        t.lt(360/6)
+for i in range(6):
+    hexagon()
+    t.fd(100)
+    t.rt(60)
+  
+    
+    
+def f(x):
+    return x**2+1
+
+t.goto(500,0)
+t.home()
+t.goto(0,500)
+t.home()
+
+for x in range(150):
+    t.goto(x,int(0.01*f(x)))
+
+'''
+
+def draw_line():
+    t.fd(100)
+    t.bk(100)
+
+for i in range(12):
+    draw_line()
+    t.lt(30)
+    square(100)
+    t.end_fill()
+    x=x+200
+
+
+def cycle(radius):
+    result=radius**2*3.14
+    return result
+
+r=float(input("반지름:"))
+area=cycle(r)
+print(area)
+
+
+
+t.width(10)
+def draw(x,y):
+    t.goto(x,y)
+
+s.onscreenclick(draw)
+
+
+def draw(x,y):
+    t.goto(x,y)
+
+t.width(10)
+
+s.onscreenclick(draw)
+
+s.onkey(t.up,"Up")
+s.onkey(t.down,"Down")
+s.listen()
+
+
+
+def tree(length):
+    if length>5:
+        t.fd(length)
+        t.rt(20)
+        tree(length-15)
+        t.lt(40)
+        tree(length-15)
+        t.rt(20)
+        t.backward(length)
+
+t.lt(90)
+t.color("green")
+t.speed(1)
+tree(90)
+'''
+
+'''
+def bar(length):
+    t.begin_fill()
+    i=0
+    while i<2:
+        t.fd(50)
+        t.lt(90)
+        t.fd(length)
+        t.lt(90)
+        t.fd(50)
+        t.fd(-50)
+        t.write(length)
+        i=i+1
+    t.end_fill()
+    
+        
+
+
+
+lita=[120,56,309,220,156,23,98]
+
+t.color("blue")
+t.fillcolor("red")
+a=0
+for i in range(0,7,1):
+    bar(int(lita[i]))
+    t.fd(50)
+   
+
+ 
+def drawBar(height):
+    t.begin_fill()
+    t.lt(90)
+    t.fd(height)
+    t.write(str(height),font=('Times New Roman',16,'bold'))
+    t.rt(90)
+
+    t.fd(40)
+    t.rt(90)
+    t.fd(height)
+    t.lt(90)
+    t.end_fill()
+
+data=[120,56,309,220,156,23,98]
+
+t.color("blue")
+t.fillcolor("red")
+t.width(3)
+
+for i in data:
+    drawBar(i)
+
+
+
+t.color("black")
+t.fillcolor("white")
+s.bgcolor("skyblue")
+
+def snowMan():
+   t.begin_fill()
+   t.circle(40)
+   t.end_fill()
+   t.rt(90)
+   t.fd(30)
+   t.setheading(13
+   t.up()
+   t.goto(0,-40)
+   t.down()
+   t.begin_fill()
+   t.circle(30)
+   t.end_fill()
+   t.up()
+   t.goto(0,-115)
+   t.down()
+   t.begin_fill()
+   t.circle(50)
+   t.end_fill()
+  
+snowMan()
+
+
+def hexagon():
+    for i in range(6):
+        t.fd(100)
+        t.lt(360/6)
+for i in range(6):
+    hexagon()
+    t.fd(100)
+    t.rt(60)
+  
+    
+    
+def f(x):
+    return x**2+1
+
+t.goto(500,0)
+t.home()
+t.goto(0,500)
+t.home()
+
+for x in range(150):
+    t.goto(x,int(0.01*f(x)))
+
+'''
+
+def draw_line():
+    t.fd(100)
+    t.bk(100)
+
+for i in range(12):
+    draw_line()
+    t.lt(30)tle.Screen()
+'''
+
+
+def square(length):
+    for i in range(4):
+        t.fd(length)
+        t.lt(90)
+
+def drawit(x,y):
+    t.up()
+    t.goto(x,y)
+    t.down()
+    t.begin_fill()
+    t.color("green")
+    square(100)
+    t.end_fill()
+
+
+s.onscreenclick(drawit)
+
+
+
+def square(length):
+    for i in range(4):
+        t.fd(100)
+        t.lt(90)
+x=-200
+for i in range(0,3,1):
+    t.begin_fill()
+    t.color("green")
+    t.up()  
+    t.goto(x,0)
+    t.down()
+
+'''
+def bar(length):
+    t.begin_fill()
+    i=0
+    while i<2:
+        t.fd(50)
+        t.lt(90)
+        t.fd(length)
+        t.lt(90)
+        t.fd(50)
+        t.fd(-50)
+        t.write(length)
+        i=i+1
+    t.end_fill()
+    
+        
+
+
+
+lita=[120,56,309,220,156,23,98]
+
+t.color("blue")
+t.fillcolor("red")
+a=0
+for i in range(0,7,1):
+    bar(int(lita[i]))
+    t.fd(50)
+   
+
+ 
+def drawBar(height):
+    t.begin_fill()
+    t.lt(90)
+    t.fd(height)
+    t.write(str(height),font=('Times New Roman',16,'bold'))
+    t.rt(90)
+
+    t.fd(40)
+    t.rt(90)
+    t.fd(height)
+    t.lt(90)
+    t.end_fill()
+
+data=[120,56,309,220,156,23,98]
+
+t.color("blue")
+t.fillcolor("red")
+t.width(3)
+
+for i in data:
+    drawBar(i)
+
+
+
+t.color("black")
+t.fillcolor("white")
+s.bgcolor("skyblue")
+
+def snowMan():
+   t.begin_fill()
+   t.circle(40)
+   t.end_fill()
+   t.rt(90)
+   t.fd(30)
+   t.setheading(13
+   t.up()
+   t.goto(0,-40)
+   t.down()
+   t.begin_fill()
+   t.circle(30)
+   t.end_fill()
+   t.up()
+   t.goto(0,-115)
+   t.down()
+   t.begin_fill()
+   t.circle(50)
+   t.end_fill()
+  
+snowMan()
+
+
+def hexagon():
+    for i in range(6):
+        t.fd(100)
+        t.lt(360/6)
+for i in range(6):
+    hexagon()
+    t.fd(100)
+    t.rt(60)
+  
+    
+    
+def f(x):
+    return x**2+1
+
+t.goto(500,0)
+t.home()
+t.goto(0,500)
+t.home()
+
+for x in range(150):
+    t.goto(x,int(0.01*f(x)))
+
+'''
+
+def draw_line():
+    t.fd(100)
+    t.bk(100)
+
+for i in range(12):
+    draw_line()
+    t.lt(30)
+    square(100)
+    t.end_fill()
+    x=x+200
+
+
+def cycle(radius):
+    result=radius**2*3.14
+    return result
+
+r=float(input("반지름:"))
+area=cycle(r)
+print(area)
+
+
+
+t.width(10)
+def draw(x,y):
+    t.goto(x,y)
+
+s.onscreenclick(draw)
+
+
+def draw(x,y):
+    t.goto(x,y)
+
+t.width(10)
+
+s.onscreenclick(draw)
+
+s.onkey(t.up,"Up")
+s.onkey(t.down,"Down")
+s.listen()
+
+
+
+def tree(length):
+    if length>5:
+        t.fd(length)
+        t.rt(20)
+        tree(length-15)
+        t.lt(40)
+        tree(length-15)
+        t.rt(20)
+        t.backward(length)
+
+t.lt(90)
+t.color("green")
+t.speed(1)
+tree(90)
+'''
+
+'''
+def bar(length):
+    t.begin_fill()
+    i=0
+    while i<2:
+        t.fd(50)
+        t.lt(90)
+        t.fd(length)
+        t.lt(90)
+        t.fd(50)
+        t.fd(-50)
+        t.write(length)
+        i=i+1
+    t.end_fill()
+    
+        
+
+
+
+lita=[120,56,309,220,156,23,98]
+
+t.color("blue")
+t.fillcolor("red")
+a=0
+for i in range(0,7,1):
+    bar(int(lita[i]))
+    t.fd(50)
+   
+
+ 
+def drawBar(height):
+    t.begin_fill()
+    t.lt(90)
+    t.fd(height)
+    t.write(str(height),font=('Times New Roman',16,'bold'))
+    t.rt(90)
+
+    t.fd(40)
+    t.rt(90)
+    t.fd(height)
+    t.lt(90)
+    t.end_fill()
+
+data=[120,56,309,220,156,23,98]
+
+t.color("blue")
+t.fillcolor("red")
+t.width(3)
+
+for i in data:
+    drawBar(i)
+
+
+
+t.color("black")
+t.fillcolor("white")
+s.bgcolor("skyblue")
+
+def snowMan():
+   t.begin_fill()
+   t.circle(40)
+   t.end_fill()
+   t.rt(90)
+   t.fd(30)
+   t.setheading(13
+   t.up()
+   t.goto(0,-40)
+   t.down()
+   t.begin_fill()
+   t.circle(30)
+   t.end_fill()
+   t.up()
+   t.goto(0,-115)
+   t.down()
+   t.begin_fill()
+   t.circle(50)
+   t.end_fill()
+  
+snowMan()
+
+
+def hexagon():
+    for i in range(6):
+        t.fd(100)
+        t.lt(360/6)
+for i in range(6):
+    hexagon()
+    t.fd(100)
+    t.rt(60)
+  
+    
+    
+def f(x):
+    return x**2+1
+
+t.goto(500,0)
+t.home()
+t.goto(0,500)
+t.home()
+
+for x in range(150):
+    t.goto(x,int(0.01*f(x)))
+
+'''
+
+def draw_line():
+    t.fd(100)
+    t.bk(100)
+
+for i in range(12):
+    draw_line()
+    t.lt(30)quare(length):
+    for i in range(4):
+        t.fd(length)
+        t.lt(90)
+
+def drawit(x,y):
+    t.up()
+    t.goto(x,y)
+    t.down()
+    t.begin_fill()
+    t.color("green")
+    square(100)
+    t.end_fill()
+
+
+s.onscreenclick(drawit)
+
+
+
+def square(length):
+    for i in range(4):
+        t.fd(100)
+        t.lt(90)
+x=-200
+for i in range(0,3,1):
+    t.begin_fill()
+    t.color("green")
+    t.up()  
+    t.goto(x,0)
+    t.down()
+
+'''
+def bar(length):
+    t.begin_fill()
+    i=0
+    while i<2:
+        t.fd(50)
+        t.lt(90)
+        t.fd(length)
+        t.lt(90)
+        t.fd(50)
+        t.fd(-50)
+        t.write(length)
+        i=i+1
+    t.end_fill()
+    
+        
+
+
+
+lita=[120,56,309,220,156,23,98]
+
+t.color("blue")
+t.fillcolor("red")
+a=0
+for i in range(0,7,1):
+    bar(int(lita[i]))
+    t.fd(50)
+   
+
+ 
+def drawBar(height):
+    t.begin_fill()
+    t.lt(90)
+    t.fd(height)
+    t.write(str(height),font=('Times New Roman',16,'bold'))
+    t.rt(90)
+
+    t.fd(40)
+    t.rt(90)
+    t.fd(height)
+    t.lt(90)
+    t.end_fill()
+
+data=[120,56,309,220,156,23,98]
+
+t.color("blue")
+t.fillcolor("red")
+t.width(3)
+
+for i in data:
+    drawBar(i)
+
+
+
+t.color("black")
+t.fillcolor("white")
+s.bgcolor("skyblue")
+
+def snowMan():
+   t.begin_fill()
+   t.circle(40)
+   t.end_fill()
+   t.rt(90)
+   t.fd(30)
+   t.setheading(13
+   t.up()
+   t.goto(0,-40)
+   t.down()
+   t.begin_fill()
+   t.circle(30)
+   t.end_fill()
+   t.up()
+   t.goto(0,-115)
+   t.down()
+   t.begin_fill()
+   t.circle(50)
+   t.end_fill()
+  
+snowMan()
+
+
+def hexagon():
+    for i in range(6):
+        t.fd(100)
+        t.lt(360/6)
+for i in range(6):
+    hexagon()
+    t.fd(100)
+    t.rt(60)
+  
+    
+    
+def f(x):
+    return x**2+1
+
+t.goto(500,0)
+t.home()
+t.goto(0,500)
+t.home()
+
+for x in range(150):
+    t.goto(x,int(0.01*f(x)))
+
+'''
+
+def draw_line():
+    t.fd(100)
+    t.bk(100)
+
+for i in range(12):
+    draw_line()
+    t.lt(30)
+    square(100)
+    t.end_fill()
+    x=x+200
+
+
+def cycle(radius):
+    result=radius**2*3.14
+    return result
+
+r=float(input("반지름:"))
+area=cycle(r)
+print(area)
+
+
+
+t.width(10)
+def draw(x,y):
+    t.goto(x,y)
+
+s.onscreenclick(draw)
+
+
+def draw(x,y):
+    t.goto(x,y)
+
+t.width(10)
+
+s.onscreenclick(draw)
+
+s.onkey(t.up,"Up")
+s.onkey(t.down,"Down")
+s.listen()
+
+
+
+def tree(length):
+    if length>5:
+        t.fd(length)
+        t.rt(20)
+        tree(length-15)
+        t.lt(40)
+        tree(length-15)
+        t.rt(20)
+        t.backward(length)
+
+t.lt(90)
+t.color("green")
+t.speed(1)
+tree(90)
+'''
+
+'''
+def bar(length):
+    t.begin_fill()
+    i=0
+    while i<2:
+        t.fd(50)
+        t.lt(90)
+        t.fd(length)
+        t.lt(90)
+        t.fd(50)
+        t.fd(-50)
+        t.write(length)
+        i=i+1
+    t.end_fill()
+    
+        
+
+
+
+lita=[120,56,309,220,156,23,98]
+
+t.color("blue")
+t.fillcolor("red")
+a=0
+for i in range(0,7,1):
+    bar(int(lita[i]))
+    t.fd(50)
+   
+
+ 
+def drawBar(height):
+    t.begin_fill()
+    t.lt(90)
+    t.fd(height)
+    t.write(str(height),font=('Times New Roman',16,'bold'))
+    t.rt(90)
+
+    t.fd(40)
+    t.rt(90)
+    t.fd(height)
+    t.lt(90)
+    t.end_fill()
+
+data=[120,56,309,220,156,23,98]
+
+t.color("blue")
+t.fillcolor("red")
+t.width(3)
+
+for i in data:
+    drawBar(i)
+
+
+
+t.color("black")
+t.fillcolor("white")
+s.bgcolor("skyblue")
+
+def snowMan():
+   t.begin_fill()
+   t.circle(40)
+   t.end_fill()
+   t.rt(90)
+   t.fd(30)
+   t.setheading(13
+   t.up()
+   t.goto(0,-40)
+   t.down()
+   t.begin_fill()
+   t.circle(30)
+   t.end_fill()
+   t.up()
+   t.goto(0,-115)
+   t.down()
+   t.begin_fill()
+   t.circle(50)
+   t.end_fill()
+  
+snowMan()
+
+
+def hexagon():
+    for i in range(6):
+        t.fd(100)
+        t.lt(360/6)
+for i in range(6):
+    hexagon()
+    t.fd(100)
+    t.rt(60)
+  
+    
+    
+def f(x):
+    return x**2+1
+
+t.goto(500,0)
+t.home()
+t.goto(0,500)
+t.home()
+
+for x in range(150):
+    t.goto(x,int(0.01*f(x)))
+
+'''
+
+def draw_line():
+    t.fd(100)
+    t.bk(100)
+
+for i in range(12):
+    draw_line()
+    t.lt(30)tle.Screen()
+'''
+
+
+def square(length):
+    for i in range(4):
+        t.fd(length)
+        t.lt(90)
+
+def drawit(x,y):
+    t.up()
+    t.goto(x,y)
+    t.down()
+    t.begin_fill()
+    t.color("green")
+    square(100)
+    t.end_fill()
+
+
+s.onscreenclick(drawit)
+
+
+
+def square(length):
+    for i in range(4):
+        t.fd(100)
+        t.lt(90)
+x=-200
+for i in range(0,3,1):
+    t.begin_fill()
+    t.color("green")
+    t.up()  
+    t.goto(x,0)
+    t.down()
+
+'''
+def bar(length):
+    t.begin_fill()
+    i=0
+    while i<2:
+        t.fd(50)
+        t.lt(90)
+        t.fd(length)
+        t.lt(90)
+        t.fd(50)
+        t.fd(-50)
+        t.write(length)
+        i=i+1
+    t.end_fill()
+    
+        
+
+
+
+lita=[120,56,309,220,156,23,98]
+
+t.color("blue")
+t.fillcolor("red")
+a=0
+for i in range(0,7,1):
+    bar(int(lita[i]))
+    t.fd(50)
+   
+
+ 
+def drawBar(height):
+    t.begin_fill()
+    t.lt(90)
+    t.fd(height)
+    t.write(str(height),font=('Times New Roman',16,'bold'))
+    t.rt(90)
+
+    t.fd(40)
+    t.rt(90)
+    t.fd(height)
+    t.lt(90)
+    t.end_fill()
+
+data=[120,56,309,220,156,23,98]
+
+t.color("blue")
+t.fillcolor("red")
+t.width(3)
+
+for i in data:
+    drawBar(i)
+
+
+
+t.color("black")
+t.fillcolor("white")
+s.bgcolor("skyblue")
+
+def snowMan():
+   t.begin_fill()
+   t.circle(40)
+   t.end_fill()
+   t.rt(90)
+   t.fd(30)
+   t.setheading(13
+   t.up()
+   t.goto(0,-40)
+   t.down()
+   t.begin_fill()
+   t.circle(30)
+   t.end_fill()
+   t.up()
+   t.goto(0,-115)
+   t.down()
+   t.begin_fill()
+   t.circle(50)
+   t.end_fill()
+  
+snowMan()
+
+
+def hexagon():
+    for i in range(6):
+        t.fd(100)
+        t.lt(360/6)
+for i in range(6):
+    hexagon()
+    t.fd(100)
+    t.rt(60)
+  
+    
+    
+def f(x):
+    return x**2+1
+
+t.goto(500,0)
+t.home()
+t.goto(0,500)
+t.home()
+
+for x in range(150):
+    t.goto(x,int(0.01*f(x)))
+
+'''
+
+def draw_line():
+    t.fd(100)
+    t.bk(100)
+
+for i in range(12):
+    draw_line()
+    t.lt(30)
+    square(100)
+    t.end_fill()
+    x=x+200
+
+
+def cycle(radius):
+    result=radius**2*3.14
+    return result
+
+r=float(input("반지름:"))
+area=cycle(r)
+print(area)
+
+
+
+t.width(10)
+def draw(x,y):
+    t.goto(x,y)
+
+s.onscreenclick(draw)
+
+
+def draw(x,y):
+    t.goto(x,y)
+
+t.width(10)
+
+s.onscreenclick(draw)
+
+s.onkey(t.up,"Up")
+s.onkey(t.down,"Down")
+s.listen()
+
+
+
+def tree(length):
+    if length>5:
+        t.fd(length)
+        t.rt(20)
+        tree(length-15)
+        t.lt(40)
+        tree(length-15)
+        t.rt(20)
+        t.backward(length)
+
+t.lt(90)
+t.color("green")
+t.speed(1)
+tree(90)
+'''
+
+'''
+def bar(length):
+    t.begin_fill()
+    i=0
+    while i<2:
+        t.fd(50)
+        t.lt(90)
+        t.fd(length)
+        t.lt(90)
+        t.fd(50)
+        t.fd(-50)
+        t.write(length)
+        i=i+1
+    t.end_fill()
+    
+        
+
+
+
+lita=[120,56,309,220,156,23,98]
+
+t.color("blue")
+t.fillcolor("red")
+a=0
+for i in range(0,7,1):
+    bar(int(lita[i]))
+    t.fd(50)
+   
+
+ 
+def drawBar(height):
+    t.begin_fill()
+    t.lt(90)
+    t.fd(height)
+    t.write(str(height),font=('Times New Roman',16,'bold'))
+    t.rt(90)
+
+    t.fd(40)
+    t.rt(90)
+    t.fd(height)
+    t.lt(90)
+    t.end_fill()
+
+data=[120,56,309,220,156,23,98]
+
+t.color("blue")
+t.fillcolor("red")
+t.width(3)
+
+for i in data:
+    drawBar(i)
+
+
+
+t.color("black")
+t.fillcolor("white")
+s.bgcolor("skyblue")
+
+def snowMan():
+   t.begin_fill()
+   t.circle(40)
+   t.end_fill()
+   t.rt(90)
+   t.fd(30)
+   t.setheading(13
+   t.up()
+   t.goto(0,-40)
+   t.down()
+   t.begin_fill()
+   t.circle(30)
+   t.end_fill()
+   t.up()
+   t.goto(0,-115)
+   t.down()
+   t.begin_fill()
+   t.circle(50)
+   t.end_fill()
+  
+snowMan()
+
+
+def hexagon():
+    for i in range(6):
+        t.fd(100)
+        t.lt(360/6)
+for i in range(6):
+    hexagon()
+    t.fd(100)
+    t.rt(60)
+  
+    
+    
+def f(x):
+    return x**2+1
+
+t.goto(500,0)
+t.home()
+t.goto(0,500)
+t.home()
+
+for x in range(150):
+    t.goto(x,int(0.01*f(x)))
+
+'''
+
+def draw_line():
+    t.fd(100)
+    t.bk(100)
+
+for i in range(12):
+    draw_line()
+    t.lt(30)
+    
