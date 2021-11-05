@@ -1,0 +1,294 @@
+7장
+예제 1
+def input_num(x,y):
+    sum1=0
+    for i in range(x,y+1):
+        sum1=sum1+i
+    return sum1
+
+start=int(input("입력:"))
+end=int(input("입력2:"))
+
+result=input_num(start,end)
+print(str(result))
+
+
+예제 2
+def squar(size):
+    for i in range(0,4):
+        t.fd(size)
+        t.lt(90)
+
+t.up()
+t.goto(-200,0)
+t.down()
+squar(100)
+
+t.up()
+t.goto(0,0)
+t.down()
+squar(100)
+
+t.up()
+t.goto(200,0)
+t.down()
+squar(100)
+
+
+예제 3
+import turtle
+t=turtle.Turtle()
+
+def figure(size):
+    for i in range(size):
+        t.fd(100)
+        t.lt(360//size)
+
+for i in range(10):
+    t.lt(20)
+    figure(5)
+
+예제 4
+import turtle
+t=turtle.Turtle()
+s=turtle.Screen()
+
+def squar(length):
+    t.begin_fill()
+    for i in range(4):
+        t.fd(length)
+        t.lt(90)
+
+def drawing(x,y):
+    t.up()
+    t.goto(x,y)
+    t.down()
+    t.begin_fill()
+    t.color("green")
+    squar(50)
+    t.end_fill()
+    
+
+s.onscreenclick(drawing)
+
+예제 5
+import turtle
+t=turtle.Turtle()
+s=turtle.Screen()
+t.width(5)
+
+def draw(x,y):
+    t.goto(x,y)
+
+s.onscreenclick(draw)
+
+예제 6
+import turtle
+t=turtle.Turtle()
+s=turtle.Screen()
+def draw(x,y):
+    t.goto(x,y);
+
+t.width(10)
+
+s.onscreenclick(draw)
+
+s.onkey(t.up,"Right")
+s.onkey(t.down,"Left")
+s.listen()
+
+예제 7
+import turtle
+t=turtle.Turtle()
+
+def bar(a):
+    t.begin_fill()
+    t.lt(90)
+    t.fd(a)
+    t.write(str(a))
+    t.rt(90)
+    t.fd(30)
+    t.rt(90)
+    t.fd(a)
+    t.lt(90)
+    t.end_fill()
+
+lista=[120,56,309,220,156,23,98]
+t.color("blue")
+t.fillcolor("red")
+
+for i in range(0,7,1):
+    bar(lista[i])
+
+예제 8
+import turtle
+import random
+t=turtle.Turtle()
+s=turtle.Screen()
+
+def draw_maze(x,y):
+    for i in range(2):
+        if i==1:
+            t.goto(x+100,y+100)
+        else:
+            t.goto(x,y)
+        t.down()
+        t.fd(300)
+        t.rt(90)
+        t.fd(300)
+        t.lt(90)
+        t.fd(300)
+
+def turn_left():
+    t.lt(10)
+    t.fd(10)
+
+def turn_right():
+    t.rt(10)
+    t.fd(10)
+
+t.speed(0)
+
+draw_maze(-300,200)
+s.onkey(turn_left(),"Left")
+s.onkey(turn_right(),"Right")
+
+t.up();
+t.goto(-300,250)
+t.speed(1)
+t.down();
+s.listen()
+s.mainloop()
+
+연습문제 1
+import turtle
+import random
+t=turtle.Turtle()
+s=turtle.Screen()
+
+def draw_snowMan(x):
+    t.begin_fill()
+    t.circle(30)
+    t.end_fill()
+    t.up()
+    t.goto(x,-27)
+    t.down()
+    
+    t.begin_fill()
+    t.circle(20)
+    
+    t.lt(30)
+    t.fd(50)
+    t.backward(50)
+    t.lt(110)
+    t.fd(50)
+    t.backward(50)
+    t.lt(-140)
+    t.end_fill()
+   
+    t.up()
+    t.goto(x,-90)
+    t.down()
+    
+    t.begin_fill()
+    t.circle(40)
+    t.end_fill()
+
+
+t.fillcolor("white")
+s.bgcolor("skyblue")
+y=0
+
+for i in range(3):
+    t.up()
+    t.home()
+    t.goto(i*150,0)
+    t.down()
+    draw_snowMan(i*150)
+
+
+
+연습문제 2
+
+import turtle
+import random
+t=turtle.Turtle()
+s=turtle.Screen()
+
+def figure(length):
+    for i in range(length):
+        t.fd(100)
+        t.lt(360//length)
+
+for i in range(6):
+    figure(6)
+    t.fd(100)
+    t.rt(60)
+    figure(6)
+    
+연습문제 3
+
+
+연습문제 4
+import turtle
+import random
+t=turtle.Turtle()
+s=turtle.Screen()
+
+def spider():
+    t.fd(100)
+    t.back(100)
+
+for i in range(12):
+    spider()
+    t.lt(30)
+
+연습문제 5
+
+def happyBirthday(name):
+    print("Happy Birthday to you!")
+    print("Happy Birthday to you!")
+    print("Happy Birthday dear %s!"%name)
+    print("Happy Birthday to you!")
+
+print('='*20)
+happyBirthday("홍길동")
+
+
+연습문제 6
+
+def math(x,y):
+    sum1=x+y
+    return sum1
+
+q1=int(input("첫 번째 정수:"))
+q2=int(input("두 번째 정수:"))       
+result=math(q1,q2)
+
+print("정수 %d +%d의 합은? %d" %(q1,q2,result))
+
+연습문제 7
+
+PI=3.14
+
+def circleArea(radius):
+    result=PI*radius**2
+    print("반지름:5인 원의 면적:",result)
+    
+
+def circleCircumference(radius):
+    result=2*PI*radius
+    print("반지름:5인 원의 둘레:",result)
+
+circleArea(5)
+circleCircumference(5)
+
+연습문제 8
+
+a=20
+b=10
+def add():
+    add=a+b
+    print("(%d + %d)=%d" %(a,b,add))
+
+add()
