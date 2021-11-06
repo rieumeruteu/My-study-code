@@ -1,0 +1,140 @@
+#파이썬 8장 
+#예제1
+import turtle
+import random
+t1=turtle.Turtle()
+t2=turtle.Turtle()
+
+t1.color("pink")
+t1.width(5)
+t2.color("blue")
+t2.width(5)
+
+t1.up()
+t1.goto(-300,0)
+t2.up()
+t2.goto(-300,-100)
+
+
+for i in range(100):
+    d1=random.randint(1,60)
+    d2=random.randint(1,60)
+
+    t1.fd(d1)
+    t2.fd(d2)
+
+#예제2
+
+import turtle
+import random
+
+screen=turtle.Screen()
+image1="d:\\rabbit.gif"
+image2="d:\\turtle.gif"
+screen.addshape(image1)
+screen.addshape(image2)
+
+t1=turtle.Turtle()
+t1.shape(image1)
+t.width(10)
+t.up()
+t.goto(-300,0)
+t.down()
+
+t2=turtle.Turtle()
+t2.shape(image2)
+t.width(10)
+t.up()
+t.goto(-300,-100)
+t.down()
+
+for i in range(300):
+    d1=random.randint(1,60)
+    d2=random.randint(1,60)
+    t1=fd(d1)
+    t2=fd(d2)
+
+#예제3
+
+import turtle
+import random
+t=turtle.Turtle()
+def draw(radius,color):
+    t.lt(270)
+    t.width(3)
+    t.color("black",color)
+    t.begin_fill()
+    t.circle(radius/2.0,-180)
+    t.circle(radius,180)
+    t.lt(180)
+    t.circle(-radius/2.0,-180)
+    t.end_fill()
+    
+draw(200,"red")
+t.setheading(180)
+draw(200,"blue")
+
+#예제4
+
+import turtle
+import random
+import math
+
+player=turtle.Turtle()
+player.color("blue")
+player.up()
+player.speed(0)
+screen=player.getscreen()
+
+
+a1=turtle.Turtle()
+a1.color("red")
+a1.shape("circle")
+a1.up()
+a1.speed(0)
+a1.goto(random.randint(-300,300),random.randint(-300,300))
+
+
+a2=turtle.Turtle()
+a2.color("red")
+a2.shape("circle")
+a2.up()
+a2.speed(0)
+a2.goto(random.randint(-300,300),random.randint(-300,300))
+
+
+#예제1
+
+import turtle
+import random
+import math
+
+player=turtle.Turtle()
+player.shape("turtle")
+screen=turtle.Screen()
+
+def left():
+    player.lt(5)
+
+def right():
+    player.rt(5)
+
+def fire():
+    x=0
+    y=0
+
+    velocity=50
+    angle=player.heading()
+    vx=velocity*math.cos(angle*3.14/180.0)
+    vy=velocity*math.sin(angle*3.14/180.0)
+    while player.ycor()>=0:
+        vx=vx
+        vy=vy-10
+        x=x+vx
+        y=y+vy
+        player.goto(x,y)
+
+screen.onkeypress(left,"Left")
+screen.onkeypress(right,"Right")
+screen.onkeypress(fire,"space")
+screen.listen()
