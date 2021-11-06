@@ -1,0 +1,176 @@
+//C언어 5장 예제들
+//예제1
+int score = 0;
+	printf("퀴즈:");
+	scanf("%d", &score);
+
+	if (score < 70)
+		printf("재시!!\n");
+	printf("다음수업 일주일 후");
+
+	
+//예제2
+	int x, y;
+
+	printf("정수 2개 입력:");
+	scanf("%d %d", &x, &y);
+	if (y != 0)
+	{
+		printf("%d / %d=%f\n", x, y, (double)x / y);
+	}
+	else
+		printf("0으로 나눌 수 없다.");
+		
+	
+//예제3
+	int age=0, fee=0;
+
+	printf("나이? ");
+	scanf("%d", &age);
+	if (age >= 8)
+	{
+		if (age >= 65)
+			fee = 5000;
+		else
+			fee = 10000;
+
+	}
+	else
+		fee = 0;
+	printf("입장료:%d\n", fee);
+	
+	
+	
+//예제4
+	int menu=0;
+	char filename[32] = "test.avi";
+	printf("1.파일 열기\n");
+	printf("2.재생\n");
+	printf("3.재생 옵션\n");
+	printf("선택:\n");
+	scanf("%d", &menu);
+
+	if (menu == 1)
+	{
+		printf("재생할 파일이름:");
+		scanf("%s", filename);
+	}
+	else if (menu == 2)
+	{
+		printf("%s를 재생합니다.", filename);
+	}
+	else if (menu == 3)
+	{
+		printf("재생 옵션을 선택");
+	}
+	else {
+		printf("잘못 입력됨");
+	}
+	
+//별피라미드
+int x = 0, y = 0;
+	for (y = 0; y <=5; y++)
+	{
+		for (x = 0; x <=y; x++)
+		{
+			printf("*");
+		}
+		printf("\n");
+	}
+
+//별피라미드(역)
+	int x = 0, y = 0;
+	for (y = 0; y <=5; y++)
+	{
+		for (x = 5; x >=y; x--)
+		{
+			printf("*");
+		}
+		printf("\n");
+	}
+
+//별피라미드(완성본)
+int x = 0, y = 0,null=0;
+	for (y = 1; y <= 10; y++)
+	{
+		for (null = 10; null >= y; null--)
+		{
+			printf(" ");
+		}
+	
+
+		for (x = 1; x <(y*2); x++)
+		{
+			printf("*");
+		}
+		printf("\n");
+	}
+//별피라미드(역행 완성본)
+
+	int x = 0, y = 0,null=0;
+	for (y =1; y <= 10; y++)
+	{
+		for (null = 1; null < y; null++)
+		{
+			printf(" ");
+		}
+	
+
+		for (x = 10; x >=(y*2); x--)
+		{
+			printf("*");
+		}
+		printf("\n");
+	}
+
+//예제5
+int a, b;
+	char op;
+	char yesno;
+
+	do {
+		printf("계산기 입력내용:");
+		scanf("%d %c %d", &a, &op, &b);
+
+		switch (op) {
+		case '+':
+			printf("%d + %d=%d\n", a, b, a + b);
+			break;
+		case '-':
+			printf("%d -%d=%d\n", a, b, a - b);
+			break;
+		case '*':
+			printf("%d*%d=%d\n", a, b, a * b);
+			break;
+		case '/':
+			if (b != 0)
+			{
+				printf("%d/%d=%d\n", a, b, (double)a / b);
+			}
+			else
+			{
+				printf("0으로 못나눔\n");
+			}
+			break;
+		default:
+			printf("잘못된 수식 입력됨");
+			break;
+			
+		}
+
+		printf("계속 하겠습니까? (Y/N):");
+		scanf("%c", &yesno);
+
+	} while (yesno == 'Y'||yesno == 'y');
+
+
+//예제6
+	int i;
+	for (i = 10; i > 0; i--)
+	{
+		if (i % 3 == 0)
+			goto quit;
+		printf("%d", i);
+	}
+quit:
+	printf("\n섹스");
