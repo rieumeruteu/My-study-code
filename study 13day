@@ -36,23 +36,23 @@ screen.addshape(image2)
 
 t1=turtle.Turtle()
 t1.shape(image1)
-t.width(10)
-t.up()
-t.goto(-300,0)
-t.down()
+t1.width(10)
+t1.up()
+t1.goto(-300,0)
+t1.down()
 
 t2=turtle.Turtle()
 t2.shape(image2)
-t.width(10)
-t.up()
-t.goto(-300,-100)
-t.down()
+t2.width(10)
+t2.up()
+t2.goto(-300,-100)
+t2.down()
 
 for i in range(300):
     d1=random.randint(1,60)
     d2=random.randint(1,60)
-    t1=fd(d1)
-    t2=fd(d2)
+    t1.fd(d1)
+    t2.fd(d2)
 
 #예제3
 
