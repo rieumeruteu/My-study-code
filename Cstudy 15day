@@ -1,0 +1,102 @@
+//조도 센서 원리
+
+//광전자효과 때문이다
+
+
+//초음파
+
+
+//초음파센서 
+
+//거리 계산
+
+/*
+이동거리=속력*시간
+pulseIn(echo,HIGH);는 거리센서의 한주기가 끝나면 (trig가 H ->L) echo가 HIGH가 된다. 반대로 (trig가 L->H)되면 LOW가된다
+pulseIn은 주파수가 쏘는 시점에서 받는 시점까지(주기가 하나가 나오는데 걸리는 시간) 걸리는시간이 나온다.
+
+distance= 340(마하)*1/2(주파수 출발과 도착 거리 때문에 나눠야함)*10^-6(단위 환산을 위해서)*duration(단위 uS);
+*/
+
+
+
+
+//초음파센서
+
+const int trig=2;//보내는거
+const int echo=3;//받는
+
+  void setup() {
+   Serial.begin(9600);
+   pinMode(trig,OUTPUT);
+   pinMode(echo,INPUT);
+   
+  }
+
+
+  void loop() {
+    //하나의 주기를 생성하는 과정
+  digitalWrite(echo,LOW);//파형 0 
+  delayMicroseconds(2);//2마이크로 초 동안 대기
+  
+  digitalWrite(trig,HIGH);//파형 1
+  delayMicroseconds(10);//10마이크로 초 대기
+  digitalWrite(trig,LOW);//파형 0으로 내려간다
+  
+
+  double duration=pulseIn(echo,HIGH);//1초 동안 파형 주기가 나온다.
+  double distance=(duration*340)/2/10000;//cm기준 mm로 바꿀시 1000에다 000를 더 넣는다.
+  
+  Serial.print(distance);
+  Serial.println("cm");
+  delay(500);
+
+  }
+
+
+
+//초음파센서 거리15m 이하면 부저와 led 켜지고 15m초과하면 꺼진다.
+
+const int trig=5;//보내는거
+const int echo=3;//받는
+const int led=4;
+const int buzzer=2;
+  void setup() {
+   Serial.begin(9600);
+   pinMode(trig,OUTPUT);
+   pinMode(echo,INPUT);
+   pinMode(led,OUTPUT);
+   
+  }
+
+
+  void loop() {
+    
+  digitalWrite(echo,LOW); 
+  delayMicroseconds(2); 
+  digitalWrite(trig,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig,LOW);
+
+  double duration=pulseIn(echo,HIGH);
+  double distance=(duration*340)/2/10000;
+
+  if(distance<=15)
+  {
+    digitalWrite(led,HIGH);
+    tone(2,100,1000);
+    delay(100);
+  }
+  else if(distance>=15)
+  {
+    digitalWrite(led,LOW);
+    noTone(2);
+  }
+  
+  
+  
+  Serial.print(distance);
+  Serial.println("cm");
+  delay(500);
+
+  }
