@@ -1,0 +1,241 @@
+#파이썬 9장
+#예제1
+import random
+quote=[]
+
+quote.append("test1")
+quote.append("test2")
+quote.append("test3")
+
+speak=random.choice(quote)
+print(speak)
+
+
+#예제2
+
+import turtle
+t=turtle.Turtle()
+
+
+def draw_circle():
+    color_list=[[0,0,"blue"],[-120,0,"purple"],[60,60,"yellow"],[-60,60,"red"],[-180,60,"green"]]
+
+    for x,y,c in color_list:
+        t.up()
+        t.goto(x,y)
+        t.down()
+        t.color(c)
+        t.begin_fill()
+        t.circle(30)
+        t.end_fill()
+
+draw_circle()
+
+
+
+
+#예제3
+import turtle
+import random
+import math
+t=turtle.Turtle()
+t.color("blue")
+t.up()
+t.speed(0)
+screen=t.getscreen()
+
+asteroids=[]
+for i in range(10):
+    a1=turtle.Turtle()
+    a1.shape("circle")
+    a1.color("red")
+    a1.up()
+    a1.speed(0)
+    a1.goto(random.randint(-300,300),random.randint(-300,300))
+    asteroids.append(a1)
+
+def left():
+    t.lt(30)
+def right():
+    t.rt(30)
+
+screen.onkeypress(left,"Left")
+screen.onkeypress(right,"Right")
+screen.listen()
+
+def play():
+    t.fd(2)
+    for a in asteroids:
+        a.rt(random.randint(-180,180))
+        a.fd(2)
+    screen.ontimer(t,10)
+screen.ontimer(t,10)
+
+#예제4
+items={"coffee":5,"pen":2,"paperCup":6}
+
+item=input("물건 이름:")
+print(items[item])
+
+#예제5
+
+english_dict=dict()
+
+english_dict['one']='하나'
+english_dict['two']='둘'
+english_dict['three']='셋'
+
+word=input("단어를 입력하세요:")
+print(english_dict[word])
+
+
+#연습문제1
+
+lista=[]
+average=0
+for i in range(5):
+    x=int(input("정수를 입력하시오"))
+    lista.append(x)
+    average=average+lista[i]
+
+print(average)
+
+
+
+#연습문제2
+
+import random
+lista =[0,0,0,0,0,0]
+count=[1,2,3,4,5,6]
+x=0
+while x<1000:
+    dice=random.randint(0,5)
+    count[dice]
+    lista[dice]=lista[dice]+1
+    print("주사위가",count[dice],"인 경우:",lista[dice])
+    x=x+1
+    
+
+
+#연습문제3
+
+contacts={}
+
+while True:
+    name=input("입력모드)이름입력:")
+    if not name:
+        break;
+    tel=input("전화번호를 입력하시오")
+    contacts[name]=tel
+
+while True:
+    find=input("(검색모드)이름입력:")
+    if not find:
+        break;
+    print("전화번호 입력:",contacts[find])
+
+
+#연습문제4
+
+import turtle
+
+t=turtle.Turtle()
+
+sizeC=[[300,-200,"Yellow"],[200,150,"red"],[-120,-210,"blue"],[-300,-100,"purple"]]
+
+def squar(x,y,c):
+    t.up()
+    t.goto(x,y)
+    t.down()
+    t.begin_fill()
+    t.color(c)
+    t.fd(100)
+    t.lt(90)
+    t.fd(100)
+    t.lt(90)
+    t.fd(100)
+    t.lt(90)
+    t.fd(100)
+    t.lt(90)
+    t.end_fill()
+
+for x,y,c in sizeC:
+    squar(x,y,c)
+
+
+#연습문제5
+
+import turtle
+import random
+t=turtle.Turtle()
+
+colors=["red","purple","blue","green","yellow",]
+
+
+def figure():
+    size=random.randint(30,150)
+    angle=random.randint(3,9)
+    choice=random.randint(0,4)
+    distanceX=random.randint(-300,300)
+    distanceY=random.randint(-300,300)
+    t.up()
+    t.goto(distanceX,distanceY)
+    t.down()
+    t.color(colors[choice])
+    t.begin_fill()
+    for i in range(angle):
+        t.lt(360//angle)
+        t.fd(size)
+    t.end_fill()
+
+
+for i in range(5):
+    figure()
+    
+#연습문제6
+
+import turtle
+import random
+t=turtle.Turtle()
+s=turtle.Screen()
+colors=["red","purple","blue","green","yellow",]
+
+
+def figure():
+    size=random.randint(30,150)
+    choice=random.randint(0,4)
+    distanceX=random.randint(-300,300)
+    distanceY=random.randint(-300,300)
+    t.up()
+    t.goto(distanceX,distanceY)
+    t.down()
+    t.color(colors[choice])
+    t.begin_fill()
+    for i in range(5):
+        t.fd(size)
+        t.rt(144)
+    t.end_fill()
+
+
+for i in range(5):
+    s.bgcolor("black")
+    figure()
+
+
+#연습문제7
+
+country={'kr':"대한민국",'JP':"일본",'US':"미국"}
+
+for k,v in country.items():
+    print(k,":",v)
+#연습문제8
+problem={"밥":"우리의 주식은?","젝스":"왕귀라는 단어에 어울리는 챔프는?"}
+for word in problem.keys():
+    print("다음은 어떤 단어에 대한 설명일까?")
+    print(problem[word])
+    print("(1)밥 (2)젝스")
+    ans=input()
+    if ans==word:
+        print("정답")
+    else:
+        print("오답")
