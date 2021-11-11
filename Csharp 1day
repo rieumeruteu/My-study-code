@@ -1,0 +1,320 @@
+//do while 문
+ int n = 1;
+            int sum = 0;
+            do
+            {
+                if (n % 2 == 0) sum += n;
+            } while (++n <= 1000);
+            Console.WriteLine(sum);
+
+// continue 문 
+ int sum = 0;
+            int n = 1;
+            while (n++<=1000)
+            {
+                if(n%2 !=0)
+                {
+                    continue;
+                }
+                sum += n;
+            }
+            Console.WriteLine(sum);
+
+
+ int sum = 0, n = 1;
+
+            while(n++<=1000)
+            {
+                if (n % 2 != 0) continue;
+                if (n % 3 != 0) continue;
+                if (n % 5 != 0) continue;
+                sum += n;
+            }
+            Console.WriteLine(sum);
+
+//goto문
+
+
+            for(int x=2;x<10;x++)
+            {
+                for(int y=1;y<10;y++)
+                {
+                    Console.WriteLine(x + "*" + y + "=" + (x * y));
+                    if (x == 5 && y == 8) goto exit;
+                }
+            }
+
+        exit: 
+            Console.WriteLine("컷");
+
+//프로젝트 올일러 1번 문제
+int x = 1;
+            int sum = 0;
+            for(;x<1000;x++)
+            {
+                if(x%3==0 || x%5==0)
+                {
+                    sum += x;
+                }
+            }
+
+            Console.WriteLine(sum);
+
+
+//class 배우기
+
+ class Mathematics
+        {
+            public int f(int x)
+            {
+                return x * x;
+            }
+        }
+        static void Main(string[] args)
+        {
+            Mathematics m = new Mathematics();
+            int result = m.f(4);
+            Console.WriteLine(result);
+
+        }
+
+
+// class 응용
+
+ class ConsoleApp1
+        {
+            public int Add(int i,int i2)
+            {
+                int result = i + i2;
+                return result;
+            }
+
+            public float devine(int z,int z2)
+            {
+                float result = z / (float)z2;
+                return result;
+            }
+            public int subtract(int x,int x2)
+            {
+                int result = x - x2;
+                return result;
+            }
+        }
+        static void Main(string[] args)
+        {
+            ConsoleApp1 excuit = new ConsoleApp1();
+            float result = excuit.devine(9, 2);
+            Console.WriteLine(result);
+
+        }
+
+
+//
+
+  class Program
+    {
+        class Mathematics
+        {
+            public int GetAreaOfSquare(int x)
+            {
+                return x * x;
+            }
+            public int GetValue()
+            {
+                return 10;
+            }
+            public void Output(string prefix,int value)
+            {
+                Console.WriteLine(prefix + value);
+            }
+        }
+        static void Main(string[] args)
+        {
+            Mathematics m = new Mathematics();
+            int result = m.GetAreaOfSquare(m.GetValue());
+
+            m.Output("결과", result);
+
+        }
+
+// 인스턴스 
+ class Person
+    {
+        public string _name;
+        public Person(string name)
+        {
+            _name = name;
+        }
+        public void WriteName()
+        {
+            Console.WriteLine(_name);
+        }
+    }
+
+
+    class Program
+    {
+       
+        static void Main(string[] args)
+        {
+            Person test = new Person("개똥");//new를 통해 인스턴스 생성자 접근 
+            test.WriteName();//인스턴스 메서드 호출
+            Console.WriteLine(test._name);//new로 생성된 객체를 인스턴스 필드에 접근
+
+        }
+    }
+
+//정적 필드
+//
+class Person
+    {
+        static public int CountOfInstace;//정적 필드 static이 들어간다.
+        public string _name;
+
+        public Person(string name)
+        {
+            CountOfInstace++;
+            _name = name;
+        }
+    }
+
+
+    class Program
+    {
+       
+        static void Main(string[] args)
+        {
+            Console.WriteLine(Person.CountOfInstace);
+            Person ary = new Person("홍길동");
+            Person ary1 = new Person("홍길순");
+
+            Console.WriteLine(Person.CountOfInstace);
+
+        }
+    }
+
+
+//정적 메서드
+
+class Program
+    {
+       class Person
+        {
+            static int CountOfNum;
+            public string _name;
+
+            public Person(string name)
+            {
+                CountOfNum++;
+                _name = name;
+            }
+            static public void OutputCount()//정적 매서드
+            {
+                Console.WriteLine(CountOfNum);
+            }
+        }
+       
+        static void Main(string[] args)
+        {
+            Person.OutputCount();
+
+            Person person1 = new Person("마이스이");
+            Person person2 = new Person("멕그리버");
+            Person.OutputCount();
+
+        }
+
+
+//네임스페이스
+
+using System;
+using Community;//using 사용시 네임스페이스를 매번 호출안해도 된다.
+using Disk.File;
+
+namespace Community//클래스들을 구분할때 사용(클래스들의 소속 지정)
+{
+    class Http
+    {
+
+    }
+
+}
+namespace Disk.File
+{
+    class disk
+    {
+
+    }
+}
+/*같은 이름의 클래스 or매서드를 만들어도 네임스페이스가 다르면 상관없다.
+ 다만 네임스페이스도 같이 적어줘야 된다*/
+
+namespace Csharp_study
+{
+
+
+    class Program
+    {
+       
+        static void Main(string[] args)
+        {
+            Http name = new Http();
+            disk name2 = new disk();
+        }
+    }
+
+   
+}
+
+
+// getter,setter
+class Circle//설정자와 접근자 사용하는 이유 기호상수처럼 유지보수가 좋다.
+    {
+        double pi = 3.14;
+
+        public double GetPi()//접근자
+        {
+            return pi;
+        }
+
+        public void SetPi(double value)//설정자
+        {
+            pi = value;
+        }
+    }
+
+    class Program
+    {
+       
+        static void Main(string[] args)
+        {
+            Circle round = new Circle();
+            round.SetPi(3.14159);
+            double Pivalue=round.GetPi();
+        }
+    }
+
+//프로퍼티
+
+class Circle//프로퍼티: 접근자/설정자 매서드를 정의하기 귀찮을 때 사용한다
+    {
+        double pi = 3.14;
+        
+        public double Pi//Pi하나로 접근/설정 가능하게 해준다
+        {
+            get { return pi; }//접근 프로퍼티
+            set { pi = value; }//설정 프로퍼티 set을 사용하면 반드시 value 예약어로 값을 받는다
+        }
+    }
+
+    class Program
+    {
+       
+        static void Main(string[] args)
+        {
+            Circle radius = new Circle();
+            radius.Pi = 3.14159;
+            double piValue = radius.Pi;
+            Console.WriteLine(piValue); 
+        }
+    }
