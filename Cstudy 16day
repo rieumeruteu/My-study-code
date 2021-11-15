@@ -1,0 +1,122 @@
+//미션: 초음센서: 15cm이하, pir이 켜지면 부저와 led 켜짐
+
+
+
+const int trig = 3;
+const int echo = 4;
+const int ledPin = 5;
+int sensorValue;
+
+
+int pir=6;
+int pirValue;
+
+void setup(){
+  pinMode(trig, OUTPUT);
+  pinMode(echo, INPUT);
+  pinMode(ledPin, OUTPUT);
+  pinMode(pir,INPUT);
+  Serial.begin(9600);
+}
+
+
+void loop(){
+  digitalWrite(trig, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig, HIGH);
+  delayMicroseconds(10);         
+  digitalWrite(trig, LOW);
+  pirValue=digitalRead(pir);
+  
+  double duration = pulseIn(echo, HIGH);
+
+  double distance = (duration*340)/2/10000;
+
+  Serial.print(distance);
+  Serial.println("cm");
+
+
+  if(pirValue==HIGH && distance<=15)
+  {
+    digitalWrite(ledPin,HIGH);
+    tone(2,100,1000);
+  }
+  else
+  {
+    digitalWrite(ledPin,LOW);
+    noTone(2);
+  }
+  
+  delay(500);
+} 
+
+//기울기 감지센서
+
+/ 기울기가 있으면 L 없으면 H 를 주의할 것(중요)
+
+const int led=3;
+const int sensor=2;
+void setup(){
+  pinMode(led,OUTPUT);
+  pinMode(sensor,INPUT);
+  Serial.begin(9600);
+}
+
+
+void loop(){
+ int sensorValue=digitalRead(sensor);
+ Serial.print("state:");
+ Serial.println(sensorValue);
+ delay(500);
+} 
+
+
+//적외선 감지센서
+//기울기 센서와 코드가 똑같다
+const int led=3;
+const int sensor=4;
+void setup(){
+  pinMode(led,OUTPUT);
+  pinMode(sensor,INPUT);
+  Serial.begin(9600);
+}
+
+
+void loop(){
+ int sensorValue=digitalRead(sensor);
+ Serial.print("state:");
+ Serial.println(sensorValue);
+
+ if(sensorValue==LOW)
+ {
+  digitalWrite(led,HIGH);
+ }
+ else
+ {
+  digitalWrite(led,LOW);
+ }
+ 
+ delay(500);
+} 
+
+
+// 실습 평가 레포트 양식
+/*
+(이미지 or 그림 필수, 교수님 ppt처럼 제작하면 될것 같다.)
+1.과제명
+
+2.제품 설명 
+
+3.필요부품
+
+4.하드웨어 결선(팅커캐드로 하면 될듯)
+
+5.아두이노 코드
+
+6.실행결과 (시리얼 모니터/과제 사진등) 설명
+
+7.활용방안
+
+8.소감 
+
+*/
