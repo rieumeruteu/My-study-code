@@ -1,0 +1,92 @@
+//친구 과제 대신 짜준 코드
+
+// led
+const int red = 8;
+const int green = 9;
+// 움직임
+const int motion = 5;
+int motionValue;
+// 초음파
+const int trig = 2;
+const int echo = 3;
+// 스피커
+int buzzer = A0;
+
+void setup(){
+  Serial.begin(9600);
+  pinMode(trig, OUTPUT);
+  pinMode(echo, INPUT);
+  pinMode(red, OUTPUT);
+  pinMode(green, OUTPUT);
+  pinMode(motion, INPUT);
+  
+}
+
+void loop(){
+  int storage = 0; // 주차공간
+  Serial.println("공간 시작");
+ while(1)
+ {
+
+   digitalWrite(echo, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trig,HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trig, LOW);
+ 
+  double duration = pulseIn(echo, HIGH);
+  double distance = (duration*340)/2/10000;
+  motionValue = digitalRead(motion);
+ // Serial.println("거리");
+ // Serial.print(distance);
+ // Serial.print("적외선");
+ // Serial.println(motionValue);
+
+  if(distance <= 15)// 주차장에 차가 들어오면
+  {
+    
+      storage++;
+     // Serial.print("저장공간");
+     // Serial.println(storage); 
+       delay(3000);
+  }
+ 
+  if(motionValue ==0)// 주차장에 차가 나가면
+  {
+    
+      storage--;
+     // Serial.print("저장공간");
+     // Serial.println(storage);
+      if(storage<=0)
+        storage=0;  
+      delay(3000);   
+  }
+  
+  
+  
+  Serial.print("현재 주차된 공간이");
+  Serial.print(storage);
+  Serial.println("칸 남았습니다");
+  
+  if(storage == 5)// 만석일 경우
+  {
+    digitalWrite(green, LOW);
+    digitalWrite(red, HIGH);
+    Serial.println("만석입니다");
+  }
+  else if (storage > 5)// 주차공간 초과시 3초간 부저작동
+  {
+    tone(buzzer, 100, 1000);
+    delay(3000);
+    storage = 5; // 부저를 끔.
+  }
+  else// 평상시
+  {
+    digitalWrite(green, HIGH);
+    digitalWrite(red, LOW);
+    noTone(buzzer);
+  }
+  
+  delay(500);
+ }
+}
