@@ -1,0 +1,310 @@
+//as 연산자: 클래스의 명시적 형변환 할때 오류 없이 형변환이 필요하면 쓸 수 있다. 
+
+public class Computer
+    {
+        bool powerOn;
+        public void Boot() { }
+        public void Shutdown() { }
+        public void Reset() { }
+    }
+
+    public class Notbook : Computer
+    {
+        bool fingerScan;
+        public bool HasFingerScanDevice() { return fingerScan; }
+
+        public void CloseLid()
+        {
+            Shutdown();
+        }
+
+    }
+
+    public class Desktop : Computer
+    {
+
+    }
+
+    public class Netbook : Computer
+    {
+
+    }
+
+    public class DeviceManger
+    {
+        public void TurnOff(Computer device)
+        {
+            device.Shutdown();
+        }
+    }
+
+    class Program
+    {
+       
+        static void Main(string[] args)
+        {
+            Computer pc = new Computer();//부모 클래스를 자식으로 형변환 시키는 거다
+            Notbook notebook = pc as Notbook;//참조형에서만 사용할 수 있다.
+
+            if(notebook !=null)//as는 형변환이 가능하면 값을 반환하고 그렇지 않으면 null을 반환한다.
+            {
+                notebook.CloseLid();
+            }
+
+        }
+    }
+
+
+// is 연산자:
+
+  static void Main(string[] args)
+        {
+            int n = 5;
+            if(n is string)//as는 결과값을 반환하면 is는 형변환의 가능성을 bool형의 결과값으로 반환한다.
+            {
+                Console.WriteLine("변수 n은 string이다");
+            }
+
+            string n2 = "test";
+            if(n2 is string)
+            {
+                Console.WriteLine("변수 n2는 string 이다");
+            }
+
+        }
+
+
+
+
+// UNITY //
+
+
+//가위바위보 게임
+ Random rand = new Random();
+            int RandChoice = rand.Next(0, 3);
+
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            switch(choice)
+            {
+                case 1:
+                    Console.WriteLine("가위");
+                    break;
+                case 2:
+                    Console.WriteLine("바위");
+                    break;
+                case 3:
+                    Console.WriteLine("보");
+                    break;
+            }
+
+            switch (RandChoice)
+            {
+                case 1:
+                    Console.WriteLine("AI가위");
+                    break;
+                case 2:
+                    Console.WriteLine("AI바위");
+                    break;
+                case 3:
+                    Console.WriteLine("AI보");
+                    break;
+            }
+
+            if (RandChoice==choice)
+            {
+                Console.WriteLine("무승부");
+            }
+            else if((RandChoice==1&&choice==3) || (RandChoice==2 && choice==1) || (RandChoice==3 && choice==2))
+            {
+                Console.WriteLine(" AI승리 ");
+            }
+            else if ((choice == 3 && RandChoice == 1) || (choice == 1 && RandChoice == 2) || (choice == 2 && RandChoice == 3))
+            {
+                Console.WriteLine(" 승리 ");
+            }
+            else
+            {
+                Console.WriteLine("끝");
+            }
+
+//enum 열거형 방식 
+
+ enum Choice
+        {
+            ROCK=0,
+            PAPER=1,
+            SCISSOR=2
+                
+        }
+
+        static void Main(string[] args)
+        {
+            
+
+            Random rand = new Random();
+            int RandChoice = rand.Next(0, 3);
+
+            int choice = Convert.ToInt32(Console.ReadLine());
+
+            switch(choice)
+            {
+                case (int)Choice.SCISSOR://변할 가능성이 없어야 switch에 적용이 된다.
+                    Console.WriteLine("가위");
+                    break;
+                case (int)Choice.ROCK://enum형식으로 되어있기 때문에 int로 형변환 시켜줘야한다.
+                    Console.WriteLine("바위");
+                    break;
+                case (int)Choice.PAPER:
+                    Console.WriteLine("보");
+                    break;
+            }
+
+            switch (RandChoice)
+            {
+                case (int)Choice.SCISSOR:
+                    Console.WriteLine("AI가위");
+                    break;
+                case (int)Choice.ROCK:
+                    Console.WriteLine("AI바위");
+                    break;
+                case (int)Choice.PAPER:
+                    Console.WriteLine("AI보");
+                    break;
+            }
+
+            if (RandChoice==choice)
+            {
+                Console.WriteLine("무승부");
+            }
+            else if((RandChoice== (int)Choice.SCISSOR &&choice== (int)Choice.PAPER) || (RandChoice== (int)Choice.ROCK && choice== (int)Choice.SCISSOR) || (RandChoice== (int)Choice.PAPER && choice== (int)Choice.ROCK))
+            {
+                Console.WriteLine(" AI승리 ");
+            }
+            else if ((choice == (int)Choice.PAPER && RandChoice == (int)Choice.ROCK) || (choice == (int)Choice.SCISSOR && RandChoice == (int)Choice.PAPER) || (choice == (int)Choice.ROCK && RandChoice == (int)Choice.SCISSOR))
+            {
+                Console.WriteLine(" 승리 ");
+            }
+            else
+            {
+                Console.WriteLine("끝");
+            }
+
+        }
+
+    }
+
+//
+
+ string answer;
+
+            do
+            {
+                Console.WriteLine("살았니?");
+                 answer= Console.ReadLine();
+                if(answer=="N" || answer=="n")
+                {
+                    break;
+                }
+            } while (answer=="Y"||answer=="y");
+            Console.WriteLine("다행이네");
+
+//
+
+int num = 97;
+            bool isPrime = true;
+            for(int i=2; i<num; i++)
+            {
+                if((num%i)==0)
+                {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if(isPrime)
+                Console.WriteLine("소수가 입니다");
+            else
+                Console.WriteLine("소수가 아닙니다");
+
+//
+
+static void AddOne(ref int number)//ref는 참조값으로 매개변수 값을 받는다.
+        {
+            number = number + 1;
+        }
+
+        static void Main(string[] args)
+        {
+            int a = 0;
+            Program.AddOne(ref a);// 참조값으로써 복사해서 넘기는게 아닌 아예 a의 값을 넘기는 것이다.
+            Console.WriteLine(a);
+
+        }
+
+
+
+//
+static void Divide(int a, int b, out int result1, out int result2)//out은 함수의 출력되는 값을 받아오도록 해준다(ref처럼 변수 자체에 값을 부여한다)
+        {
+            result1 = a / b;
+            result2 = a % b;
+        }
+
+        static void Main(string[] args)
+        {
+            int num1 = 10;
+            int num2 = 3;
+
+            int result1;
+            int result2;
+            Divide(10, 3, out result1, out result2);
+            Console.WriteLine(result1);
+            Console.WriteLine(result2);
+
+
+//
+  //오버로딩: 함수 이름의 재사용이다.
+//오버로딩 조건: 매개변수의 자료형, 매개변수 개수가 다르면 오버로딩이 가능하다.
+    class Program
+    {
+     static int Add(int a,int b)
+        {
+            Console.WriteLine("add int");
+            return a + b;
+        }
+
+
+     static float Add(float a, float b)
+        {
+            Console.WriteLine("add float");
+            return a + b;
+        }
+
+        static void Main(string[] args)
+        {
+            int ret = Add(2, 3);
+            float ret2 = Add(2.0f, 3.0f);
+        }
+    }
+
+//
+
+ //선택적 매개변수 선언시 매개변수에 값을 넣고싶으면 넣고 안넣으면 해당값이 나온다.
+     static int Add(int a,int b, int c=0)// "c" .선택적 매개변수
+        {
+            Console.WriteLine("add int");
+            return a + b;
+        }
+
+
+     static float Add(float a, float b)
+        {
+            Console.WriteLine("add float");
+            return a + b;
+        }
+
+        static void Main(string[] args)
+        {
+            int ret = Add(2, 3);//값을 한개 더 넣어도 된다. 대신 선언된 위치를 유의해야한다.
+            float ret2 = Add(2.0f, 3.0f);
+        }
