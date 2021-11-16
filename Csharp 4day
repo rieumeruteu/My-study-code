@@ -1,0 +1,194 @@
+
+//ToString: 호출한 매서드가 속한 클래스의 전체 이름을 반환해준다.
+
+
+ class Program
+    {
+
+        static void Main(string[] args)
+        {
+            Program program=new Program();
+            Console.WriteLine(program.ToString());
+
+        }
+    }
+
+
+//자식 클래스에서 기능을 재정의가 가능해서 항상 원하는 이름을 반환해 주진 않는다.
+
+//
+ class Program
+    {
+       
+        static void Main(string[] args)
+        {
+            int n = 500;
+            double d = 3.141592653;
+            string txt = "Hello";
+
+            Console.WriteLine(txt + n.ToString());//ToString은 클래스 전체이름이 아닌 해당 타입이 담고있는 값을 반환할 수 있다.
+            Console.WriteLine(txt+d.ToString());
+            txt = d.ToString();
+            Console.WriteLine(txt);
+        }
+    }
+
+
+//GetType: class선언시 내부적으로 System.Type의 인스턴트를 보유하게 된다. 그 인스턴스들을 가져올 때 사용된다
+
+
+  public class Computer
+    {
+        bool powerOn;
+        public void Boot() { }
+        public void Shutdown() { }
+        public void Reset() { }
+    }
+
+ class Program
+    {
+       
+        static void Main(string[] args)
+        {
+            Computer computer = new Computer();
+            Type type = computer.GetType();//computer의 System.Type의 인스턴스를 가져오도록 한다.
+
+            Console.WriteLine(type.FullName);//Type클래스의 프로퍼티 호출됨
+            Console.WriteLine(type.IsClass);
+            Console.WriteLine(type.IsArray);
+        }
+    }
+
+//Equals: 값을 비교한 결과를 bool형으로 반환한다.(같으면 true,다르면 false)
+
+class Program
+    {
+       
+        static void Main(string[] args)
+        {
+            int nt = 5;
+            int nc = 5;
+            Console.WriteLine(nt.Equals(nc));//True
+
+            nc = 6;
+            Console.WriteLine(nt.Equals(nc));//False
+        }
+    }
+
+
+/*클래스로 만든 참조 형식은 동일한 값을 가져도 False가된다
+  이유는 힙에 저장된 값을 가리키는 스택변수의 값(주소)이 다르기 때문이다.
+*/
+//
+ class Book
+    {
+        decimal _isbn;
+        public Book(decimal isbn)
+        {
+            _isbn = isbn;
+        }
+    }
+
+    class Program
+    {
+       
+        static void Main(string[] args)
+        {
+            Book book1 = new Book(12345);
+            Book book2 = new Book(12345);
+
+            Console.WriteLine(book1.Equals(book2));//False
+        }
+    }
+
+//그래서 object는 하위 클래스에서 Equals의 동작을 재정의 했다. 그 예가 string이다.
+
+ static void Main(string[] args)
+        {
+            string txt1 = new string(new char[] { 't', 'e', 't' });
+            string txt2 = new string(new char[] { 't', 'e', 't' });
+
+            Console.WriteLine(txt1.Equals(txt2));
+        }
+
+//GetHashCode:특정 인스턴스를 고유하게 식별할 수 있는 4바이트 int 값을 반환하며 Equals와 연계된다.9
+ 
+//명심할 점은 int형으로 반환되고 그값을 초과하면 무작위 값이 출력된다.
+
+ static void Main(string[] args)
+        {
+            short n1 = 256;
+            short n2 = 3270;
+            short n3 = 256;
+            Console.WriteLine(n1.GetHashCode());
+            Console.WriteLine(n2.GetHashCode());
+            Console.WriteLine(n3.GetHashCode());
+
+            Book book1 = new Book(987451);
+            Book book2 = new Book(987451);
+
+            Console.WriteLine(book1.GetHashCode());
+
+            Console.WriteLine(book2.GetHashCode());
+        }
+    }
+
+
+//UNITY//
+
+class Program
+    {
+      
+        enum JobType
+        {
+            None=0,
+            Knight=1,
+            Archer=2,
+            Mage=3
+        }
+
+        static JobType chooseJob()
+        {
+            Console.WriteLine("직업 선택");
+            Console.WriteLine("[1] 전사");
+            Console.WriteLine("[2] 궁수");
+            Console.WriteLine("[3] 법사");
+            Console.WriteLine("[4] 백수");
+
+            JobType choice = JobType.None;
+
+            string job = Console.ReadLine();
+
+            switch (job)
+            {
+                case "1":
+                    choice = JobType.Knight;
+                    break;
+                case "2":
+                    choice = JobType.Archer;
+                    break;
+                case "3":
+                    choice = JobType.Mage;
+                    break;
+                default:
+                    choice = JobType.None;
+                    break;
+
+            }
+            return choice;
+        }
+
+        static void Main(string[] args)
+        {
+            JobType choice = JobType.None;
+
+            while(choice==JobType.None)
+            {
+                choice=chooseJob();
+                if (choice != JobType.None)
+                    break;
+                
+            }
+            
+        }
+    }
