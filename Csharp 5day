@@ -1,0 +1,291 @@
+  //배열의 맴버
+//배열은 System.Array로부터 상속받는 참조형 타입이다.
+    class Program
+    {
+       private static void OutputArrayInfo(Array arr)
+        {
+            Console.WriteLine("배열의 차원 수:" + arr.Rank);//Rank:차원 개수
+            Console.WriteLine("배열의 요소 수:"+ arr.Length);//Length: 배열의 길이
+            Console.WriteLine();
+        }
+
+        private static void OutputArrayElements(string title, Array arr)
+        {
+            Console.WriteLine("[" + title +"]");
+
+            for (int i = 0; i < arr.Length;i++)
+            {
+                Console.WriteLine(arr.GetValue(i) + ", ");//GetValue//인덱스의 배열 요소값을 반환
+            }
+
+            Console.WriteLine();
+            Console.WriteLine();
+        }
+
+        
+        static void Main(string[] args)
+        {
+            bool[,] boolArray = new bool[,] { { true, false }, { false, false } };
+            OutputArrayInfo(boolArray);
+
+            int[] intArray = new int[] { 5, 4, 3, 2, 1, 0 };
+            OutputArrayInfo(intArray);
+
+            OutputArrayElements("원본 intArray", intArray);
+            Array.Sort(intArray);//Sort: 배열요소들을 순서대로 나열
+            OutputArrayElements("Array.Sort 후 intArray", intArray);
+
+            int[] copyArray = new int[intArray.Length];
+            Array.Copy(intArray, copyArray, intArray.Length);//Copy 배열 내용 복사
+
+            OutputArrayElements("intArray로부터 복사된 copyArray", copyArray);
+        }
+    }
+
+
+   //this :클래스 내부 코드에서 객체 자신을 가리킬 수 있다.
+  class book
+    {
+        decimal _isbn;
+
+        public decimal ISBN
+        {
+            get { return this._isbn; }
+        }
+        public book(decimal _isbn)
+        {
+            this._isbn = _isbn;//메서드의 매개변수와 클래스의 필드명과 같으면 this로 구분짓는다.
+        }
+
+        public decimal GetISBN()
+        {
+            return this.ISBN;
+        }
+        public void Sell()
+        {
+            Console.WriteLine("Sell:"+this.GetISBN());
+        }
+    }
+
+    class Program
+    { 
+
+        static void Main(string[] args)
+        {
+            
+            
+        }
+    }
+
+//
+  class book
+    {
+        string title;
+        static int count;
+        public book(string title)//인스턴스 생성자
+        {
+            this.title = title;//this로 인스턴스 필드 식별 가능
+            this.Open();//this로 인스턴스 메서드 식별 가능
+            Increment();//정적매서드 사용가능
+        }
+        void Open()
+        {
+            Console.WriteLine(this.title);//인스턴스 맴버 사용가능
+            Console.WriteLine(count);//정적맴버 사용가능
+        }
+        public void Close()
+        {
+            Console.WriteLine(this.title+"책을 덮는다.");
+        }
+
+        static void Increment()//정적 매서드
+        {
+            count++;//정적 필드 사용가능
+                    //정적 매서드에는 this가 없으므로 인스턴스 맴버 사용 불가능
+        }
+    }
+
+    //UNITY//
+
+
+     class Program
+    {
+      
+        enum JobType
+        {
+            None=0,
+            Knight=1,
+            Archer=2,
+            Mage=3
+        }
+
+        struct Player//구조체 
+        {
+            public int hp;
+            public int attack;
+        }
+
+        enum MonsterType
+        {
+            None=0,
+            Slime=1,
+            Orc=2,
+            Skeleton=3
+        }
+
+        struct Monster
+        {
+            public int hp;
+            public int attack;
+        }
+
+
+
+        static JobType chooseJob()
+        {
+            Console.WriteLine("직업 선택");
+            Console.WriteLine("[1] 전사");
+            Console.WriteLine("[2] 궁수");
+            Console.WriteLine("[3] 법사");
+            Console.WriteLine("[4] 백수");
+
+            JobType choice = JobType.None;
+
+            string job = Console.ReadLine();
+
+            switch (job)
+            {
+                case "1":
+                    choice = JobType.Knight;
+                    break;
+                case "2":
+                    choice = JobType.Archer;
+                    break;
+                case "3":
+                    choice = JobType.Mage;
+                    break;
+                default:
+                    choice = JobType.None;
+                    break;
+
+            }
+            return choice;
+        }
+
+        static void CreatePlayer(JobType choice,out Player player)//choice로 선택된 값을 알아야 정함으로 JobType을 넣는다.
+        {
+
+            switch(choice)
+            {
+                case JobType.Knight:
+                    player.hp = 100;
+                    player.attack = 7;
+                    break;
+                case JobType.Archer:
+                    player.hp = 75;
+                    player.attack = 16;
+                    break;
+                case JobType.Mage:
+                    player.hp = 50;
+                    player.attack = 20;
+                    break;
+                default:
+                    player.hp = 0;
+                    player.attack = 0;
+                    break;
+            }
+        }
+        
+        static void CreateRandomMonster(out Monster monster)
+        {
+            Random rand = new Random();
+            int randMonster=rand.Next(1, 4);
+
+            switch(randMonster)
+            {
+                case (int)MonsterType.Slime:
+                    Console.WriteLine("슬라임 출현");
+                    monster.hp = 20;
+                    monster.attack = 5;
+                    break;
+                case (int)MonsterType.Orc:
+                    Console.WriteLine("오크 출현");
+                    monster.hp = 100;
+                    monster.attack = 10;
+                    break;
+                case (int)MonsterType.Skeleton:
+                    Console.WriteLine("스켈레톤 출현");
+                    monster.hp = 30;
+                    monster.attack = 4;
+                    break;
+                default:
+                    monster.hp = 0;
+                    monster.attack = 0;
+                    break;
+            }
+        }
+        
+        
+        static void EnterField()
+        {
+            Console.WriteLine("필드에 접속했습니다.");
+
+            //몬스터 생성
+            Monster monster;
+            CreateRandomMonster(out monster);
+
+            Console.WriteLine("전투 돌입");
+            Console.WriteLine("도망");
+
+        }
+
+
+
+        static void EnterGame()
+        {
+          while(true)
+            {
+                Console.WriteLine("마을에 접속했습니다");
+                Console.WriteLine("[1] 필드로 간다");
+                Console.WriteLine("[2] 로비로 돌아간다");
+
+                string input = Console.ReadLine();
+                switch (input)
+                {
+                    case "1"://전투로 넘어가야됨
+                        EnterField();
+                        break;
+                    case "2"://로비
+                        return;//함수를 탈출한다.
+                   
+
+                }
+            }
+
+        }
+
+        static void Main(string[] args)
+        {
+            JobType choice = JobType.None;
+
+            while(true)
+            {
+                choice=chooseJob();
+                if (choice != JobType.None)
+                {
+                    //캐릭터 생성
+                    Player player;
+                    
+                    CreatePlayer(choice,out player);
+
+                    Console.WriteLine($"HP: {player.hp} ATTACK: {player.attack}");
+
+                    //필드 및 몬스터 전투
+                    EnterGame();//마을 입장
+                    EnterField();//필드 입장
+                }
+                
+            }
+            
+        }
+    }
