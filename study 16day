@@ -1,0 +1,88 @@
+#10장 
+
+#예제1
+
+from tkinter import *
+import tkinter.font as font
+
+window=Tk()
+
+myfont=font.Font(family="맑은 고딕",size=25)
+
+def Ctems():
+    temp=float(e1.get())
+    mytemp1=(temp-32)*5/9
+    e2.insert(0,str(mytemp1))
+
+def Ftems():
+    temp=float(e2.get())
+    mytemp1=(temp*9/5)+32
+    e1.insert(0,mytemp1)
+
+window.title("python")
+window.geometry("640x480")
+window.resizable(True,True)
+
+l1= Label(window,text="화씨",font=myfont)
+l2=Label(window,text="섭씨",font=myfont)
+l1.grid(row=0,column=0)
+l2.grid(row=1,column=0)
+
+e1=Entry(window,font=myfont)
+e2=Entry(window,font=myfont)
+
+e1.grid(row=0,column=1)
+e2.grid(row=1,column=1)
+
+b1=Button(window,text="섭씨>화씨",font=myfont,command=Ctems)
+b2=Button(window,text="화씨>섭씨",font=myfont,command=Ftems)
+
+b1.grid(row=2,column=0)
+b2.grid(row=2,column=1)
+
+
+
+#예제 2
+
+from tkinter import *
+mycolor="blue"
+
+def paint(event):
+    x1,y1=(event.x-1),(event.y+1)
+    x2,y2=(event.x-1),(event.y+1)
+    canvas.create_oval(x1,y1,x2,y2,fill=mycolor)
+
+def change_color():
+    global mycolor
+    mycolor="red"
+
+window=Tk()
+canvas=Canvas(window)
+canvas.pack()
+canvas.bind("<B1-Motion>",paint)
+button=Button(window,text="빨간색",command=change_color)
+button.pack()
+window.mainloop()
+
+
+#예제 2
+
+from tkinter import *
+def change_img():
+    path= inputBox.get()
+    img=photoImage(file=path)
+    imageLabel.image=img
+
+window=Tk()
+
+photo=PhotoImage(file="t.gif")
+imageLabel=Label(window,image=photo)
+imageLabel.pack()
+
+inputBox=Entry(window)
+imputBox.pack()
+
+button=Button(window,text='Submit',command=change_img)
+button.pack()
+
+window.mainloop()
