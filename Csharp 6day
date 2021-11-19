@@ -1,0 +1,204 @@
+ 
+ //this와 인스턴스 / 정적맴버 
+//인스턴스는 this로 표현 가능, 정적맴버는 불가능
+
+ class book
+    {
+        string title;
+        static int count;
+        public book(string title)//인스턴스 생성자
+        {
+            this.title = title;//this로 인스턴스 필드 식별 가능
+            this.Open();//this로 인스턴스 메서드 식별 가능
+            Increment();//정적매서드 사용가능
+        }
+        void Open()
+        {
+            Console.WriteLine(this.title);//인스턴스 맴버 사용가능
+            Console.WriteLine(count);//정적맴버 사용가능
+        }
+        public void Close()
+        {
+            Console.WriteLine(this.title+"책을 덮는다.");
+        }
+
+        static void Increment()//정적 매서드
+        {
+            count++;//정적 필드 사용가능
+                    //정적 매서드에는 this가 없으므로 인스턴스 맴버 사용 불가능
+        }
+    }
+
+    class Program
+    { 
+
+        static void Main(string[] args)
+        {
+            
+            
+        }
+    }
+
+
+//base 예약어
+
+    //this와는 달리 부모 클래스를 명시적으로 가리키는 데 사용
+
+    public class Computer
+    {
+        bool powerOn;
+        public void Boot() { }
+        public void Shutdown() { }
+        public void Reset() { }
+
+    }
+
+    public class Notebook:Computer
+    {
+        bool fingerScan;
+        public bool HasFingerScanDevice() { return fingerScan; }
+
+        public void CloseLid()
+        {
+            base.Shutdown();//base 예약어 명시 
+        }
+    }
+
+    class Storage:Computer
+    {
+        public Storage()
+        {
+            /*자식 클래스가 생성자를 만들게 되었을 때 부모 클래스의 기본 생성자가 없으면 
+             오류가 발생한다.*/
+        }
+    }
+    
+    class Program
+    { 
+
+        static void Main(string[] args)
+        {
+            
+            
+        }
+    }
+
+
+//메서드 오버라이드( 함수의 재정의 )
+ // 메서드의 재정의가 필요하면 virtual, override를 사용한다
+ //단순히 자식 클래스에 동일한 이름의 메서드가 필요했다면 new를 사용하라
+
+    class Mammal
+    {
+       virtual public void Move() //가상 메서드로 전환
+        {
+            Console.WriteLine("이동한다");
+        }
+    }
+
+    class Lion:Mammal
+    {
+        override public void Move()//
+        {
+            Console.WriteLine("네 발로 움직인다");
+        }
+    }
+
+    class Whale:Mammal
+    {
+        override public void Move()
+        {
+            Console.WriteLine("수영한다");
+        }
+    }
+
+    class Human:Mammal
+    {
+        override public void Move()
+        {
+            Console.WriteLine("두 발로 움직인다");
+        }
+    }
+    class Program
+    { 
+
+        static void Main(string[] args)
+        {
+           
+            Lion lion = new Lion();
+            Mammal one = lion; //부모 타입으로 형변환
+            lion.Move();
+            
+            Human human = new Human();
+            Mammal two = human;
+            two.Move();
+        }
+    }
+
+//base를 이용한 메서드 재사용
+
+ public class computer
+    {
+        virtual public void Boot()
+        {
+            Console.WriteLine("메인 보드 켜기");
+        }
+    }
+
+    public class Notebook : computer
+    {
+        public override void Boot()
+        {
+            base.Boot();//출력이 부모 클래스의 Boot와 같다면 "중복코드 제거의 원칙" 때문에 오류이나 base로 해결이 가능 
+            Console.WriteLine("액정 화면 켜기");
+        }
+    }
+     
+       
+    class Program
+    { 
+
+        static void Main(string[] args)
+        {
+           
+            
+        }
+    }
+
+
+//매서드 오버로드 : 동일한 이름의 함수를 사용할 수 있다.
+
+    class Mathematics
+    {
+        public int Abs(int value)//AbsInt -> Abs
+        {
+            return (value >= 0) ? value : -value;
+        }
+
+        public double Abs(double value)//AbsDouble -> Abs
+        {
+            return (value >= 0) ? value : -value;
+        }
+
+        public decimal Abs(decimal value)//Absdecimal -> Abs
+        {
+            return (value >= 0) ? value : -value;
+        }
+    }
+
+
+    class Program
+    { 
+
+        static void Main(string[] args)
+        {
+            Mathematics math = new Mathematics();
+            Console.WriteLine(math.Abs(-5));
+            Console.WriteLine(math.Abs(-10.052));
+            Console.WriteLine(math.Abs(20.01m));
+            
+        }
+    }
+
+
+    
