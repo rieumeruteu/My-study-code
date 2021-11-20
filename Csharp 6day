@@ -201,4 +201,144 @@
     }
 
 
+
+//UNITY//
+
+ 
+    //ref 참조로 작업을 한다.
+   class Knight
+    {
+        public int hp;
+        public int attack;
+
+        public void Move()
+        {
+            Console.WriteLine("kngiht Move");
+        }
+
+        public void Attack()
+        {
+            Console.WriteLine("Knight Attack");
+        }
+    }
+
+    //복사로 작업을 한다
+    struct Mage
+    {
+        public int hp;
+        public int attack;
+    }  
+
+    class Program
+    {
+
+        static void killMage(Mage mage)
+        {
+            mage.hp=0;
+        }
+
+        static void killKnight(Knight knight)
+        {
+            knight.hp=0;
+        }
+
+    
+          
+        static void Main(string[] args)
+        {
+            Mage
+           
+            Knight knight = new Knight();
+            knight.hp = 10;
+            knight.attack = 30;
+
+            knight.Move();
+            knight.Attack();
+            
+        }
+    }
+    //
+
+ //ref 참조로 작업을 한다.
+    class Knight
+    {
+        public int hp;
+        public int attack;
+
+        public Knight Clone()//DeepCopy 방식 클래스로 메서드 호출하면 knight의 속성들을 복사할 수 있다.(class Knight로 정의한 변수와는 전혀 다른 존재이다.)
+        {
+            Knight knight2=new Knight();
+            knight.hp=hp;
+            knight.attack=attack;
+            return knight;
+        }
+
+        public void Move()
+        {
+            Console.WriteLine("kngiht Move");
+        }
+
+        public void Attack()
+        {
+            Console.WriteLine("Knight Attack");
+        }
+    }
+
+    //copy 복사로 작업을 한다
+    struct Mage
+    {
+        public int hp;
+        public int attack;
+    }
+
+    class Program
+    {
+
+        static void killMage(Mage mage)
+        {
+            mage.hp = 0;
+        }
+
+        static void killKnight(Knight knight)
+        {
+            knight.hp = 0;
+        }
+
+        
+
+
+        static void Main(string[] args)
+        {
+            //struct
+            Mage mage;
+            mage.hp = 100;
+            mage.attack = 50;
+            KillMage(mage);//복사본을 연산으로 사용한다.(mage의 값은 현재 hp=100,attack=50)
+
+            Mage mage2 = mage;//mage2 hp=0,attack=50 별도의 mage가 되어 있다.
+            mage2.hp = 0;
+
+            //class
+            Knight knight = new Knight();
+            knight.hp = 100;
+            knight.attack = 10;
+            knight.Move();
+            knight.Attack();
+            killKnight(knight);//ref처럼 참조하여 연산된다(knight의 값은 현재 hp=0,attack=10)
+
+            Knight kngiht2 = knight;//kngiht2 hp=0, attakc=10 knight와 같은 존재이다.
+            kngiht2.hp = 0;
+
+            
+            Knight knight3= new Kngiht();//new로 만들면 knight와 완전히 독립된 존재가 된다.
+            knight3.hp=knight.hp;
+            knight3.attack=knight.attack;//그러나 이런 방식이 비효율적이면 DeepCopy 방식으로 하면 된다.
+
+            //DeepCopy
+            Knight knight3=knight.clone();//완전히 분리된 개채가 된다
+            knight3.hp=0;
+
+        }
+    }
+
     
