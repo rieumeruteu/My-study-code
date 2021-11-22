@@ -1,4 +1,252 @@
 
+    //연산자 오버로드 
+    //예시 1 연산자 오버로드를 사용하지 않았을 때
+
+   public class kilogram
+    {
+        double mass;
+
+        public kilogram(double mass)
+        {
+            this.mass = mass;
+        }
+
+        public kilogram Add(kilogram target)
+        {
+            return new kilogram(this.mass + target.mass);
+        }
+
+        public override string ToString()
+        {
+            return mass + "kg";
+        }
+    }
+
+    class Program
+    { 
+
+        static void Main(string[] args)
+        {
+            kilogram kg1 = new kilogram(5);
+            kilogram kg2 = new kilogram(10);
+
+            kilogram kg3 = kg1.Add(kg2);
+            
+        }
+    }
+
+//연산자 오버로드 사용했을 때
+
+   public class kilogram
+    {
+        double mass;
+
+        public kilogram(double mass)
+        {
+            this.mass = mass;
+        }
+
+       public static kilogram operator +(kilogram op1, kilogram op2) //public static 타입 operator 연산자(매개변수들)
+        {
+            return new kilogram(op1.mass + op2.mass);
+        }
+
+        public override string ToString()
+        {
+            return mass + "kg";
+        }
+    }
+
+    class Program
+    { 
+
+        static void Main(string[] args)
+        {
+            kilogram kg1 = new kilogram(5);
+            kilogram kg2 = new kilogram(10);
+
+            kilogram kg3 = kg1 + kg2;
+            Console.WriteLine(kg3);
+            
+        }
+    }
+
+//클래스 간의 형변환
+    public class Currency
+    {
+        decimal money;
+        public decimal Money 
+        {
+            get
+            {
+                return money;
+            }
+        }
+
+        public Currency(decimal money)
+        {
+            this.money = money;
+        }
+
+    }
+
+    public class Won: Currency
+    {
+        public Won(decimal money) : base(money) { }//base: Currency의 메서드들을 가져온다
+
+        public override string ToString()
+        {
+            return Money + "Won";
+        }
+
+    }
+
+    public class Dollar: Currency
+    {
+        public Dollar(decimal money) : base(money) { }
+
+        public override string ToString()
+        {
+            return Money + "Dollar";
+        }
+    }
+
+
+
+    class Program
+    { 
+
+        static void Main(string[] args)//won 과 dollar의 형이 완전히 다르게 된다.
+        {
+            Won won = new Won(1000);//won과 dollar를 섞어쓰는 위험성을 줄여준다.
+            Dollar dollar = new Dollar(1);
+            
+        }
+    }
+
+
+//implicit 메서드
+ public class Currency
+    {
+        decimal money;
+        public decimal Money 
+        {
+            get
+            {
+                return money;
+            }
+        }
+
+        public Currency(decimal money)
+        {
+            this.money = money;
+        }
+
+    }
+
+    public class Won: Currency
+    {
+        public Won(decimal money) : base(money) { }
+
+        public override string ToString()
+        {
+            return Money + "Won";
+        }
+
+    }
+
+    public class Dollar: Currency
+    {
+        public Dollar(decimal money) : base(money) { }
+
+        public override string ToString()
+        {
+            return Money + "Dollar";
+        }
+
+        static public implicit operator Won(Dollar dollar)// implicit 메서드로 dollar에서 won으로 대입할 수 있다.
+        {
+            return new Won(dollar.Money * 1000m);
+        }
+    }
+
+
+
+    class Program
+    { 
+
+        static void Main(string[] args)
+        {
+            Dollar dollar = new Dollar(1000);
+            Won won1 = dollar;// 암시적(implicit) 형변환 가능
+            Won won2 = (Won)dollar;//명시적(explicit)형변환 가능
+
+            Console.WriteLine(won1);
+        }
+    }
+
+
+//explicit 메서드 
+      public class Currency
+    {
+        decimal money;
+        public decimal Money 
+        {
+            get
+            {
+                return money;
+            }
+        }
+
+        public Currency(decimal money)
+        {
+            this.money = money;
+        }
+
+    }
+
+    public class Won: Currency
+    {
+        public Won(decimal money) : base(money) { }
+
+        public override string ToString()
+        {
+            return Money + "Won";
+        }
+
+    }
+
+    public class Dollar: Currency
+    {
+        public Dollar(decimal money) : base(money) { }
+
+        public override string ToString()
+        {
+            return Money + "Dollar";
+        }
+
+        static public explicit operator Won(Dollar dollar)// implicit 메서드로 dollar에서 won으로 대입할 수 있다.
+        {
+            return new Won(dollar.Money * 1000m);
+        }
+    }
+
+
+
+    class Program
+    { 
+
+        static void Main(string[] args)
+        {
+            Dollar dollar = new Dollar(1000);
+            Won won2 = (Won)dollar;//명시적(explicit)형변환만 가능
+
+            Console.WriteLine(won2);
+        }
+    }
+
+
+
 
 //UNITY//
 //객체
