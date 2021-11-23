@@ -272,4 +272,49 @@ int main(void)
 
 //연습문제 16
 
+int main(void) 
+{
+
+	unsigned int result=0;
+	unsigned char colorRed = 0, colorGreen = 0, colorBlue = 0;
+
+	printf("red:");
+	scanf("%hhd", &colorRed);
+	
+	printf("green:");
+	scanf("%hhd", &colorGreen);
+
+	printf("blue:");
+	scanf("%hhd", &colorBlue);
+	
+	result = (result << 8) + colorBlue;
+	result = (result << 8) + colorGreen;
+	result = (result << 8) + colorRed;
+
+
+	printf("색깔:%06X", result);
+	
+
+	return 0;
+}
+
 //연습문제 17
+
+int main(void) 
+{
+	unsigned int a = 1,result=0;
+
+	result = a << 7;
+	printf("7번 비트만 1인 값:%08x %d\n",result, result);
+
+	result = a << 15;
+	printf("15번 비트만 1인 값:%08x %d\n", result, result);
+
+	result = a << 23;
+	printf("23번 비트만 1인 값:%08x %d\n", result, result);
+
+	result = a << 31;
+	printf("31번 비트만 1인 값:%08x %d\n", result, result);
+
+	return 0;
+}
