@@ -1,0 +1,158 @@
+
+  //백준 1000번 문제
+  
+  class Program
+    {
+        static void Main(string[] args)
+        {
+            string[] s = Console.ReadLine().Split();//Split(): 문자열을 분활하여 분리시킨다.
+            Console.WriteLine(int.Parse(s[0])+int.Parse(s[1]));// Parse: string -> int로 형변환
+        }
+    }
+
+
+
+
+
+//UNITY//
+
+//Class 상속
+ class Player
+    {
+        static public int counter = 1;
+        public int id;
+        public int hp;
+        public int attack;
+
+        public Player()
+        {
+            Console.WriteLine("부모 호출");
+        }
+
+        public Player(int hp)
+        {
+            this.hp = hp;
+            Console.WriteLine("hp 호출");
+        }
+    }
+
+   
+    class Knight:Player
+    {
+        int c; 
+
+        Knight() : base(100)// 부모 클래스 안의 hp관련 매서드 호출하고 싶을 때 적합한 인자를 base에 입력하면 출력됨
+        {
+            this.c = 10;//Knight 클래스의 인자를 가져올 수 있다.
+            base.hp = 100;//base는 부모의 인자들을 사용할 수 있다
+            Console.WriteLine("knight");
+        }
+
+        
+        static public Knight CreatKnight()
+        {
+            Knight knight = new Knight();
+            knight.hp = 100;
+            knight.attack = 20;
+            return knight;
+        }
+
+        public Knight Clone()
+        {
+            Knight knight = new Knight();
+            knight.hp = hp;
+            knight.attack = attack;
+            return knight;
+
+        }
+    }
+
+   
+
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            Knight knight = Knight.CreatKnight();
+            
+        }
+    }
+}
+// 
+
+ class Player
+    {
+        static public int counter = 1;
+        public int id;
+        public int hp;
+        public int attack;
+
+        public void Move()//개본적인 매서드를 부모에 넣으면 상속받은 자식클래스들은 부모의 매서드를 사용할 수 있다.
+        {
+            Console.WriteLine("Player Move");
+        }
+
+        public void Attack()
+        {
+            Console.WriteLine("Player Attack");
+        }
+    }
+
+
+    class Knight:Player
+    { 
+             
+    }
+
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            Knight knight = new Knight();
+            knight.Move();//public으로 개방된 매서드에 한에서 자식클래스는 부모의 클래스를 받을 수 있다.
+            knight.Attack();
+        }
+    }
+
+
+
+ //Class 은닉성
+  // public, protected, private
+
+    //public : 모두에게 공유하겠다
+    //private: 나(선언한 class)만 사용하겠다.
+    //protected
+
+    class Knight
+    {
+        private int hp;// 그냥 hp로 코드를 짜면 나중에 프로젝트가 커질 때 누가 hp를 고쳤는지 찾기가 어려워진다
+        public void SetHp(int hp)//SetHp로 들어가게 만들면 hp의 경로를 보다 쉽게 찾을 수 있다.
+        {
+            this.hp = hp;
+        }
+
+        int max = 2;//앞에 아무것도 없으면 private로 인식한다.
+
+        protected int mp;//상속 받은게 있다면 접근 가능하다.
+    }
+
+    class Test:Knight
+    {
+        void test1()
+        {
+            mp = 20;// 상속 받은 클래스 내에서는 사용이 가능하다 그외에는 불가능
+          //SetHp = 20;// private로 된 인자들은 자식 클래스라도 사용 불가능 
+        }
+    }
+
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            Knight a = new Knight();
+            a.SetHp(100);
+        }
+    }
