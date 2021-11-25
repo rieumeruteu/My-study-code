@@ -1,0 +1,339 @@
+//Cor C 5장 연습문제
+// 연습문제 1
+
+int left = 0, top = 0, right = 0, bottom = 0;
+	int playerX = 0, playerY = 0;
+
+	printf("선택 영역의 좌상단점:");
+	scanf("%d %d", &left, &top);
+
+	printf("선택 영역의 우하단점:");
+	scanf("%d %d", &right, &bottom);
+
+	printf("점의 좌표:");
+	scanf("%d %d", &playerX, &playerY);
+
+	if ((playerX < right && playerX > left) && (playerY> top && playerY<bottom ) )
+	{
+		printf("직사각형 모양의 선택 영역 내의 점입니다.");
+	}
+	else
+	{
+		printf("직사각형 모양의 선택 영역 밖의 점입니다.");
+	}
+
+	return 0;
+
+//연습문제 2
+
+int x = 0, y = 0;
+	printf("점의 좌표:");
+	scanf("%d %d", &x, &y);
+	
+	if (x < 0 && y>0)
+		printf("2사분면\n");
+
+	else if (x > 0 && y>0)
+			printf("1사분면\n");
+	else if (x < 0 && y < 0)
+			printf("3사분면\n");
+	else if (x > 0 && y < 0)
+			printf("4사분면\n");
+
+	return 0;
+
+//연습문제 3
+
+int reMoney = 0;
+
+	printf("거스름돈:");
+	scanf("%d", &reMoney);
+
+	reMoney = reMoney-(reMoney%10);
+
+	printf("거스름 돈 10원 미만 삭제:%d\n", reMoney);
+
+	printf("50000원:");
+	printf("%d원\n",reMoney/50000 );
+	reMoney = reMoney % 50000;
+
+	printf("10000원:");
+	printf("%d원\n", reMoney / 10000);
+	reMoney = reMoney % 10000;
+
+
+	printf("5000원:");
+	printf("%d원\n", reMoney / 5000);
+	reMoney = reMoney % 5000;
+
+
+	printf("1000원:");
+	printf("%d원\n", reMoney / 1000);
+	reMoney = reMoney % 1000;
+
+
+	printf("100원:");
+	printf("%d원\n", reMoney / 100);
+	reMoney = reMoney % 100;
+
+
+	printf("10원:");
+	printf("%d원\n", reMoney / 10);
+	reMoney = reMoney % 10;
+
+	return 0;
+
+//연습문제 4
+
+int year = 0;
+	printf("연도:");
+	scanf("%d", &year);
+
+	if ((year % 4 == 0) && (year / 100 != 0 || year / 400 == 0))
+	{
+		printf("윤년이다");
+	}
+	else
+	{
+		printf("윤년이 아니다");
+	}
+	return 0;
+
+//연습문제 5
+
+double subCee = 0, huaCee = 0,player=0;
+	char ch;
+
+	printf("온도(단위 붙일 것)");
+	scanf("%lf %c",&player,&ch);
+
+	if (ch == 'F' || ch == 'f')//화씨니깐 섭씨로
+	{
+		subCee = (player - 32) * 5 / 9;
+		printf("%.2f %c ==> %.2f F", player, ch, subCee);
+	}
+
+	if (ch == 'C' || ch == 'c')//섭씨니깐 화씨로
+	{
+		huaCee = (player *9/5)+32;
+		printf("%.2f %c ==> %.2f F", player, ch, huaCee);
+	}
+
+	return 0;
+
+//연습문제 6
+
+double x = 0;
+	char y;
+	printf("넓이(단위 적을 것):");
+	scanf("%lf %c", & x, & y);
+
+	if (y == 'p' || y == 'P')
+	{
+		printf("%.2f m^2", x * 3.305785);
+	}
+	else if (y == 'm' || y == 'M')
+	{
+		printf("%.2f평", x *0.3025);
+	}
+
+	return 0;
+
+//연습문제 7
+
+float Won(float pay)
+{
+	if (200 >= pay)
+	{
+		pay = 200 * 93.3;
+	}
+	else if (400 > pay && pay > 200)
+	{
+		pay = (200 * 93.3) + (pay - 200.0) * 187.9;
+	}
+	else if (pay > 400)
+	{
+		pay = (200 * 93.3) + (200 * 187.9) + (pay - 400.0) * 280.6;
+	}
+	return pay;
+}
+
+
+int main(void) 
+{
+	float wh=0;// 월 사용량
+	float won=0;//전력요금
+	int pay=0;// 기본요금
+	float result = 0;//전기요금 합계
+
+	printf("월 사용량(kwh)");
+	scanf("%f",&wh);
+
+	if (wh <= 200)
+	{
+		won = Won(wh);
+		pay = 910;
+	}
+	else if (400> wh && wh > 200)
+	{
+		won = Won(wh);
+		pay = 1600;
+	}
+	else if (wh > 400)
+	{
+		won =Won(wh);
+		pay = 7300;
+	}
+
+	result = won +(float)pay;
+
+	printf("전기요금 합계: %.f\n", result);
+	printf("기본요금: %d\n", pay);
+	printf("전력량 요금: %.f\n",won);
+
+
+	return 0;
+}
+
+//연습문제 8
+
+int num1 = 0, num2 = 0,result=0;
+	char ch;
+
+	printf("연산식:?");
+	scanf("%i %c %i", &num1, &ch, &num2);
+	
+	switch (ch)
+	{
+	case '&':
+		result = num1 & num2;
+		break;
+	case '|':
+		result = num1 | num2;
+		break;
+	case '^':
+		result = num1 ^ num2;
+		break;
+	}
+
+	printf("%x %c %x=%x", num1, ch, num2, result);
+
+	return 0;
+
+//연습문제 13
+
+int i = 32,x=0;
+	
+
+	for (; i <= 126; i++)
+	{
+		++x;
+		printf("%c ", i);
+		if (x == 24)
+		{
+			printf("\n");
+			x = 0;
+		}
+	
+	}
+
+	return 0;
+
+//연습문제 14
+
+double min = 0, km = 0;
+	double result = 0;
+
+	printf("구간 거리:");
+	scanf("%lf", &km);
+
+
+	printf("구간 시간:");
+	scanf("%lf", &min);
+
+	min = min / 60;
+
+	result = km / min;
+
+	if (result > 100)
+	{
+		printf("%.2f km/h로 과속입니다", result);
+	}
+	else
+	{
+		printf("일 없다.");
+	}
+			return 0;
+
+//연습문제 15
+
+double insurance(double);
+double incomeDeduction(double);
+
+int main(void) 
+{
+	int time = 0, day = 0, pay = 0, choice = 0; 
+	double result = 0,x,y;
+	printf("시간당 급여:");
+	scanf("%d", &pay);
+
+	printf("일일 근무 시간:");
+	scanf("%d", &time);
+
+	printf("한달 근무 일수:");
+	scanf("%d", &day);
+
+	printf("세금 적용 여부 [0] 미적용 [1] 4대보험(8.14%) [2]소득공제(3.3%)");
+	scanf("%d", &choice);
+
+	x=insurance((double)pay);
+	y = incomeDeduction((double)pay);
+
+	if (choice == 0)
+	{
+		result = pay * time * day;
+	}
+	else if (choice == 1)
+	{
+		result = (pay-x) * time * day;
+	}
+	else if (choice == 2)
+	{
+		result = (pay-y) * time * day;
+	}
+
+	printf("예상 월급:%.f원",result);
+	
+	return 0;
+}
+
+double insurance(double pay)
+{
+	pay = (pay / 100) * 8.14;
+	return pay;
+}
+
+double incomeDeduction(double pay)
+{
+	pay = (pay / 100) * 3.3;
+	return pay;
+}
+
+//연습문제 16
+
+int x = 0, y = 0;
+	printf("양의 정수:");
+	scanf("%d", &x);
+
+	printf("배수의 개수:");
+	scanf("%d", &y);
+
+	for (int i = 1; i <=y; i++)
+	{
+		
+		printf("%d, ",x*i);
+	}
+
+	return 0;
+
+//
