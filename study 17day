@@ -1,0 +1,52 @@
+#jpg 이미지 출력 방법 (PIL 라이브러리 설치 필요)
+from tkinter import *
+from PIL import ImageTk,Image
+
+width=1024
+height=768
+
+def change_img():
+   path=inputBox.get()
+   photo=Image.open(path)
+   myphoto=photo.resize((width,height))
+   img=ImageTk.PhotoImage(myphoto)
+   imageLabel.configure(image=img)
+   imageLabel.image=img
+
+window =Tk()
+
+#photo=PhotoImage(file="wl.gif")
+photo=Image.open("1.jpg")
+myphoto=photo.resize((width,height))
+img=ImageTk.PhotoImage(myphoto)
+
+imageLabel=Label(window,image=img)
+imageLabel.pack()
+
+inputBox=Entry(window)
+inputBox.pack()
+
+button=Button(window,text="submit",command=change_img)
+button.pack()
+
+window.mainloop()
+
+
+#파일 위치 나옴
+import os
+filepath=os.getcwd()
+print(filepath)
+
+for f in os.listdir(filepath):
+    print(f)
+    
+files=[f for f in os.listdir(filepath)]
+print(files)
+
+files=[f for f in files if f.find("jpg")!=-1]
+print(files)
+
+
+
+
+
