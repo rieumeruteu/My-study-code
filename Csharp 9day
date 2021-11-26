@@ -1,0 +1,61 @@
+
+
+ //UNITY//
+ 
+ class Player
+    {
+        protected int attack;
+        protected int hp;
+    }
+   class Knight:Player
+    {
+
+    }
+
+    class Mage:Player
+    {
+        public int mp;
+    }
+
+    
+
+    class Program
+    {
+
+        
+
+        static void EnterGame(Player player)
+        {
+            bool isMage = (player is Mage);//형 변환 후 확인 절차 
+            if(isMage)
+            {
+                Mage mage = (Mage)player;
+                mage.mp = 10;
+            }
+        }
+
+        static void EnterGame1(Player player)
+        {
+            Mage mage = (player as Mage);//형변환 확인 후 캐스팅까지 한다
+            if(mage !=null)
+            {
+                mage.mp = 10;
+            }
+
+            
+        }
+
+        static void Main(string[] args)
+        {
+            Knight knight = new Knight();
+            Mage mage = new Mage();
+
+            //Mage타입 --> Player타입
+            //Player타입 -->Mage타입 ? 꼭 바뀔 수 없다. 명시적 형변환 하면 가능 할것이다
+            Player magePlayer = mage;
+            Mage mage2 = (Mage)magePlayer;
+
+            EnterGame(knight);
+            EnterGame(mage);
+        }
+    }
