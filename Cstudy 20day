@@ -1,0 +1,69 @@
+//12월 16일 목 15:00시 시험 중간 이후부터 
+//시험 문제 이론적인 부분 나옴
+
+//융합: 부품 목록 , 스케치 카톡에 넘길것
+
+
+/*팅커로 회로도 사진 찍기 
+I2C 주소 코드 볼필요 없음*/
+
+
+
+/*  ***레포트***
+
+만들거: 초음파 or 적외선으로 버스가 세워지는지 확인 
+정류장 안에서는 원하는 버스 번호를 누르면 정류장 밖에서
+버스를 탄다는 신호를 버스 기사에게 알린다. 그리고 버스가 세워지면 외부 신호는 꺼진다.
+
+
+
+상세 lcd에 버스 번호가 출력되는데 버스 선택 버튼을 누르면 버스번호가 바뀐다. 버스 탑승 버튼을 누르면 해당 버스 번호가 도착하면 부저가 울린다.
+
+*/
+
+
+
+#include <LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27,16,2);
+
+int busNumber[5]={1,2,3,4,5};//버스번호
+int busSelect=3;
+int busChoice=4;
+int buttonSelect;
+int buttonChoice;
+
+void setup(){
+  Serial.begin(9600);
+  lcd.init();
+  lcd.backlight();
+  pinMode( busSelect,INPUT);
+  pinMode( busChoice,INPUT); 
+}
+
+
+void loop(){
+ 
+  
+  int busCount=0;
+  while(1)
+  {
+
+    buttonSelect=digitalRead(busSelect);
+    buttonChoice=digitalRead(busChoice);
+   if(buttonSelect==1)//선택 버튼을 누르면 버스 번호가 차례대로 나온다.
+    {
+     Serial.println(buttonSelect);
+     busCount++;
+      if (busCount==5)//배열 초과하면 초기화
+       {
+        busCount=0;
+       }
+    }
+    
+     lcd.print("bus:");
+     lcd.setCursor(5,0);
+     lcd.print(busNumber[busCount]);    
+     lcd.setCursor(0,0);   
+ }
+ 
+} 
