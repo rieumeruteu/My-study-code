@@ -30,7 +30,7 @@ void loop(){
   
   double duration = pulseIn(echo, HIGH);
 
-  double distance = (duration*340)/2/10000;
+  double distance = (duration*340)/2/10000; // 10000마이크로가 1cm이다
 
   Serial.print(distance);
   Serial.println("cm");
