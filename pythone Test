@@ -1,0 +1,115 @@
+#1번문제
+
+import turtle
+
+t=turtle.Turtle()
+
+
+def draw(x,y):
+    t.up()
+    t.goto(x,y)
+    t.down()
+    t.begin_fill()
+    t.color("red")
+    t.circle(10)
+    t.end_fill()
+
+s=turtle.Screen()
+s.onscreenclick(draw)
+
+
+#2번문제
+
+from tkinter import *
+  
+
+def result():
+    weight=float(e2.get())
+    height=float(e1.get())
+    result=(weight/(height)**2)
+
+    if(result<18.5):
+        text="저체중"
+    elif(result>18.5 and result<25.9):
+        text="건강"
+    elif(result>25 and result<29.9):
+        text="1단계 비만"
+    elif(result>23 and result<24.9):
+        text="비만 전단계"
+    elif(result>30 and result<34.9):
+        text="2단계 비만"
+    elif(result>=35):
+        text="3단계 비만"
+    e3.insert(0,str(int(result)))
+    e4.insert(0,str(text))
+
+window=Tk()
+
+l1=Label(window,text="키(m)",font=10)
+l2=Label(window,text="몸무게(kg)",font=10)
+l3=Label(window,text="BMI",font=10)
+l1.grid(row=0,column=0)
+l2.grid(row=1,column=0)
+l3.grid(row=2,column=0)
+
+
+e1=Entry(window,font=10)
+e2=Entry(window,font=10)
+e3=Entry(window,font=10)
+e4=Entry(window,font=10)
+e1.grid(row=0,column=1)
+e2.grid(row=1,column=1)
+e3.grid(row=2,column=1)
+e4.grid(row=2,column=2)
+
+b1=Button(window,text="BMI 확인",command=result,font=10)
+b1.grid(row=4,column=0)
+
+
+window.mainloop()
+
+
+
+#3번문제
+
+from tkinter import *
+
+window =Tk()
+window.title("calculator")
+display=Entry(window,width=33,bg="yellow")
+display.grid(row=0,column=0,columnspan=5)
+
+button_list=[
+    '7','8','9','/','C',
+    '4','5','6','*',' ',
+    '1','2','3','-',' ',
+    '0','.','=','+',' ']
+
+def button_processed(btn):
+    if btn=='C':
+        display.delete(0,END)
+    elif btn=='=':
+        ans=eval(display.get())
+        display.delete(0,END)
+        display.insert(0,ans)
+    else:
+        display.insert(END,btn)
+
+row_index=1
+col_index=0
+i=0
+for button_text in button_list:
+    mybutton= Button(window,text=button_text,width=5,command=lambda x=button_text: button_processed(x))
+    mybutton.grid(row= row_index,column=col_index)
+
+    i+=1
+    col_index +=1
+    if col_index >4:
+        row_index +=1
+        col_index=0
+
+window.mainloop()
+
+
+
+
