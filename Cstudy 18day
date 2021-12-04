@@ -110,8 +110,8 @@ Serial.println(jodoValue);
 
 
 void ShowDigit(int number){
-  boolean isBitSet;
-  for(int segment=0;segment<=9;segment++)//점까지 포함한 핀 개수로 하자
+  boolean isBitSet;//digitalWrite의 1,0을 표현
+  for(int segment=0;segment<8;segment++)//세그먼트의 핀개수 만큼 반복
   {
     if(number<0||number>9)
     {
@@ -119,9 +119,9 @@ void ShowDigit(int number){
     }
     else
     {
-      isBitSet=bitRead(numeral[number],segment);//
+      isBitSet=bitRead(numeral[number],segment);// 배열요소의 비트값을 읽는다  ex) numeral[0]={B0011}; 이고 segment가 0이면 1을 읽고 3이면 0을 읽는다. 
     }
-   digitalWrite(secPin[segment],isBitSet);
+   digitalWrite(secPin[segment],isBitSet);//bitRead로 읽은 값들은 핀번호를 정의한 변수를 통해 불을 밝힌다. ex) digitalWrite(secPin[1],1);
   }
 }
 
