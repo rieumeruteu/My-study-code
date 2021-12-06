@@ -1,0 +1,105 @@
+//아두이노 수행평가 프로젝트 탑승 인지 정거장
+
+#include<LiquidCrystal_I2C.h>
+LiquidCrystal_I2C lcd(0x27,16,2);
+const int Arrive_led=13;
+const int Select_button=3;
+const int Choice_button=4;
+const int Detect_sensor=2;
+const int led=13;
+
+const int Buspin[8]={123,1401,351,227,1413,1423,1203,431};
+
+int bus;
+
+
+void setup() {
+  Serial.begin(9600);
+  lcd.init();
+  lcd.backlight();
+
+  pinMode(led,OUTPUT);
+  pinMode(Select_button,INPUT);
+  pinMode(Choice_button,INPUT);
+  pinMode(Arrive_led,OUTPUT);
+  pinMode(Detect_sensor,INPUT);
+  
+  
+}
+
+void loop() {
+boolean chane=0;//신호   
+
+while(1)
+{
+  int button2=digitalRead(Choice_button);
+  int detect=digitalRead(Detect_sensor);//감지 센서
+  int Select_Count,Choice_Count;  
+  
+  Select_Count=BusSelect();
+
+
+  if(button2==1)//지정할 버스 선택 버튼
+  {
+    Choice_Count=Select_Count;  //버스 선택 완료
+    chane=1;
+  } 
+
+
+  lcdprint(Select_Count,Choice_Count);
+
+
+  if(chane==1 && detect==1)
+  {
+  digitalWrite(led,HIGH);//버스가 도착할 때까지 켜짐  
+  }
+  
+  else if(chane==1 && detect==0)
+  {
+    digitalWrite(led,LOW);
+    lcd.clear();
+    lcd.setCursor(0,0);
+    lcd.print("bus Comming");
+    delay(1000);
+    break; 
+  }
+}
+
+
+}
+
+
+int BusSelect()//버스 선택 기능
+{
+ static int SelectCount=0;
+  int Select_Value=digitalRead(Select_button);
+  if(Select_Value==1)
+   {
+    if(SelectCount>7)
+    {
+       SelectCount=0; 
+       return SelectCount;    
+    }   
+     SelectCount++;
+   }
+   return SelectCount;         
+}
+
+
+void lcdprint(int select,int choice)//lcd 통합 출력
+{
+    lcd.clear();
+    lcd.setCursor(0,0);
+    lcd.print("bus:");
+    
+    lcd.setCursor(7,0);
+    lcd.print(Buspin[select]);
+    
+   
+    lcd.setCursor(0,1);
+    lcd.print("Wait:");
+   
+    lcd.setCursor(7,1);
+    lcd.print(Buspin[choice]);
+    delay(300);
+}
