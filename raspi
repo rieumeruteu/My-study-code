@@ -1,0 +1,304 @@
+//라즈베리파이 wiringPi로 gpio 제어 과정
+
+#include <stdio.h>
+#include <wiringPi.h>
+
+#define LED 4
+
+int main(void)
+{
+    if(wiringPiSetup()==-1)
+        return 1;
+    pinMode(LED,OUTPUT);
+
+    while(1)
+    {
+        digitalWrite(LED,1);
+        delay(1000);
+        deigitalWrite(LED,0);
+        delay(1000);
+    }
+    return 0;
+}
+//pwm: 파형으로 센서의 동작을 통제, 아날로그 신호이다
+
+
+//hw방식 핀번호가 1번 밖에 없다
+#include <wiringPi.h>
+
+#define LED 1;
+
+int main(void)
+{
+    pinMode(LED,PWM_OUTPUT);
+
+    while(1)
+    {
+        for(int value=0;value<1024;value++)
+            {
+                pwmWrite(LED,value);
+                delay(1);
+            }
+        for(int value=1024;value>0;value--)
+        {
+            pwmWrite(LED,value);
+            delay(1);
+        }
+    }
+    return 0;
+}
+
+//sw방식 인위적으로 pwm핀을 정한다
+
+#include<wiringPi.h>
+#include<softPwm.h>
+
+#define LED 5
+
+int main(void)
+{
+    pinMode(LED,OUTPUT);
+    softPwmCreate(LED,0,100);
+    while(1)
+    {
+        for(int i=0;i<1024;i++)
+        {
+            softPwmWrite(LED,i);
+            delay(100);
+        }
+        for(int i=1024;i>0;i++)
+        {
+            softPwmWrite(LED,i);
+            delay(100);
+        }
+        
+    }
+    return 0;
+}
+
+//rgb로 동작해 보자
+
+#include<wiringPi.h>
+#include<softPwm.h>
+
+#define r 12
+#define g 13
+#define b 14
+
+int main(void)
+{
+    pinMode(r,OUTPUT);
+    pinMode(g,OUTPUT);
+    pinMode(b,OUTPUT);
+
+    softPwmCreate(r,0,255);
+    softPwmCreate(g,0,255);
+    softPwmCreate(b,0,255);
+
+    for(int R=0;R<255;R++)
+        for(int G=0;G<255;G++)
+            for(int B=0;B<255;B++)
+                {
+                    softPwmWrite(r,255-R);
+                    softPwmWrite(g,255-G);
+                    softPwmWrite(b,255-B);
+                    delay(100);
+                }
+
+    return 0;
+}
+
+//인터럽트 내용
+
+#include <wiringPi.h>
+#include <stdio.h>
+
+#define btn 0
+#define G 23
+#define R 24
+
+static volatile int Count=0;
+
+void pi(void)
+{
+    printf("interrupt %d",Count);
+    digitalWrite(R,LOW);
+    digitalWrite(G,LOW);
+}
+
+void LED(char* color)
+{
+    if(color =="red")
+    {
+        digitalWrite(R,HIGH);
+        digitalWrite(G,LOW);
+    }
+    else if(color=="green")
+    {
+        digitalWrite(R,LOW);
+        digitalWrite(G,HIGH);
+    }
+    else
+    printf("LED error\n");
+}
+
+
+int main(void)
+{
+    if(wiringPiSetup()==-1)
+        return -1;
+
+    pinMode(btn,INPUT);
+    pinMode(R,OUTPUT);
+    pinMode(G,OUTPUT);
+
+    if(wiringPiISR(btn,INT_EDGE_FALLING,pi)<0)
+    {
+        printf("error wiringPiISP\n");
+        return -1;
+    }
+    while(1)
+    {
+        LED("red");
+        delay(100);
+        LED("green");
+        delay(100);
+        
+    }
+}
+
+
+
+//로터리 함수 적용한 사례
+
+#include <stdio.h>
+#include <wiringPi.h>
+
+#define Apin 0
+#define Bpin 1
+#define btn 3
+#define LEDR 24
+#define LEDG 25
+
+static volatile int Count=0;
+
+unsigned char flag;
+unsigned char Previous_state;
+unsigned char Current_state;
+
+void method(void)
+{
+    Count=0;
+}
+
+void Encoder(void)
+{
+    Previous_state=digitalRead(Bpin);
+    if(!digitalRead(Apin))
+    {
+        flag=1;
+        Current_state=digitalRead(Bpin);
+    }
+
+    if(flag==1)
+    {
+        flag=0;
+
+        if(Current_state==1 && Previous_state==0)
+            Count++;
+        if(Current_state==0 && Previous_state==1)
+            Count--;
+    }
+}
+
+void LED(char* color)
+{
+	if(color == "RED")
+	{
+		digitalWrite(Rpin, HIGH);
+		digitalWrite(Gpin, LOW);
+	}
+	else if(color == "GREEN")
+	{
+		digitalWrite(Rpin, LOW);
+		digitalWrite(Gpin, HIGH);
+	}
+	else if(color == "OFF")
+	{
+		digitalWrite(Rpin, LOW);
+		digitalWrite(Gpin, LOW);
+	}
+	else
+		printf("LED Error");
+}
+
+int main(void)
+{
+
+    int tmp=0;
+
+    if(wiringPiSetup()==-1)
+        return -1;
+
+    pinMode(btn,INPUT);
+    pinMode(Apin,INPUT);
+    pinMode(Bpin,INPUT);
+    pinMode(LEDR,OUTPUT);
+    pinMode(LEDG,OUTPUT);
+
+    pullUpDnControl(btn,PUD_UP);
+    if(wiringPiISR(btn,INT_EDGE_RISING,method)<0)
+        return -1;
+
+while(1)
+{
+    Encoder();
+    if(Count !=tmp)
+    {
+        printf("$d\n",Count);
+        tmp=Count;
+    }
+    if(Count>0)
+        LED("GREEN");
+    else if (Count<0)
+        LED("RED");
+    else
+    LED("OFF");
+}
+    
+return 0;
+}
+
+//스레드
+
+#include <pthread.h>
+#include <stdio.h>
+#include <unistd.h>
+
+void *t_func(void *arg)
+{
+    pthread_t tid;
+    int i=0;
+    tid=pthread_self();
+    while(i<10)
+    {
+        printf("%x %d",tid,i);
+        i++;
+        sleep(1);
+    }
+}
+
+int main(void)
+{
+    pthread_t test;
+    int i=0;
+    pthread_create(&test,NULL,t_func,NULL);
+    while(i<5)
+    {
+        printf("%x %d",pthread_self(),i);
+    }
+    pthread_join(test,NULL);
+    return 0;
+}
+
+
