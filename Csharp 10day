@@ -1,0 +1,131 @@
+ //배열 파트 
+ 
+ class Program
+    {
+        static int GetHightScore(int[]b)
+        {
+            //높은 값 출력
+            int High_Score = 0;
+
+            foreach(int i in b)
+            {
+                if (High_Score <  i)
+                    High_Score = i;
+              
+            }
+
+            return High_Score;
+        }
+
+        static int GetAverageScore(int[]b)
+        {
+            //평균값
+            if (b.Length == 0)
+                return 0;
+
+            int total = 0;
+            int Average = 0;
+
+            foreach (int i in b)
+            {
+                total += i;
+                
+            }
+            Average=total/b.Length;
+
+
+            return Average;
+        }
+
+        static int GetIndexOf(int[]b,int value)
+        {
+            //원하는 값 찾기
+            foreach(int i in b)
+            {
+                if (value == i)
+                    return value;
+                
+            }
+
+            return -1;
+           
+        }
+        
+        static int Sort(int[]b)
+        {
+            //작은것 부터 큰 순서대로
+            int First_Num = 0;
+
+            for(int i=0;i<b.Length;i++)
+            {
+                First_Num = i;
+                for(int j=i;j<b.Length;j++)
+                {
+                    if (b[j] < b[First_Num])
+                        First_Num = j;
+                }
+
+                int storage = b[i];
+                b[i]= b[First_Num];
+                b[First_Num] = storage;
+                
+
+            }
+
+            return 0;
+
+        }
+
+
+        static void Main(string[] args)
+        {
+           
+            int[]b=new int[]{50,30,40,20,10};//참조가 된다 (복사가 아님)
+
+            int a=GetHightScore(b);
+            Console.WriteLine(a);
+
+
+
+        }
+    }
+
+    //다차원 배열
+
+     class Program
+    {
+       class Map
+        {
+            int[,] tiles =new int[,] {
+                {1,1,1},
+                {1,0,0}
+               
+            };
+            //int[0,1] tiles == int[가로,세로] tiles
+            public void Render()
+            {
+                for(int y=0;y<tiles.GetLength(0);y++)
+                {
+                    var defaultColor=Console.ForegroundColor; 
+                    for(int x=0;x<tiles.GetLength(1); x++)
+                    {
+                        if(tiles[y,x]==1)
+                            Console.ForegroundColor = ConsoleColor.Red;
+                        else
+                            Console.ForegroundColor = ConsoleColor.Green;
+
+                        Console.Write('\u25cf'); ;
+                    }
+                    Console.WriteLine();
+                    Console.ForegroundColor = defaultColor;
+                }
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            Map map = new Map();
+            map.Render();
+
+        }
+    }
