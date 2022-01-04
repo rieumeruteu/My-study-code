@@ -1,0 +1,233 @@
+  //리스트는 배열과 다르게 동적으로 공간을 활용할 수 있다.
+  
+
+  // List<int> lista=new List<int>() = 최소 선언  
+  // lista.Add(value) = 리스트에 값 추가
+  class Program
+    {
+
+        
+        static void Main(string[] args)
+        {
+            List<int> lista = new List<int>(); // 선언시 비어있는 상태
+            
+            lista.Add(3);//값 추가
+            lista.Add(7);
+            lista.Add(9);
+
+        }
+    }
+
+    //리스트 반복문으로 출력 
+    class Program
+    {
+       
+ 
+        static void Main(string[] args)
+        {
+            List<int> lista = new List<int>();
+
+            lista.Add(3);
+            lista.Add(7);
+            lista.Add(9);
+
+            foreach(int test in lista) // 배열과 유사함
+            {
+                Console.WriteLine(test);
+            }
+
+            Console.WriteLine();
+
+            for(int i=0; i<lista.Count; i++)
+            {
+                Console.WriteLine(lista[i]);
+            }
+
+        }
+    }
+
+    // lista.Count = 리스트 내에 있는 요소들의 개수를 알려준다.
+    //lista.clear= 리스트 내에 있는 모든 내용을 지운다.
+    class Program
+    {
+       
+ 
+        static void Main(string[] args)
+        {
+            List<int> lista = new List<int>();
+
+            lista.Add(3);
+            lista.Add(7);
+            lista.Add(9);
+
+
+            Console.WriteLine(lista.Count);
+
+            lista.Clear();
+            Console.WriteLine(lista.Count);
+
+        }
+    }
+ 
+
+ // 배열의 내용을 리스트로 복사해서 이동
+  class Program
+    {
+       
+ 
+        static void Main(string[] args)
+        {
+            int[] arr = new int[5];
+            arr[0] = 12;
+            arr[1] = 23;
+            arr[2] = 642;
+
+            List<int> lista = new List<int>(arr);
+
+            Console.WriteLine(lista.Count);
+
+            Console.WriteLine();
+
+            for(int i=0;i<lista.Count;i++)
+            Console.WriteLine(lista[i]);
+
+        }
+    }
+
+
+    //리스트 삽입, 제거
+    //lista.Remove(값) = 원하는 값을 선택하면 순차적으로 확인중  그 값을 발견하면 그것만 제거
+    //lista.insert(위치,값) = 리스트의 원하는 위치를 지정하고 그자리에 넣을 값을 정하면 실행
+    //lista.RemoveAt(위치) = 원하는 위치를 지정하면 그 위치의 값을 제거 
+
+    class Program
+    {
+        
+        static void Main(string[] args)
+        {
+
+            string[] arr = new string[]
+             {
+                "말파이트",
+                "말자하",
+                "카직스",
+                "카서스"
+             };
+
+            List<string> lista = new List<string>(arr);
+
+            foreach(string name in lista)
+            {
+                Console.WriteLine(name);//말파,말자,카직,카서
+            }
+
+            lista.Insert(0, "아무무");//아무무가 0번 자리에 삽입 
+
+            /*
+            *출력내용*
+                아무무 말자하 카직스 카서스
+            */
+
+            lista.Remove("카서스");// 카서스라는 값을 제거
+
+            /*
+            *출력내용*
+                아무무 말파이트 말자하 카직스 
+            */
+
+            lista.RemoveAt(2);//2번 자리에 말자하 제거
+
+            /*
+            *출력내용*
+                아무무 말파이트 카직스
+            */
+
+            Console.WriteLine();
+            for(int i=0;i<lista.Count;i++)
+            {
+                Console.WriteLine(lista[i]);
+            }
+
+        }
+    }
+ 
+
+
+//딕셔너리
+//리스트로 많은 양의 정보를 담고 있으면 찾기가 어렵기 때문에 디셔너리를 사용하여 효율적으로 값을 찾는다
+
+// Dictonarty<int,Monster> dic=new Dictionary<int,Monster>() = 최초 선언
+
+//dic.add(key,new value)= 딕셔너리에 키와 값을 추가 
+//dic[key]=value = ``
+
+
+ class Program
+    {
+        class Monster
+        {
+            int id;
+            public Monster(int id)
+            {
+                this.id = id;   
+            }
+        }
+
+        
+        static void Main(string[] args)
+        {
+            List<int> lista = new List<int>();
+
+            Dictionary<int, Monster> dic = new Dictionary<int, Monster>();
+
+            dic.Add(1, new Monster(4)); //1이라는 key값으로 4번몬스터(value)에 추가
+            dic[2]=new Monster(3);// 2이라는 key값으로 3번몬스터(value)에 추가
+        }
+    }
+ 
+ 
+
+
+
+ 
+// 값 찾기
+//Monster monster=dic[키값]= monster 클래스에서 dic의 값을 찾아내는 방법(만약 ) 
+
+//bool test=dic.TryGetValue(200000, out mon1); 해당 key값에 값이 있는지 확인하고 있으면 넘기고 없으면 null값으로 반환
+    class Program
+    {
+        class Monster
+        {
+            int id;
+            public Monster(int id)
+            {
+                this.id = id;   
+            }
+        }
+
+        
+        static void Main(string[] args)
+        {
+            int k=5;
+            List<int> lista = new List<int>();
+
+            Dictionary<int, Monster> dic = new Dictionary<int, Monster>();
+
+           for(int i=0;i<1000;i++)
+            {
+                dic.Add(i, new Monster(k));
+                k++;
+            }
+            Monster mon1;
+
+            bool checkMonster=dic.TryGetValue(200000, out mon1);
+
+            Monster monster = dic[800];
+
+        }
+    }
+
+//딕셔너리 정보 삭제
+
+dic.Remove(key);//키값에 해당하는 정보가 삭제
+dic.Clear();//딕셔너리 정보 전부 삭제
