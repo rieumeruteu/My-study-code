@@ -1,0 +1,48 @@
+//제너릭 클래스
+
+class Program
+    {
+       class MyList<T>// generic class (일반화 클래스) T에 어떠한 값을 넣어도 작동이 된다.
+        {
+            T[] arr = new T[10];
+
+            public T GetItem(int i)//T타입으로 반환을 한다
+            {
+                return arr[i];
+            }
+        }
+
+
+        static void Main(string[] args)
+        {
+            MyList<int> myIntList = new MyList<int>();
+            MyList<short>mysShortList= new MyList<short>();
+            MyList<float> myFloatList = new MyList<float>();
+
+            float persent= myFloatList.GetItem(7);
+        }
+    }
+
+
+    class Program
+    {
+
+        static void TestMethod<T>(T input)//함수도 일반화로 사용할 수 있다
+        {
+
+        }
+
+        static void DoubleIndex<T,K>(T intput1,K input2)//여러값을 쓰고 싶으면 추가해도 된다
+        {
+
+        }
+
+
+        static void Main(string[] args)
+        {
+            TestMethod<int>(3);
+            TestMethod<float>(4.23f);
+
+            DoubleIndex<int, double>(5, 2.5);
+        }
+    }
