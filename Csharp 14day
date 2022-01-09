@@ -1,0 +1,146 @@
+//Delegate: 메서드를 다른 메서드로 전달하기 위해 만들어 졌다. (메서드를 인자로 해서 다른 메서드에 넣는 것이다)
+    //
+    class Program
+    {
+        delegate int OnClick(); // 함수 자체를 넘겨주는 형식.. 반환: int / 입력:void / delegate형식 이름: OnClick
+
+        static void ButtonPressed(OnClick clickFunction)//함수 자체를 인자로 넘겨준다.
+        {
+            clickFunction();//함수 호출
+        }
+
+        static int TestButton()//delegate의 형식에 맞게 인자로 들어갈 함수를 만든다.
+        {
+            Console.WriteLine("테스트 완료");
+            return 0;
+        }
+
+       
+        static void Main(string[] args)
+        {
+            ButtonPressed(TestButton);
+
+        }
+    }
+
+
+//이벤트 함수: delegate가 좋지만 아무곳에서나 호출이 가능해서 event를 추가해서 단점을 보안 했다.
+
+///////////////////////////////////////////클래스 파일 추가 
+
+     //Observer Pattern
+    internal class InputManager
+    {
+
+        public delegate void OnInputKey();
+        public event OnInputKey inputkey; //A키를 누르면 inputkey가 작동되도록  돌아가는 이벤트
+
+        public void Update()
+        {
+            if(Console.KeyAvailable==false)
+            {
+                return;
+            }
+            ConsoleKeyInfo info=Console.ReadKey();//키 값을 읽는다
+            if(info.Key==ConsoleKey.A) // A키를 누르면 
+            {
+                //모두에게 A키를 눌렀다고 알리는 내용..
+                inputkey();
+            }
+        }
+    }
+//////////////////////////////////////////
+
+
+// 매인 코드 
+
+     class Program
+    {
+       static void OnInputTest()
+        {
+            Console.WriteLine("Input Received");
+        }
+       
+        static void Main(string[] args)
+        {
+            InputManager Message=new InputManager();
+
+            Message.inputkey += OnInputTest;
+
+            while(true)
+            {
+                Message.Update();
+            }
+
+        }
+    }
+
+
+
+
+//Lambda: 일회용 함수를 만들 때(즉석으로 만들 때) 사용하는 문법
+
+    enum ItemType
+    {
+        Weapon=0,
+        Armor=1,
+        Amulet=2,
+        Ring=3
+    }
+
+    enum Rarity
+    {
+        Waste=0,
+        Normal=1,
+        Rare=2,
+        Hight=3,
+        Professtion=4
+    }
+
+    class Item
+    {
+        public ItemType Type;
+        public Rarity Rarity;
+    }
+
+    
+
+    class Program
+    {
+        static List<Item> items = new List<Item>();
+        delegate bool ItemSelector(Item items);
+        static Item FindItem(ItemSelector selector)
+        {
+            foreach(Item item in items)
+            {
+                if (selector(item))
+                    return item;
+            }
+            return null;
+        }
+
+
+        static void Main(string[] args)
+        {
+            items.Add(new Item() { Type = ItemType.Weapon, Rarity = Rarity.Normal });
+            items.Add(new Item() { Type = ItemType.Armor, Rarity = Rarity.Normal });
+            items.Add(new Item() { Type = ItemType.Ring, Rarity = Rarity.Rare });
+
+            //일회용으로 만든 모습 Anonymous Function:(무명함수/익명함수)
+            Item P_item = FindItem(delegate (Item item) { return item.Type == ItemType.Weapon; });
+
+
+            //Lambda 형식
+            Item P2_item = FindItem((Item item) => { return item.Type == ItemType.Weapon; });
+
+
+            //이렇게 짜면 재사용이 가능하다. Lambda는 함수를 빠르게 생성해서 적용하는 방법이다.
+            ItemSelector selector = new ItemSelector((Item item) => { return item.Type == ItemType.Weapon; });
+            Item item = FindItem(selector);
+
+            //delegate로 이미 함수가 만들어 져있다. 
+            Func<Item, bool> selector2 = ((Item item) => { return item.Type == ItemType.Weapon; });
+            //-> 반환 타입이 있으면 Func
+            // -> 반환 타입이 없으면 Action
+        }
+    }
