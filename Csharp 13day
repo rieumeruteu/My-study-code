@@ -1,0 +1,102 @@
+ // 어떤 특정 클래스가 사용자가 원하는 기능을 넣기 위해 
+ 
+ // 클래스 추상화
+ //abstract
+  class Program
+    {
+        abstract class Monster //abstract를 추가하면 Monster 클래스는 추상클래스가 된다.
+        {
+            public virtual void Shout() { }
+        }
+        class Orc:Monster
+        {
+            public override void Shout()
+            {
+                
+            }
+        }
+
+        class Skeleton: Monster
+        {
+            public override void Shout()
+            {
+                
+            }
+        }
+
+        static void Main(string[] args)
+        {
+           // Monster monster = new Monster(); 추상클래스는 선언을 할 수 없다
+
+
+        }
+    }
+
+
+
+//함수 추상화
+     class Program
+    {
+        abstract class Monster 
+        {
+            public abstract void Shout();// 추상화된 함수에는 본문을 넣어서는 안된다.
+        }
+
+        class Orc:Monster
+        {
+            public override void Shout() { }
+          
+        }
+        //부모클래스의 추상화 함수를 넣지 않으면 자식 클래스는 선언이 불가능하다.(무조건 넣도록 강제 시킨다.)
+        class Skeleton : Monster
+        {
+            //에러남
+        }
+
+        static void Main(string[] args)
+        {
+           
+
+        }
+    }
+
+    //abstract는 여러개의 상속이 불가능하다 고로 interface로 유연하게 대처하자
+    // C#에서는 두개의 이상의 상속(다중상속)을 못하도록 되어있다. 그이유는 두 클래스에서 동일한 기능의 함수가 있다면
+    //코드가 꼬이기 때문이다. 그래서 코드가 꼬이지 않게 코드 구현 내용은 물려주지 않고 코드의 기능 요소만 넣어주는 방식이 interface이다.
+    class Program
+    {
+        abstract class Monster 
+        {
+            public abstract void Shout();
+        }
+
+        interface IFlyable// interface는 인터페이스 부분은 물려주지만 구현 내용은 물려주지 않도록 한다.
+        {
+             void Fly(); //interface로 구현되면 접근제한자들의 필요가 사라진다.
+        }
+
+        class Orc : Monster
+        {
+            public override void Shout()
+            {
+
+            }
+
+        }
+
+
+        class FlyAbleOrc: Orc,IFlyable//다중 상속 대신에 인터페이스로 Orc 와 IFltable 2개의 요소를 갖게 된다.
+        {
+            public void Fly()//단 반드시 interface 내의 요소는 꼭 넣어줘야 한다.
+            {
+
+            }
+        }
+
+       
+        static void Main(string[] args)
+        {
+          IFlyable FlyMonster = new FlyAbleOrc();//interface 클래스 정의를 하면 interface로 상속된 클래스도 갖이 포함되기 때문에 유용하다.
+
+        }
+    }
