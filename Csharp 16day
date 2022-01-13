@@ -1,0 +1,76 @@
+
+//동적 할당 배열 명령어의 기본 알고리즘 
+
+
+ class MyList<T>
+    {
+        const int DEFAULT_SIZE = 1;
+        T[] _data = new T[DEFAULT_SIZE];
+
+        public int Count=0;//실제로 사용중인 데이터 개수
+        public int Capacity { get { return _data.Length; } }//예약된 데이터 개수
+
+
+
+        //big-0 방식=>0(1) : 예외 케이스: 이사비용을 무시한다
+        public void Add(T item)// _data.Add(102);부분 구현 
+        {
+            // 공간의 유무 확인 -> 공간확보 후 공간에다 데이터 넣기
+            if(Count>=Capacity)
+            {
+                T[] newArray = new T[Count * 2];
+                for (int i = 0; i < Count; i++) // 동적배열은 공간이 부족하면 데이터들을 이사 보내야 한다.
+                    newArray[i] = _data[i];
+                _data = newArray;
+            }
+                //공간에 데이터를 넣어준다.
+            _data[Count] = item;
+            Count++;
+
+        }
+
+
+
+        //0(1)
+        public T this[int index]// _data2[2]; 부분 구현
+        {
+            get { return _data[index]; } //int x= _data2[2];
+            set { _data[index] = value; }//_data2[2]=4;
+        }
+
+
+
+
+        //0(N)
+        public void RemoveAt(int index)// _data.RemoveAt(2);
+        {
+            for (int i = index; i < Count - 1; i++)
+                _data[i] = _data[i + 1];
+
+            _data[Count - 1] = default(T);//초기값으로 마지막 배열 값을 밀어버린다.
+            Count--;
+        }
+
+
+
+
+    }
+    internal class Map
+    {
+        public int[] _data = new int[25];// 배열
+        public MyList<int> _data2 = new MyList<int>();//동적배열
+        public LinkedList<int> _data3 = new LinkedList<int>();//연결리스트
+
+        public void Initialize()
+        {
+            _data2.Add(101);
+            _data2.Add(102);
+            _data2.Add(103);
+            _data2.Add(104);
+            _data2.Add(105);
+
+            int temp = _data2[2];
+            _data2.RemoveAt(2);
+        }
+    }
+}
