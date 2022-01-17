@@ -1,0 +1,125 @@
+ //미로 알고리즘 기초부분 핥아보기
+ 
+ void GenerateByBinaryTree()//미로 알고리즘
+        {
+            // 길막이 작업
+            for (int y = 0; y < Size; y++)
+            {
+                for (int x = 0; x < Size; x++)
+                {
+                    if (x % 2 == 0 || y % 2 == 0)
+                        Tile[y, x] = TileType.Wall;
+                    else
+                        Tile[y, x] = TileType.Empty;
+                }
+            }
+
+            // 길뚫기 작업
+            Random rand = new Random();
+            for (int y = 0; y < Size; y++)
+            {
+                for (int x = 0; x < Size; x++)
+                {
+                    if (x % 2 == 0 || y % 2 == 0)//벽은 그냥 지나간다.
+                        continue;
+
+                    if (y == Size - 2 && x == Size - 2)// 맨 마지막 빈칸을 벽으로 매꾸는 작업
+                        continue;
+
+                    if (y == Size-2 )//y축 벽 뚫리는 작업 막는 코드
+                    {
+                        Tile[y, x + 1] = TileType.Empty;
+                        continue;
+                    }
+
+                    if (x == Size - 2)//x축 벽 뚫리는 작업 막는 코드
+                    {
+                        Tile[y + 1, x] = TileType.Empty;
+                        continue;
+                    }
+
+
+                    if (rand.Next(0, 2) == 0)// 빈 공간을 만나면 랜덤으로 공간을 뚫는다.
+                        Tile[y, x + 1] = TileType.Empty;
+                    else
+                        Tile[y + 1, x] = TileType.Empty;
+                }
+            }
+        }
+
+
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+        void GenerateBySideWinder()//미로 알고리즘
+        {
+            //길막이 작업
+            for (int y = 0; y < Size; y++)
+            {
+                for (int x = 0; x < Size; x++)
+                {
+                    if (x % 2 == 0 || y % 2 == 0)
+                        Tile[y, x] = TileType.Wall;
+                    else
+                        Tile[y, x] = TileType.Empty;
+                }
+            }
+
+            //길뚫기 작업
+            Random rand = new Random();
+            for (int y = 0; y < Size; y++)
+            {
+                for (int x = 0; x < Size; x++)
+                {
+                    if (x % 2 == 0 || y % 2 == 0)//벽은 그냥 지나간다.
+                        continue;
+                    int Count = 1;
+
+                    if(y==Size-2 && x== Size-2)
+                    {
+                        Tile[y, x + 1] = TileType.Empty;
+                        continue;
+                    }
+
+                    if(x==Size-2)
+                    {
+                        Tile[y + 1, x] = TileType.Empty;
+                        continue;
+                    }
+
+                    if (y == Size - 2)
+                    {
+                        Tile[y, x+1] = TileType.Empty;
+                        continue;
+                    }
+
+
+                    if (rand.Next(0, 2) == 0)
+                    {
+                        Tile[y, x+1] = TileType.Empty;
+                        Count++;
+                    }
+                    else
+                    {
+
+                        int rand2 = rand.Next(0, Count);
+                            Tile[y + 1, x-rand2*2] = TileType.Empty;
+                        Count = 1;
+
+                    }
+
+
+
+
+                    //if (y % 2 == 1 && x % 2 == 0)
+                    //    Tile[movePoint, x] = TileType.Empty;
+
+
+                    //if (rand.Next(0, 2) == 0)// 빈 공간을 만나면 랜덤으로 공간을 뚫는다.
+                    //    Tile[y, x + 1] = TileType.Empty;
+                    //else
+                    //    Tile[y + 1, x] = TileType.Empty;
+                }
+            }
+        }
