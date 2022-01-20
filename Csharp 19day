@@ -1,0 +1,119 @@
+ //스택, 큐: 추상적인 저장공간
+ 
+ class Program
+    {
+        //[1] [2] [3] [4]
+        /*
+         스택: 후입선출
+        큐: 선입선출 
+         */
+
+        static void Main(string[] args)
+        {
+            Stack<int> stack = new Stack<int>();
+            stack.Push(1);// 스텍에 값 추가
+            stack.Push(2);
+            stack.Push(3);
+            stack.Push(4);
+            stack.Push(5);
+
+            int data = stack.Pop(); //스택의 맨 마지막에 넣었던 값을 가져온다 
+            int data2 = stack.Peek();// 스택의 맨 마지막 값을 확인?한다.
+
+
+            Queue<int> queue = new Queue<int>();
+            queue.Enqueue(101);
+            queue.Enqueue(102);
+            queue.Enqueue(103);
+            queue.Enqueue(104);
+            queue.Enqueue(105);
+
+            int data3 = queue.Dequeue();// 맨 처음 넣은 값을 빼온다
+            int data4 = queue.Peek();//맨 처음 넣은 값을 확인해 본다
+        }
+    }
+
+//DFS (우선 깊이 탐색) 기본 원리
+
+
+     class Program
+    {
+        class Graph
+        {
+            int[,] arr = new int[6, 6]
+             {
+                    {0,1,0,1,0,0 },
+                    {1,0,1,1,0,0 },
+                    {0,1,0,0,0,0 },
+                    {1,1,0,0,1,0 },
+                    {0,0,0,1,0,1 },
+                    {0,0,0,0,1,0 },
+             };
+
+            List<int>[] arr2 = new List<int>[]
+            {
+                new List<int>(){1,3},
+                new List<int>(){0,2,3},
+                new List<int>(){1},
+                new List<int>(){0,1},
+                new List<int>(){5},
+                new List<int>(){4},
+
+            };
+
+
+            bool[] visited = new bool[6];
+            //2차원 배열로 그래프 구현시 DFS
+            public void DFS(int now)
+            {
+                //1) now부터 방문 ,2)now와의 접점들을 하나씩 확인 후 방문[미방문 상태면]
+                Console.WriteLine(now);
+                visited[now] = true;
+
+
+                for(int next=0; next < 6; next++)
+                {
+                    if (arr[now, next] == 0)//now와 next사이에 연결선이 없으면 무시한다.
+                        continue;
+                    if (visited[next])//방문한 방이면 무시한다.
+                        continue;
+                    DFS(next);//재귀를 사용해서 다음 방도 똑같이 행동하라.
+                }
+            }
+
+            
+            //리스트 형식으로 그래프 구현시 DFS
+            public void DFS2(int now)
+            {
+                Console.WriteLine(now);
+                visited[now]=true;
+                foreach(int next in arr2[now])
+                {
+                    if (visited[next])
+                        continue;
+                    DFS2(next);
+                }
+            }
+
+            //그래프에서 만약에 연결이 끊긴 접점들이 있는지 확인하고 있으면 그 부분에 DFS를 실행
+
+            public void SearchAll()
+            {
+                visited = new bool[6];
+                for (int i = 0; i < 6; i++)
+                    if (visited[i] == false)
+                        DFS2(i); // or DFS(i);
+            }
+
+
+        }
+
+        static void Main(string[] args)
+        {
+            Graph graph = new Graph();
+            graph.SearchAll();
+
+           
+
+        }
+    }
