@@ -1,0 +1,55 @@
+#include <iostream>
+#include "TestHead.h"	
+#define MAX 100
+
+#pragma region MyRegion
+
+#pragma endregion
+
+enum Bank
+{
+	None,
+	AccountOpening,//계좌계설
+	Input,
+	Output,
+	OutputTotalAccount,
+	Finished
+};
+
+
+
+int main(void)
+{
+	int ID[MAX];
+	Bank choose = Bank::None;
+
+	Println::Menu();
+	
+	switch (choose)
+	{
+	case 1:
+		choose = AccountOpening;
+		Println::MakingAccount;
+		break;
+	case 2:
+		choose = Input;
+		Println::InputMoney;
+		break;
+	case 3:
+		choose = Output;
+		Println::OutputMoney;
+		break;
+	case 4:
+		choose = OutputTotalAccount;
+		Println::TotalAccount;
+		break;
+	case 5:
+		choose = Finished;
+		Println::End;
+		break;
+	}
+
+
+	return 0;
+}
+
