@@ -1,0 +1,59 @@
+//홍씨 아두이노 수업 챕터 1 led켜기 
+
+
+const int led1=13;
+
+void setup() 
+{
+ pinMode(led1,OUTPUT);
+ 
+ 
+}
+
+void loop() 
+{
+  digitalWrite(led1,HIGH);
+  delay(1000);		//마이크로세크 (1초==10^3)
+  digitalWrite(led1,LOW);
+  delay(1000);
+}
+]
+///////////////////////////////////////////////////////
+
+#define LED_NUM 8
+#define LED1 0
+#define LED2 1
+#define LED3 2
+#define LED4 3
+#define LED5 4
+#define LED6 5
+#define LED7 6
+#define LED8 7
+
+const char LedArr[LED_NUM]={
+  LED1,LED2,LED3,LED4,LED5,LED6,LED7,LED8
+};
+
+void setup() 
+{
+ for(int i=0;i<LED_NUM;i++)
+  pinMode(LedArr[i],OUTPUT);
+ 
+ 
+}
+
+void loop() 
+{
+  for(int i=0;i<LED_NUM;i++)
+  {
+    digitalWrite(LedArr[i],HIGH);
+    delay(300);
+    digitalWrite(LedArr[i],LOW);
+    delay(300);
+  }
+}
+
+
+
+
+
